@@ -1,0 +1,31 @@
+/**
+ * @oak9/landing — Required CSS Custom Properties
+ *
+ * Consuming apps must define these tokens in their globals.css or theme.
+ * The renderers use these via Tailwind classes (brand-*, surface-*).
+ *
+ * Copy this file into your app's CSS and adjust values to match your theme.
+ */
+
+@theme {
+  /* Brand colors — override at runtime per network */
+  --color-brand-50: #faf8f5;
+  --color-brand-100: #f0ebe3;
+  --color-brand-200: #e0d5c5;
+  --color-brand-300: #cbb89f;
+  --color-brand-400: #b59a79;
+  --color-brand-500: #a6845e;
+  --color-brand-600: #996f52;
+  --color-brand-700: #805a45;
+  --color-brand-800: #684a3c;
+  --color-brand-900: #553e33;
+  --color-brand-950: #2e1f1a;
+
+  /* Dark surface tokens — warm-tinted neutrals */
+  --color-surface-base: #141311;
+  --color-surface-raised: #1e1d1a;
+  --color-surface-overlay: #26241f;
+  --color-surface-hover: #302e28;
+  --color-surface-border: #2e2c27;
+  --color-surface-secondary: #38352f;
+}

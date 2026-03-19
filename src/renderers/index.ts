@@ -1,3 +1,5 @@
+export { LandingSectionRenderer } from "./landing-section-renderer";
+export type { LandingSectionRendererProps } from "./landing-section-renderer";
 export { LandingHeroStatement } from "./landing-hero-statement";
 export { LandingHeroCaptureForm } from "./landing-hero-capture-form";
 export { LandingHeroVideo } from "./landing-hero-video";
