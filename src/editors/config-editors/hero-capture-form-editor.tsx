@@ -1,0 +1,126 @@
+"use client";
+
+import { Plus, Trash } from "@phosphor-icons/react";
+
+interface FormField {
+  field_name?: string;
+  field_type?: string;
+  field_label?: string;
+  placeholder?: string;
+  required?: boolean;
+}
+
+interface HeroCaptureFormConfig {
+  headline?: string;
+  subtitle?: string;
+  body_text?: string;
+  form_fields?: FormField[];
+  submit_button_label?: string;
+  form_position?: string;
+  social_proof_line?: string;
+  background_image?: { url?: string; alt_text?: string; caption?: string };
+  layout?: string;
+  audience_id?: string;
+  privacy_text?: string;
+}
+
+export function HeroCaptureFormEditor({
+  config,
+  onChange,
+}: {
+  config: Record<string, unknown>;
+  onChange: (config: Record<string, unknown>) => void;
+}) {
+  const c = config as HeroCaptureFormConfig;
+  const fields = c.form_fields ?? [];
+  const bg = c.background_image ?? {};
+
+  return (
+    <div className="space-y-3">
+      <div>
+        <label className="mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400">Headline</label>
+        <input value={c.headline ?? ""} onChange={(e) => onChange({ ...config, headline: e.target.value })} className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" />
+      </div>
+      <div>
+        <label className="mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400">Subtitle</label>
+        <input value={c.subtitle ?? ""} onChange={(e) => onChange({ ...config, subtitle: e.target.value })} className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" />
+      </div>
+      <div>
+        <label className="mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400">Body Text</label>
+        <textarea value={c.body_text ?? ""} onChange={(e) => onChange({ ...config, body_text: e.target.value })} rows={3} className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" />
+      </div>
+
+      <div>
+        <label className="mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400">Form Fields</label>
+        <div className="space-y-2">
+          {fields.map((f, i) => (
+            <div key={i} className="rounded-lg border border-zinc-200 p-3 dark:border-zinc-700">
+              <div className="mb-2 flex items-center justify-between">
+                <span className="text-xs font-medium text-zinc-400">Field {i + 1}</span>
+                <button type="button" onClick={() => onChange({ ...config, form_fields: fields.filter((_, j) => j !== i) })} className="text-zinc-400 hover:text-red-500"><Trash className="size-3.5" /></button>
+              </div>
+              <div className="grid gap-2 sm:grid-cols-2">
+                <input placeholder="Field name (key)" value={f.field_name ?? ""} onChange={(e) => { const u = [...fields]; u[i] = { ...u[i], field_name: e.target.value }; onChange({ ...config, form_fields: u }); }} className="w-full rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" />
+                <input placeholder="Label" value={f.field_label ?? ""} onChange={(e) => { const u = [...fields]; u[i] = { ...u[i], field_label: e.target.value }; onChange({ ...config, form_fields: u }); }} className="w-full rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" />
+                <select value={f.field_type ?? "text"} onChange={(e) => { const u = [...fields]; u[i] = { ...u[i], field_type: e.target.value }; onChange({ ...config, form_fields: u }); }} className="w-full rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white">
+                  <option value="text">Text</option>
+                  <option value="email">Email</option>
+                  <option value="tel">Phone</option>
+                  <option value="textarea">Textarea</option>
+                  <option value="select">Select</option>
+                </select>
+                <input placeholder="Placeholder" value={f.placeholder ?? ""} onChange={(e) => { const u = [...fields]; u[i] = { ...u[i], placeholder: e.target.value }; onChange({ ...config, form_fields: u }); }} className="w-full rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" />
+              </div>
+              <label className="mt-2 flex items-center gap-2 text-xs font-medium text-zinc-500 dark:text-zinc-400">
+                <input type="checkbox" checked={f.required ?? false} onChange={(e) => { const u = [...fields]; u[i] = { ...u[i], required: e.target.checked }; onChange({ ...config, form_fields: u }); }} className="rounded border-zinc-300 dark:border-zinc-600" />
+                Required
+              </label>
+            </div>
+          ))}
+        </div>
+        <button type="button" onClick={() => onChange({ ...config, form_fields: [...fields, { field_name: "", field_type: "text", field_label: "", placeholder: "", required: false }] })} className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-brand-600 hover:text-brand-500">
+          <Plus className="size-3" /> Add Field
+        </button>
+      </div>
+
+      <div>
+        <label className="mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400">Submit Button Label</label>
+        <input value={c.submit_button_label ?? ""} onChange={(e) => onChange({ ...config, submit_button_label: e.target.value })} className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" placeholder="Sign Up" />
+      </div>
+      <div>
+        <label className="mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400">Form Position</label>
+        <select value={c.form_position ?? "inline"} onChange={(e) => onChange({ ...config, form_position: e.target.value })} className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white">
+          <option value="inline">Inline</option>
+          <option value="sidebar">Sidebar</option>
+          <option value="overlay">Overlay</option>
+        </select>
+      </div>
+      <div>
+        <label className="mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400">Social Proof Line</label>
+        <input value={c.social_proof_line ?? ""} onChange={(e) => onChange({ ...config, social_proof_line: e.target.value })} className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" placeholder="Join 500+ professionals..." />
+      </div>
+      <fieldset className="rounded-md border border-zinc-200 p-3 dark:border-zinc-700">
+        <legend className="px-1 text-xs font-medium text-zinc-500 dark:text-zinc-400">Background Image</legend>
+        <div className="space-y-2">
+          <input placeholder="Image URL" value={bg.url ?? ""} onChange={(e) => onChange({ ...config, background_image: { ...bg, url: e.target.value } })} className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" />
+          <input placeholder="Alt text" value={bg.alt_text ?? ""} onChange={(e) => onChange({ ...config, background_image: { ...bg, alt_text: e.target.value } })} className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" />
+        </div>
+      </fieldset>
+      <div>
+        <label className="mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400">Layout</label>
+        <select value={c.layout ?? "centered"} onChange={(e) => onChange({ ...config, layout: e.target.value })} className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white">
+          <option value="centered">Centered</option>
+          <option value="split">Split</option>
+        </select>
+      </div>
+      <div>
+        <label className="mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400">Audience ID</label>
+        <input value={c.audience_id ?? ""} onChange={(e) => onChange({ ...config, audience_id: e.target.value })} className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" />
+      </div>
+      <div>
+        <label className="mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400">Privacy Text</label>
+        <textarea value={c.privacy_text ?? ""} onChange={(e) => onChange({ ...config, privacy_text: e.target.value })} rows={2} className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" />
+      </div>
+    </div>
+  );
+}

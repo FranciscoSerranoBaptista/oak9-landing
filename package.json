@@ -1,0 +1,48 @@
+{
+  "name": "@oak9/landing",
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": { "import": "./dist/index.mjs", "require": "./dist/index.cjs", "types": "./dist/index.d.ts" },
+    "./schemas": { "import": "./dist/schemas.mjs", "types": "./dist/schemas.d.ts" },
+    "./types": { "import": "./dist/types.mjs", "types": "./dist/types.d.ts" },
+    "./renderers": { "import": "./dist/renderers.mjs", "types": "./dist/renderers.d.ts" },
+    "./editors": { "import": "./dist/editors.mjs", "types": "./dist/editors.d.ts" },
+    "./server": { "import": "./dist/server.mjs", "types": "./dist/server.d.ts" }
+  },
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18",
+    "zod": ">=3.20",
+    "@phosphor-icons/react": ">=2",
+    "@dnd-kit/core": ">=6",
+    "@dnd-kit/sortable": ">=10",
+    "@dnd-kit/utilities": ">=3",
+    "@headlessui/react": ">=2"
+  },
+  "peerDependenciesMeta": {
+    "@phosphor-icons/react": { "optional": true },
+    "@dnd-kit/core": { "optional": true },
+    "@dnd-kit/sortable": { "optional": true },
+    "@dnd-kit/utilities": { "optional": true },
+    "@headlessui/react": { "optional": true }
+  },
+  "devDependencies": {
+    "tsup": "^8",
+    "typescript": "^5.7",
+    "react": "^19",
+    "react-dom": "^19",
+    "zod": "^3.24",
+    "@phosphor-icons/react": "^2",
+    "@dnd-kit/core": "^6",
+    "@dnd-kit/sortable": "^10",
+    "@dnd-kit/utilities": "^3",
+    "@headlessui/react": "^2",
+    "@types/react": "^19"
+  }
+}
