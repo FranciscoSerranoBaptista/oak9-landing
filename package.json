@@ -5,46 +5,86 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
-    ".": { "import": "./dist/index.js", "require": "./dist/index.cjs", "types": "./dist/index.d.ts" },
-    "./schemas": { "import": "./dist/schemas.js", "require": "./dist/schemas.cjs", "types": "./dist/schemas.d.ts" },
-    "./types": { "import": "./dist/types.js", "require": "./dist/types.cjs", "types": "./dist/types.d.ts" },
-    "./renderers": { "import": "./dist/renderers.js", "require": "./dist/renderers.cjs", "types": "./dist/renderers.d.ts" },
-    "./editors": { "import": "./dist/editors.js", "require": "./dist/editors.cjs", "types": "./dist/editors.d.ts" },
-    "./server": { "import": "./dist/server.js", "require": "./dist/server.cjs", "types": "./dist/server.d.ts" }
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    },
+    "./schemas": {
+      "import": "./dist/schemas.js",
+      "require": "./dist/schemas.cjs",
+      "types": "./dist/schemas.d.ts"
+    },
+    "./types": {
+      "import": "./dist/types.js",
+      "require": "./dist/types.cjs",
+      "types": "./dist/types.d.ts"
+    },
+    "./renderers": {
+      "import": "./dist/renderers.js",
+      "require": "./dist/renderers.cjs",
+      "types": "./dist/renderers.d.ts"
+    },
+    "./editors": {
+      "import": "./dist/editors.js",
+      "require": "./dist/editors.cjs",
+      "types": "./dist/editors.d.ts"
+    },
+    "./server": {
+      "import": "./dist/server.js",
+      "require": "./dist/server.cjs",
+      "types": "./dist/server.d.ts"
+    }
   },
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "peerDependencies": {
-    "react": ">=18",
-    "react-dom": ">=18",
-    "zod": ">=3.20",
-    "@phosphor-icons/react": ">=2",
     "@dnd-kit/core": ">=6",
     "@dnd-kit/sortable": ">=10",
     "@dnd-kit/utilities": ">=3",
-    "@headlessui/react": ">=2"
+    "@headlessui/react": ">=2",
+    "@phosphor-icons/react": ">=2",
+    "react": ">=18",
+    "react-dom": ">=18",
+    "zod": ">=3.20"
   },
   "peerDependenciesMeta": {
-    "@phosphor-icons/react": { "optional": true },
-    "@dnd-kit/core": { "optional": true },
-    "@dnd-kit/sortable": { "optional": true },
-    "@dnd-kit/utilities": { "optional": true },
-    "@headlessui/react": { "optional": true }
+    "@phosphor-icons/react": {
+      "optional": true
+    },
+    "@dnd-kit/core": {
+      "optional": true
+    },
+    "@dnd-kit/sortable": {
+      "optional": true
+    },
+    "@dnd-kit/utilities": {
+      "optional": true
+    },
+    "@headlessui/react": {
+      "optional": true
+    }
   },
   "devDependencies": {
-    "tsup": "^8",
-    "typescript": "^5.7",
-    "react": "^19",
-    "react-dom": "^19",
-    "zod": "^3.24",
-    "@phosphor-icons/react": "^2",
     "@dnd-kit/core": "^6",
     "@dnd-kit/sortable": "^10",
     "@dnd-kit/utilities": "^3",
     "@headlessui/react": "^2",
-    "@types/react": "^19"
+    "@phosphor-icons/react": "^2",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
+    "@types/react": "^19",
+    "jsdom": "^29.0.1",
+    "react": "^19",
+    "react-dom": "^19",
+    "tsup": "^8",
+    "typescript": "^5.7",
+    "vitest": "^4.1.0",
+    "zod": "^3.24"
   }
 }

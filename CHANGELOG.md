@@ -4,6 +4,37 @@ All notable changes to `@oak9/landing` will be documented in this file.
 
 This project follows [Semantic Versioning](https://semver.org/).
 
+## [0.1.2] — 2026-03-20
+
+### Fixed
+
+- **Add Section dropdown** — styled `MenuItems` with background, shadow, ring,
+  padding, fixed width (`w-72`), and `data-[focus]` hover states. Category
+  headers now have proper spacing and typography.
+- **Page metadata form** — constrained to `max-w-3xl` two-column grid so fields
+  don't stretch full-width on large monitors.
+- **Section editor panels** — config editor area capped at `max-w-2xl` for
+  readability.
+- **Save button positioning** — removed buried inline buttons; both "Save Page
+  Settings" and "Save Sections" now live in a sticky bottom bar visible at any
+  scroll position.
+
+### Added
+
+- **`showHeader` prop** on `LandingPageEditor` — set to `false` to suppress the
+  built-in back-arrow + page-name header when the consuming app provides its own
+  chrome. Defaults to `true`.
+- **Test infrastructure** — Vitest + @testing-library/react + jsdom. Three test
+  suites (106 tests):
+  - `schema-validation` — validates every Zod section schema with minimal valid
+    configs, rejects invalid data (max-length, missing required fields, bad
+    enums), and covers `pageSettingsSchema` / `ctaModeSchema`.
+  - `type-consistency` — ensures `SECTION_TYPE_LABELS`, `SECTION_TYPE_CATEGORIES`,
+    and `sectionConfigSchemas` all stay in sync with `LANDING_SECTION_TYPES`.
+  - `renderer-smoke` — mounts all 40 renderers via `LandingSectionRenderer`
+    without crashing, plus unknown-type fallback.
+- `pnpm test` and `pnpm test:watch` scripts.
+
 ## [0.1.0] — 2026-03-19
 
 ### Added

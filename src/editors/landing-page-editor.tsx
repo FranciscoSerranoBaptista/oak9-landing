@@ -76,6 +76,8 @@ export interface LandingPageEditorProps {
   isSavingPage?: boolean;
   saveSectionsSuccess?: boolean;
   savePageSuccess?: boolean;
+  /** Set to false to hide the built-in back arrow + page name header. Defaults to true. */
+  showHeader?: boolean;
 }
 
 interface SectionItem {
@@ -210,7 +212,7 @@ function SortableSectionCard({
       </div>
 
       {isEditing && (
-        <div className="border-t border-zinc-100 px-4 py-3 dark:border-surface-border">
+        <div className="border-t border-zinc-100 px-4 py-3 dark:border-surface-border max-w-2xl">
           {/* Universal background style picker */}
           <div className="mb-4">
             <label className="mb-1.5 block text-xs font-medium text-zinc-500 dark:text-zinc-400">
@@ -301,14 +303,19 @@ function AddSectionMenu({ onAdd }: { onAdd: (type: LandingSectionType) => void }
         <Plus className="size-3.5" />
         Add Section
       </MenuButton>
-      <MenuItems anchor="bottom end" className="max-h-96 overflow-y-auto">
-        {SECTION_TYPE_CATEGORIES.map((cat) => (
-          <div key={cat.label}>
-            <div className="px-3 py-1.5 text-caption font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
+      <MenuItems anchor="bottom end" className="bg-white dark:bg-surface-raised rounded-xl shadow-lg ring-1 ring-black/5 dark:ring-white/10 p-2 max-h-96 overflow-y-auto w-72">
+        {SECTION_TYPE_CATEGORIES.map((cat, i) => (
+          <div key={cat.label} className={i > 0 ? "mt-2" : ""}>
+            <div className="px-2 py-1.5 text-xs font-semibold uppercase tracking-wide text-zinc-400 dark:text-zinc-500">
               {cat.label}
             </div>
             {cat.types.map((type) => (
-              <MenuItem key={type} as="button" onClick={() => onAdd(type)}>
+              <MenuItem
+                key={type}
+                as="button"
+                onClick={() => onAdd(type)}
+                className="block w-full rounded-lg px-2 py-1.5 text-sm text-zinc-700 dark:text-zinc-300 data-[focus]:bg-brand-50 data-[focus]:text-brand-700 dark:data-[focus]:bg-brand-600/10 dark:data-[focus]:text-brand-400 cursor-pointer"
+              >
                 {SECTION_TYPE_LABELS[type]}
               </MenuItem>
             ))}
@@ -486,30 +493,34 @@ export function LandingPageEditor(props: LandingPageEditorProps) {
     }
   }
 
+  const showHeader = props.showHeader ?? true;
+
   return (
     <div>
       {/* Header with back button */}
-      <div className="flex items-center gap-3 mb-6">
-        <button
-          type="button"
-          onClick={onBack}
-          className="rounded p-1.5 text-zinc-400 hover:bg-zinc-100 dark:hover:bg-surface-hover"
-        >
-          <ArrowLeft className="size-5" />
-        </button>
-        <div className="flex-1">
-          <h2 className="text-page-heading font-semibold text-zinc-900 dark:text-white">
-            {page.title}
-          </h2>
-          <p className="text-caption text-zinc-400">
-            {page.pageType.replace(/_/g, " ")}
-          </p>
+      {showHeader && (
+        <div className="flex items-center gap-3 mb-6">
+          <button
+            type="button"
+            onClick={onBack}
+            className="rounded p-1.5 text-zinc-400 hover:bg-zinc-100 dark:hover:bg-surface-hover"
+          >
+            <ArrowLeft className="size-5" />
+          </button>
+          <div className="flex-1">
+            <h2 className="text-page-heading font-semibold text-zinc-900 dark:text-white">
+              {page.title}
+            </h2>
+            <p className="text-caption text-zinc-400">
+              {page.pageType.replace(/_/g, " ")}
+            </p>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Page settings */}
       <div className="mb-6 rounded-xl border border-zinc-200 bg-white p-4 dark:border-surface-border dark:bg-surface-raised">
-        <div className="grid gap-3 sm:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 max-w-3xl">
           <div>
             <label className="mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400">
               Title
@@ -637,16 +648,6 @@ export function LandingPageEditor(props: LandingPageEditorProps) {
             </p>
           )}
         </div>
-        <div className="mt-3 flex justify-end">
-          <button
-            type="button"
-            onClick={handleSavePage}
-            disabled={isSavingPage}
-            className="rounded-lg bg-zinc-800 px-3 py-1.5 text-xs font-semibold text-white hover:bg-zinc-700 disabled:opacity-50 dark:bg-zinc-200 dark:text-zinc-900 dark:hover:bg-zinc-300"
-          >
-            {isSavingPage ? "Saving..." : "Save Page Settings"}
-          </button>
-        </div>
       </div>
 
       {/* Sections header */}
@@ -654,18 +655,7 @@ export function LandingPageEditor(props: LandingPageEditorProps) {
         <h3 className="text-sm font-semibold text-zinc-900 dark:text-white">
           Sections
         </h3>
-        <div className="flex items-center gap-2">
-          <AddSectionMenu onAdd={addSection} />
-          <button
-            type="button"
-            onClick={handleSaveSections}
-            disabled={!isDirty || isSavingSections}
-            className="inline-flex items-center gap-1.5 rounded-lg bg-brand-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-brand-500 disabled:cursor-not-allowed disabled:opacity-40"
-          >
-            <FloppyDisk className="size-3.5" />
-            {isSavingSections ? "Saving..." : "Save Sections"}
-          </button>
-        </div>
+        <AddSectionMenu onAdd={addSection} />
       </div>
 
       {saveSectionsSuccess && (
@@ -716,6 +706,29 @@ export function LandingPageEditor(props: LandingPageEditorProps) {
           </DragOverlay>
         </DndContext>
       )}
+
+      {/* Sticky save bar */}
+      <div className="sticky bottom-0 mt-6 -mx-4 border-t border-zinc-200 bg-white/95 px-4 py-3 backdrop-blur dark:border-surface-border dark:bg-surface-raised/95">
+        <div className="flex items-center justify-end gap-3">
+          <button
+            type="button"
+            onClick={handleSavePage}
+            disabled={isSavingPage}
+            className="rounded-lg bg-zinc-800 px-4 py-2 text-sm font-semibold text-white hover:bg-zinc-700 disabled:opacity-50 dark:bg-zinc-200 dark:text-zinc-900 dark:hover:bg-zinc-300"
+          >
+            {isSavingPage ? "Saving..." : "Save Page Settings"}
+          </button>
+          <button
+            type="button"
+            onClick={handleSaveSections}
+            disabled={!isDirty || isSavingSections}
+            className="inline-flex items-center gap-1.5 rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-500 disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            <FloppyDisk className="size-4" />
+            {isSavingSections ? "Saving..." : "Save Sections"}
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
