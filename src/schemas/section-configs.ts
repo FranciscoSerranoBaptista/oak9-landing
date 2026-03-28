@@ -271,6 +271,13 @@ export const socialProofBarConfigSchema = z.object({
   background_style: z.enum(["light", "dark", "transparent"]).default("dark"),
 });
 
+/** 4.5 Huma Testimonial Widget */
+export const humaWidgetConfigSchema = z.object({
+  section_label: z.string().max(100).optional(),
+  headline: z.string().max(200).optional(),
+  widget_id: z.string().uuid(),
+});
+
 // =============================================================================
 // CATEGORY 5: QUALIFICATION & OBJECTION SECTIONS
 // =============================================================================
@@ -589,6 +596,7 @@ export const sectionConfigSchemas: Record<LandingSectionType, z.ZodTypeAny> = {
   case_study: caseStudyConfigSchema,
   coach_bio: coachBioConfigSchema,
   social_proof_bar: socialProofBarConfigSchema,
+  huma_widget: humaWidgetConfigSchema,
   // Qualification & Objection
   perfect_for_you: perfectForYouConfigSchema,
   faq: faqConfigSchema,
