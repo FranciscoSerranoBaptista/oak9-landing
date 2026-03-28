@@ -1,8 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 const EMBED_SCRIPT_URL = "https://www.humaproof.app/static/embed.js";
+
+/** Track how many mounted widgets depend on the script */
+let mountedWidgetCount = 0;
 
 interface HumaWidgetConfig {
   section_label?: string;
@@ -13,8 +16,12 @@ interface HumaWidgetConfig {
 export function LandingHumaWidget({ config }: { config: Record<string, unknown> }) {
   const c = config as HumaWidgetConfig;
 
+  const scriptRef = useRef<HTMLScriptElement | null>(null);
+
   useEffect(() => {
     if (!c.widget_id) return;
+
+    mountedWidgetCount++;
 
     // Load embed.js once per page
     const existing = document.querySelector(`script[src="${EMBED_SCRIPT_URL}"]`);
@@ -23,6 +30,7 @@ export function LandingHumaWidget({ config }: { config: Record<string, unknown> 
       script.src = EMBED_SCRIPT_URL;
       script.async = true;
       document.body.appendChild(script);
+      scriptRef.current = script;
     } else {
       // Script already loaded — tell it to pick up new containers
       const win = window as unknown as Record<string, unknown>;
@@ -31,6 +39,15 @@ export function LandingHumaWidget({ config }: { config: Record<string, unknown> 
         (embed as { refresh: () => void }).refresh();
       }
     }
+
+    return () => {
+      mountedWidgetCount--;
+      // Remove script when last widget unmounts
+      if (mountedWidgetCount === 0 && scriptRef.current) {
+        scriptRef.current.remove();
+        scriptRef.current = null;
+      }
+    };
   }, [c.widget_id]);
 
   if (!c.widget_id) {
