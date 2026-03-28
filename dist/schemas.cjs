@@ -38,6 +38,7 @@ __export(schemas_exports, {
   heroCaptureFormConfigSchema: () => heroCaptureFormConfigSchema,
   heroStatementConfigSchema: () => heroStatementConfigSchema,
   heroVideoConfigSchema: () => heroVideoConfigSchema,
+  humaWidgetConfigSchema: () => humaWidgetConfigSchema,
   imageBlockConfigSchema: () => imageBlockConfigSchema,
   inlineCtaConfigSchema: () => inlineCtaConfigSchema,
   investmentPricingConfigSchema: () => investmentPricingConfigSchema,
@@ -284,6 +285,11 @@ var socialProofBarConfigSchema = import_zod.z.object({
   layout: import_zod.z.enum(["bar", "inline"]).default("bar"),
   background_style: import_zod.z.enum(["light", "dark", "transparent"]).default("dark")
 });
+var humaWidgetConfigSchema = import_zod.z.object({
+  section_label: import_zod.z.string().max(100).optional(),
+  headline: import_zod.z.string().max(200).optional(),
+  widget_id: import_zod.z.string().uuid()
+});
 var perfectForYouConfigSchema = import_zod.z.object({
   section_label: import_zod.z.string().max(100).optional(),
   headline: import_zod.z.string().max(500),
@@ -523,6 +529,7 @@ var sectionConfigSchemas = {
   case_study: caseStudyConfigSchema,
   coach_bio: coachBioConfigSchema,
   social_proof_bar: socialProofBarConfigSchema,
+  huma_widget: humaWidgetConfigSchema,
   // Qualification & Objection
   perfect_for_you: perfectForYouConfigSchema,
   faq: faqConfigSchema,
@@ -602,6 +609,7 @@ var pageSettingsSchema = import_zod2.z.object({
   heroCaptureFormConfigSchema,
   heroStatementConfigSchema,
   heroVideoConfigSchema,
+  humaWidgetConfigSchema,
   imageBlockConfigSchema,
   inlineCtaConfigSchema,
   investmentPricingConfigSchema,

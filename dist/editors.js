@@ -50,6 +50,7 @@ var SECTION_TYPE_LABELS = {
   case_study: "Case Study",
   coach_bio: "Coach / Facilitator Bio",
   social_proof_bar: "Social Proof Bar",
+  huma_widget: "Huma Testimonial Widget",
   perfect_for_you: "Perfect For You If",
   faq: "FAQ",
   objection_block: "Objection Block",
@@ -78,7 +79,7 @@ var SECTION_TYPE_CATEGORIES = [
   { label: "Hero", types: ["hero_statement", "hero_capture_form", "hero_video"] },
   { label: "Problem & Recognition", types: ["pattern_recognition", "problem_statement", "sacred_cow_challenge", "rome_is_burning"] },
   { label: "Solution & Programme", types: ["programme_overview", "programme_arc", "what_this_is_isnt", "what_youll_experience", "curriculum_breakdown", "features_grid"] },
-  { label: "Trust & Proof", types: ["testimonials", "case_study", "coach_bio", "social_proof_bar"] },
+  { label: "Trust & Proof", types: ["testimonials", "case_study", "coach_bio", "social_proof_bar", "huma_widget"] },
   { label: "Qualification & Objection", types: ["perfect_for_you", "faq", "objection_block"] },
   { label: "Pricing & Commitment", types: ["investment_pricing", "guarantee", "urgency_closing"] },
   { label: "Forms & Capture", types: ["capture_form", "application_form", "inline_cta"] },
@@ -1461,9 +1462,63 @@ function SocialProofBarEditor({
   ] });
 }
 
+// src/editors/config-editors/huma-widget-editor.tsx
+import { jsx as jsx26, jsxs as jsxs26 } from "react/jsx-runtime";
+function HumaWidgetEditor({
+  config,
+  onChange
+}) {
+  const c = config;
+  return /* @__PURE__ */ jsxs26("div", { className: "space-y-3", children: [
+    /* @__PURE__ */ jsxs26("div", { children: [
+      /* @__PURE__ */ jsxs26("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: [
+        "Widget ID ",
+        /* @__PURE__ */ jsx26("span", { className: "text-red-500", children: "*" })
+      ] }),
+      /* @__PURE__ */ jsx26(
+        "input",
+        {
+          type: "text",
+          value: c.widget_id ?? "",
+          onChange: (e) => onChange({ ...config, widget_id: e.target.value }),
+          placeholder: "e.g. e40542b8-d50c-46f3-a03f-bd7f7f382b21",
+          className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 font-mono text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white"
+        }
+      ),
+      /* @__PURE__ */ jsx26("p", { className: "mt-1 text-xs text-zinc-400", children: "Paste the widget UUID from your Huma dashboard" })
+    ] }),
+    /* @__PURE__ */ jsxs26("div", { children: [
+      /* @__PURE__ */ jsx26("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Headline" }),
+      /* @__PURE__ */ jsx26(
+        "input",
+        {
+          type: "text",
+          value: c.headline ?? "",
+          onChange: (e) => onChange({ ...config, headline: e.target.value || void 0 }),
+          placeholder: "e.g. What Our Graduates Say",
+          className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white"
+        }
+      )
+    ] }),
+    /* @__PURE__ */ jsxs26("div", { children: [
+      /* @__PURE__ */ jsx26("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Section Label" }),
+      /* @__PURE__ */ jsx26(
+        "input",
+        {
+          type: "text",
+          value: c.section_label ?? "",
+          onChange: (e) => onChange({ ...config, section_label: e.target.value || void 0 }),
+          placeholder: "e.g. TESTIMONIALS",
+          className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white"
+        }
+      )
+    ] })
+  ] });
+}
+
 // src/editors/config-editors/perfect-for-you-editor.tsx
 import { Plus as Plus17, Trash as Trash17 } from "@phosphor-icons/react";
-import { jsx as jsx26, jsxs as jsxs26 } from "react/jsx-runtime";
+import { jsx as jsx27, jsxs as jsxs27 } from "react/jsx-runtime";
 function PerfectForYouEditor({
   config,
   onChange
@@ -1472,99 +1527,99 @@ function PerfectForYouEditor({
   const forItems = c.for_items ?? [];
   const notForItems = c.not_for_items ?? [];
   const cta = c.cta_button ?? {};
-  return /* @__PURE__ */ jsxs26("div", { className: "space-y-3", children: [
-    /* @__PURE__ */ jsxs26("div", { children: [
-      /* @__PURE__ */ jsx26("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Section Label" }),
-      /* @__PURE__ */ jsx26("input", { value: c.section_label ?? "", onChange: (e) => onChange({ ...config, section_label: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+  return /* @__PURE__ */ jsxs27("div", { className: "space-y-3", children: [
+    /* @__PURE__ */ jsxs27("div", { children: [
+      /* @__PURE__ */ jsx27("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Section Label" }),
+      /* @__PURE__ */ jsx27("input", { value: c.section_label ?? "", onChange: (e) => onChange({ ...config, section_label: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs26("div", { children: [
-      /* @__PURE__ */ jsx26("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Headline" }),
-      /* @__PURE__ */ jsx26("input", { value: c.headline ?? "", onChange: (e) => onChange({ ...config, headline: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    /* @__PURE__ */ jsxs27("div", { children: [
+      /* @__PURE__ */ jsx27("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Headline" }),
+      /* @__PURE__ */ jsx27("input", { value: c.headline ?? "", onChange: (e) => onChange({ ...config, headline: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs26("div", { children: [
-      /* @__PURE__ */ jsx26("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Perfect For..." }),
-      /* @__PURE__ */ jsx26("div", { className: "space-y-2", children: forItems.map((item, i) => /* @__PURE__ */ jsxs26("div", { className: "flex gap-2", children: [
-        /* @__PURE__ */ jsx26("input", { value: item.statement ?? "", onChange: (e) => {
+    /* @__PURE__ */ jsxs27("div", { children: [
+      /* @__PURE__ */ jsx27("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Perfect For..." }),
+      /* @__PURE__ */ jsx27("div", { className: "space-y-2", children: forItems.map((item, i) => /* @__PURE__ */ jsxs27("div", { className: "flex gap-2", children: [
+        /* @__PURE__ */ jsx27("input", { value: item.statement ?? "", onChange: (e) => {
           const u = [...forItems];
           u[i] = { statement: e.target.value };
           onChange({ ...config, for_items: u });
         }, className: "flex-1 rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "This is for you if..." }),
-        /* @__PURE__ */ jsx26("button", { type: "button", onClick: () => onChange({ ...config, for_items: forItems.filter((_, j) => j !== i) }), className: "rounded p-1 text-zinc-400 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30", children: /* @__PURE__ */ jsx26(Trash17, { className: "size-4" }) })
+        /* @__PURE__ */ jsx27("button", { type: "button", onClick: () => onChange({ ...config, for_items: forItems.filter((_, j) => j !== i) }), className: "rounded p-1 text-zinc-400 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30", children: /* @__PURE__ */ jsx27(Trash17, { className: "size-4" }) })
       ] }, i)) }),
-      /* @__PURE__ */ jsxs26("button", { type: "button", onClick: () => onChange({ ...config, for_items: [...forItems, { statement: "" }] }), className: "mt-2 inline-flex items-center gap-1 text-xs font-medium text-brand-600 hover:text-brand-500", children: [
-        /* @__PURE__ */ jsx26(Plus17, { className: "size-3" }),
+      /* @__PURE__ */ jsxs27("button", { type: "button", onClick: () => onChange({ ...config, for_items: [...forItems, { statement: "" }] }), className: "mt-2 inline-flex items-center gap-1 text-xs font-medium text-brand-600 hover:text-brand-500", children: [
+        /* @__PURE__ */ jsx27(Plus17, { className: "size-3" }),
         " Add Item"
       ] })
     ] }),
-    /* @__PURE__ */ jsxs26("div", { children: [
-      /* @__PURE__ */ jsx26("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "NOT For..." }),
-      /* @__PURE__ */ jsx26("div", { className: "space-y-2", children: notForItems.map((item, i) => /* @__PURE__ */ jsxs26("div", { className: "flex gap-2", children: [
-        /* @__PURE__ */ jsx26("input", { value: item.statement ?? "", onChange: (e) => {
+    /* @__PURE__ */ jsxs27("div", { children: [
+      /* @__PURE__ */ jsx27("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "NOT For..." }),
+      /* @__PURE__ */ jsx27("div", { className: "space-y-2", children: notForItems.map((item, i) => /* @__PURE__ */ jsxs27("div", { className: "flex gap-2", children: [
+        /* @__PURE__ */ jsx27("input", { value: item.statement ?? "", onChange: (e) => {
           const u = [...notForItems];
           u[i] = { statement: e.target.value };
           onChange({ ...config, not_for_items: u });
         }, className: "flex-1 rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "This is not for you if..." }),
-        /* @__PURE__ */ jsx26("button", { type: "button", onClick: () => onChange({ ...config, not_for_items: notForItems.filter((_, j) => j !== i) }), className: "rounded p-1 text-zinc-400 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30", children: /* @__PURE__ */ jsx26(Trash17, { className: "size-4" }) })
+        /* @__PURE__ */ jsx27("button", { type: "button", onClick: () => onChange({ ...config, not_for_items: notForItems.filter((_, j) => j !== i) }), className: "rounded p-1 text-zinc-400 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30", children: /* @__PURE__ */ jsx27(Trash17, { className: "size-4" }) })
       ] }, i)) }),
-      /* @__PURE__ */ jsxs26("button", { type: "button", onClick: () => onChange({ ...config, not_for_items: [...notForItems, { statement: "" }] }), className: "mt-2 inline-flex items-center gap-1 text-xs font-medium text-brand-600 hover:text-brand-500", children: [
-        /* @__PURE__ */ jsx26(Plus17, { className: "size-3" }),
+      /* @__PURE__ */ jsxs27("button", { type: "button", onClick: () => onChange({ ...config, not_for_items: [...notForItems, { statement: "" }] }), className: "mt-2 inline-flex items-center gap-1 text-xs font-medium text-brand-600 hover:text-brand-500", children: [
+        /* @__PURE__ */ jsx27(Plus17, { className: "size-3" }),
         " Add Item"
       ] })
     ] }),
-    /* @__PURE__ */ jsxs26("div", { children: [
-      /* @__PURE__ */ jsx26("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Closing Text" }),
-      /* @__PURE__ */ jsx26("textarea", { value: c.closing_text ?? "", onChange: (e) => onChange({ ...config, closing_text: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    /* @__PURE__ */ jsxs27("div", { children: [
+      /* @__PURE__ */ jsx27("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Closing Text" }),
+      /* @__PURE__ */ jsx27("textarea", { value: c.closing_text ?? "", onChange: (e) => onChange({ ...config, closing_text: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs26("fieldset", { className: "rounded-md border border-zinc-200 p-3 dark:border-zinc-700", children: [
-      /* @__PURE__ */ jsx26("legend", { className: "px-1 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "CTA Button" }),
-      /* @__PURE__ */ jsxs26("div", { className: "grid gap-2 sm:grid-cols-2", children: [
-        /* @__PURE__ */ jsx26("input", { placeholder: "Label", value: cta.label ?? "", onChange: (e) => onChange({ ...config, cta_button: { ...cta, label: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
-        /* @__PURE__ */ jsx26("input", { placeholder: "URL", value: cta.url ?? "", onChange: (e) => onChange({ ...config, cta_button: { ...cta, url: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    /* @__PURE__ */ jsxs27("fieldset", { className: "rounded-md border border-zinc-200 p-3 dark:border-zinc-700", children: [
+      /* @__PURE__ */ jsx27("legend", { className: "px-1 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "CTA Button" }),
+      /* @__PURE__ */ jsxs27("div", { className: "grid gap-2 sm:grid-cols-2", children: [
+        /* @__PURE__ */ jsx27("input", { placeholder: "Label", value: cta.label ?? "", onChange: (e) => onChange({ ...config, cta_button: { ...cta, label: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
+        /* @__PURE__ */ jsx27("input", { placeholder: "URL", value: cta.url ?? "", onChange: (e) => onChange({ ...config, cta_button: { ...cta, url: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
       ] }),
-      /* @__PURE__ */ jsxs26("select", { value: cta.variant ?? "primary", onChange: (e) => onChange({ ...config, cta_button: { ...cta, variant: e.target.value } }), className: "mt-2 w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-        /* @__PURE__ */ jsx26("option", { value: "primary", children: "Primary" }),
-        /* @__PURE__ */ jsx26("option", { value: "secondary", children: "Secondary" }),
-        /* @__PURE__ */ jsx26("option", { value: "ghost", children: "Ghost" }),
-        /* @__PURE__ */ jsx26("option", { value: "text-link", children: "Text Link" })
+      /* @__PURE__ */ jsxs27("select", { value: cta.variant ?? "primary", onChange: (e) => onChange({ ...config, cta_button: { ...cta, variant: e.target.value } }), className: "mt-2 w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+        /* @__PURE__ */ jsx27("option", { value: "primary", children: "Primary" }),
+        /* @__PURE__ */ jsx27("option", { value: "secondary", children: "Secondary" }),
+        /* @__PURE__ */ jsx27("option", { value: "ghost", children: "Ghost" }),
+        /* @__PURE__ */ jsx27("option", { value: "text-link", children: "Text Link" })
       ] })
     ] }),
-    /* @__PURE__ */ jsxs26("div", { children: [
-      /* @__PURE__ */ jsx26("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Layout" }),
-      /* @__PURE__ */ jsxs26("select", { value: c.layout ?? "two-columns", onChange: (e) => onChange({ ...config, layout: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-        /* @__PURE__ */ jsx26("option", { value: "two-columns", children: "Two Columns" }),
-        /* @__PURE__ */ jsx26("option", { value: "single-column", children: "Single Column" }),
-        /* @__PURE__ */ jsx26("option", { value: "checklist", children: "Checklist" })
+    /* @__PURE__ */ jsxs27("div", { children: [
+      /* @__PURE__ */ jsx27("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Layout" }),
+      /* @__PURE__ */ jsxs27("select", { value: c.layout ?? "two-columns", onChange: (e) => onChange({ ...config, layout: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+        /* @__PURE__ */ jsx27("option", { value: "two-columns", children: "Two Columns" }),
+        /* @__PURE__ */ jsx27("option", { value: "single-column", children: "Single Column" }),
+        /* @__PURE__ */ jsx27("option", { value: "checklist", children: "Checklist" })
       ] })
     ] })
   ] });
 }
 
 // src/editors/config-editors/objection-block-editor.tsx
-import { jsx as jsx27, jsxs as jsxs27 } from "react/jsx-runtime";
+import { jsx as jsx28, jsxs as jsxs28 } from "react/jsx-runtime";
 function ObjectionBlockEditor({
   config,
   onChange
 }) {
   const c = config;
-  return /* @__PURE__ */ jsxs27("div", { className: "space-y-3", children: [
-    /* @__PURE__ */ jsxs27("div", { children: [
-      /* @__PURE__ */ jsx27("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Objection" }),
-      /* @__PURE__ */ jsx27("textarea", { value: c.objection ?? "", onChange: (e) => onChange({ ...config, objection: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "The common objection..." })
+  return /* @__PURE__ */ jsxs28("div", { className: "space-y-3", children: [
+    /* @__PURE__ */ jsxs28("div", { children: [
+      /* @__PURE__ */ jsx28("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Objection" }),
+      /* @__PURE__ */ jsx28("textarea", { value: c.objection ?? "", onChange: (e) => onChange({ ...config, objection: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "The common objection..." })
     ] }),
-    /* @__PURE__ */ jsxs27("div", { children: [
-      /* @__PURE__ */ jsx27("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Response" }),
-      /* @__PURE__ */ jsx27("textarea", { value: c.response ?? "", onChange: (e) => onChange({ ...config, response: e.target.value }), rows: 3, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "Your response..." })
+    /* @__PURE__ */ jsxs28("div", { children: [
+      /* @__PURE__ */ jsx28("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Response" }),
+      /* @__PURE__ */ jsx28("textarea", { value: c.response ?? "", onChange: (e) => onChange({ ...config, response: e.target.value }), rows: 3, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "Your response..." })
     ] }),
-    /* @__PURE__ */ jsxs27("div", { children: [
-      /* @__PURE__ */ jsx27("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Reframe" }),
-      /* @__PURE__ */ jsx27("textarea", { value: c.reframe ?? "", onChange: (e) => onChange({ ...config, reframe: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "The reframed perspective..." })
+    /* @__PURE__ */ jsxs28("div", { children: [
+      /* @__PURE__ */ jsx28("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Reframe" }),
+      /* @__PURE__ */ jsx28("textarea", { value: c.reframe ?? "", onChange: (e) => onChange({ ...config, reframe: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "The reframed perspective..." })
     ] }),
-    /* @__PURE__ */ jsxs27("div", { children: [
-      /* @__PURE__ */ jsx27("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Visual Style" }),
-      /* @__PURE__ */ jsxs27("select", { value: c.visual_style ?? "pullquote", onChange: (e) => onChange({ ...config, visual_style: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-        /* @__PURE__ */ jsx27("option", { value: "pullquote", children: "Pullquote" }),
-        /* @__PURE__ */ jsx27("option", { value: "card", children: "Card" }),
-        /* @__PURE__ */ jsx27("option", { value: "inline", children: "Inline" })
+    /* @__PURE__ */ jsxs28("div", { children: [
+      /* @__PURE__ */ jsx28("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Visual Style" }),
+      /* @__PURE__ */ jsxs28("select", { value: c.visual_style ?? "pullquote", onChange: (e) => onChange({ ...config, visual_style: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+        /* @__PURE__ */ jsx28("option", { value: "pullquote", children: "Pullquote" }),
+        /* @__PURE__ */ jsx28("option", { value: "card", children: "Card" }),
+        /* @__PURE__ */ jsx28("option", { value: "inline", children: "Inline" })
       ] })
     ] })
   ] });
@@ -1572,75 +1627,75 @@ function ObjectionBlockEditor({
 
 // src/editors/config-editors/investment-pricing-editor.tsx
 import { Plus as Plus18, Trash as Trash18 } from "@phosphor-icons/react";
-import { jsx as jsx28, jsxs as jsxs28 } from "react/jsx-runtime";
+import { jsx as jsx29, jsxs as jsxs29 } from "react/jsx-runtime";
 function InvestmentPricingEditor({
   config,
   onChange
 }) {
   const c = config;
   const tiers = c.pricing_tiers ?? [];
-  return /* @__PURE__ */ jsxs28("div", { className: "space-y-3", children: [
-    /* @__PURE__ */ jsxs28("div", { children: [
-      /* @__PURE__ */ jsx28("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Section Label" }),
-      /* @__PURE__ */ jsx28("input", { value: c.section_label ?? "", onChange: (e) => onChange({ ...config, section_label: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+  return /* @__PURE__ */ jsxs29("div", { className: "space-y-3", children: [
+    /* @__PURE__ */ jsxs29("div", { children: [
+      /* @__PURE__ */ jsx29("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Section Label" }),
+      /* @__PURE__ */ jsx29("input", { value: c.section_label ?? "", onChange: (e) => onChange({ ...config, section_label: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs28("div", { children: [
-      /* @__PURE__ */ jsx28("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Headline" }),
-      /* @__PURE__ */ jsx28("input", { value: c.headline ?? "", onChange: (e) => onChange({ ...config, headline: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    /* @__PURE__ */ jsxs29("div", { children: [
+      /* @__PURE__ */ jsx29("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Headline" }),
+      /* @__PURE__ */ jsx29("input", { value: c.headline ?? "", onChange: (e) => onChange({ ...config, headline: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs28("div", { children: [
-      /* @__PURE__ */ jsx28("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Introduction" }),
-      /* @__PURE__ */ jsx28("textarea", { value: c.introduction ?? "", onChange: (e) => onChange({ ...config, introduction: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    /* @__PURE__ */ jsxs29("div", { children: [
+      /* @__PURE__ */ jsx29("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Introduction" }),
+      /* @__PURE__ */ jsx29("textarea", { value: c.introduction ?? "", onChange: (e) => onChange({ ...config, introduction: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs28("div", { children: [
-      /* @__PURE__ */ jsx28("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Pricing Tiers" }),
-      /* @__PURE__ */ jsx28("div", { className: "space-y-2", children: tiers.map((tier, i) => /* @__PURE__ */ jsxs28("div", { className: "rounded-lg border border-zinc-200 p-3 dark:border-zinc-700", children: [
-        /* @__PURE__ */ jsxs28("div", { className: "mb-2 flex items-center justify-between", children: [
-          /* @__PURE__ */ jsxs28("span", { className: "text-xs font-medium text-zinc-400", children: [
+    /* @__PURE__ */ jsxs29("div", { children: [
+      /* @__PURE__ */ jsx29("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Pricing Tiers" }),
+      /* @__PURE__ */ jsx29("div", { className: "space-y-2", children: tiers.map((tier, i) => /* @__PURE__ */ jsxs29("div", { className: "rounded-lg border border-zinc-200 p-3 dark:border-zinc-700", children: [
+        /* @__PURE__ */ jsxs29("div", { className: "mb-2 flex items-center justify-between", children: [
+          /* @__PURE__ */ jsxs29("span", { className: "text-xs font-medium text-zinc-400", children: [
             "Tier ",
             i + 1
           ] }),
-          /* @__PURE__ */ jsx28("button", { type: "button", onClick: () => onChange({ ...config, pricing_tiers: tiers.filter((_, j) => j !== i) }), className: "text-zinc-400 hover:text-red-500", children: /* @__PURE__ */ jsx28(Trash18, { className: "size-3.5" }) })
+          /* @__PURE__ */ jsx29("button", { type: "button", onClick: () => onChange({ ...config, pricing_tiers: tiers.filter((_, j) => j !== i) }), className: "text-zinc-400 hover:text-red-500", children: /* @__PURE__ */ jsx29(Trash18, { className: "size-3.5" }) })
         ] }),
-        /* @__PURE__ */ jsxs28("div", { className: "grid gap-2 sm:grid-cols-2", children: [
-          /* @__PURE__ */ jsx28("input", { placeholder: "Tier name", value: tier.tier_name ?? "", onChange: (e) => {
+        /* @__PURE__ */ jsxs29("div", { className: "grid gap-2 sm:grid-cols-2", children: [
+          /* @__PURE__ */ jsx29("input", { placeholder: "Tier name", value: tier.tier_name ?? "", onChange: (e) => {
             const u = [...tiers];
             u[i] = { ...u[i], tier_name: e.target.value };
             onChange({ ...config, pricing_tiers: u });
           }, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
-          /* @__PURE__ */ jsx28("input", { placeholder: "Price", value: tier.price ?? "", onChange: (e) => {
+          /* @__PURE__ */ jsx29("input", { placeholder: "Price", value: tier.price ?? "", onChange: (e) => {
             const u = [...tiers];
             u[i] = { ...u[i], price: e.target.value };
             onChange({ ...config, pricing_tiers: u });
           }, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
-          /* @__PURE__ */ jsx28("input", { placeholder: "Currency (e.g. GBP)", value: tier.currency ?? "", onChange: (e) => {
+          /* @__PURE__ */ jsx29("input", { placeholder: "Currency (e.g. GBP)", value: tier.currency ?? "", onChange: (e) => {
             const u = [...tiers];
             u[i] = { ...u[i], currency: e.target.value };
             onChange({ ...config, pricing_tiers: u });
           }, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
-          /* @__PURE__ */ jsx28("input", { placeholder: "Period (e.g. /month)", value: tier.price_period ?? "", onChange: (e) => {
+          /* @__PURE__ */ jsx29("input", { placeholder: "Period (e.g. /month)", value: tier.price_period ?? "", onChange: (e) => {
             const u = [...tiers];
             u[i] = { ...u[i], price_period: e.target.value };
             onChange({ ...config, pricing_tiers: u });
           }, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
         ] }),
-        /* @__PURE__ */ jsx28("input", { placeholder: "Price note", value: tier.price_note ?? "", onChange: (e) => {
+        /* @__PURE__ */ jsx29("input", { placeholder: "Price note", value: tier.price_note ?? "", onChange: (e) => {
           const u = [...tiers];
           u[i] = { ...u[i], price_note: e.target.value };
           onChange({ ...config, pricing_tiers: u });
         }, className: "mt-2 w-full rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
-        /* @__PURE__ */ jsx28("textarea", { placeholder: "Tier description", value: tier.tier_description ?? "", onChange: (e) => {
+        /* @__PURE__ */ jsx29("textarea", { placeholder: "Tier description", value: tier.tier_description ?? "", onChange: (e) => {
           const u = [...tiers];
           u[i] = { ...u[i], tier_description: e.target.value };
           onChange({ ...config, pricing_tiers: u });
         }, rows: 2, className: "mt-2 w-full rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
-        /* @__PURE__ */ jsx28("input", { placeholder: "Included items (comma-separated)", value: tier.included_items ?? "", onChange: (e) => {
+        /* @__PURE__ */ jsx29("input", { placeholder: "Included items (comma-separated)", value: tier.included_items ?? "", onChange: (e) => {
           const u = [...tiers];
           u[i] = { ...u[i], included_items: e.target.value };
           onChange({ ...config, pricing_tiers: u });
         }, className: "mt-2 w-full rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
-        /* @__PURE__ */ jsxs28("label", { className: "mt-2 flex items-center gap-2 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: [
-          /* @__PURE__ */ jsx28("input", { type: "checkbox", checked: tier.is_featured ?? false, onChange: (e) => {
+        /* @__PURE__ */ jsxs29("label", { className: "mt-2 flex items-center gap-2 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: [
+          /* @__PURE__ */ jsx29("input", { type: "checkbox", checked: tier.is_featured ?? false, onChange: (e) => {
             const u = [...tiers];
             u[i] = { ...u[i], is_featured: e.target.checked };
             onChange({ ...config, pricing_tiers: u });
@@ -1648,137 +1703,71 @@ function InvestmentPricingEditor({
           "Featured"
         ] })
       ] }, i)) }),
-      /* @__PURE__ */ jsxs28("button", { type: "button", onClick: () => onChange({ ...config, pricing_tiers: [...tiers, { tier_name: "", price: "", currency: "GBP", price_period: "", price_note: "", tier_description: "", included_items: "", is_featured: false }] }), className: "mt-2 inline-flex items-center gap-1 text-xs font-medium text-brand-600 hover:text-brand-500", children: [
-        /* @__PURE__ */ jsx28(Plus18, { className: "size-3" }),
+      /* @__PURE__ */ jsxs29("button", { type: "button", onClick: () => onChange({ ...config, pricing_tiers: [...tiers, { tier_name: "", price: "", currency: "GBP", price_period: "", price_note: "", tier_description: "", included_items: "", is_featured: false }] }), className: "mt-2 inline-flex items-center gap-1 text-xs font-medium text-brand-600 hover:text-brand-500", children: [
+        /* @__PURE__ */ jsx29(Plus18, { className: "size-3" }),
         " Add Tier"
       ] })
     ] }),
-    /* @__PURE__ */ jsxs28("div", { children: [
-      /* @__PURE__ */ jsx28("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Comparison Note" }),
-      /* @__PURE__ */ jsx28("textarea", { value: c.comparison_note ?? "", onChange: (e) => onChange({ ...config, comparison_note: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    /* @__PURE__ */ jsxs29("div", { children: [
+      /* @__PURE__ */ jsx29("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Comparison Note" }),
+      /* @__PURE__ */ jsx29("textarea", { value: c.comparison_note ?? "", onChange: (e) => onChange({ ...config, comparison_note: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs28("div", { children: [
-      /* @__PURE__ */ jsx28("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Guarantee" }),
-      /* @__PURE__ */ jsx28("textarea", { value: c.guarantee ?? "", onChange: (e) => onChange({ ...config, guarantee: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    /* @__PURE__ */ jsxs29("div", { children: [
+      /* @__PURE__ */ jsx29("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Guarantee" }),
+      /* @__PURE__ */ jsx29("textarea", { value: c.guarantee ?? "", onChange: (e) => onChange({ ...config, guarantee: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs28("div", { children: [
-      /* @__PURE__ */ jsx28("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Layout" }),
-      /* @__PURE__ */ jsxs28("select", { value: c.layout ?? "cards-side-by-side", onChange: (e) => onChange({ ...config, layout: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-        /* @__PURE__ */ jsx28("option", { value: "cards-side-by-side", children: "Cards Side by Side" }),
-        /* @__PURE__ */ jsx28("option", { value: "single-centered", children: "Single Centered" }),
-        /* @__PURE__ */ jsx28("option", { value: "stacked", children: "Stacked" })
+    /* @__PURE__ */ jsxs29("div", { children: [
+      /* @__PURE__ */ jsx29("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Layout" }),
+      /* @__PURE__ */ jsxs29("select", { value: c.layout ?? "cards-side-by-side", onChange: (e) => onChange({ ...config, layout: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+        /* @__PURE__ */ jsx29("option", { value: "cards-side-by-side", children: "Cards Side by Side" }),
+        /* @__PURE__ */ jsx29("option", { value: "single-centered", children: "Single Centered" }),
+        /* @__PURE__ */ jsx29("option", { value: "stacked", children: "Stacked" })
       ] })
     ] })
   ] });
 }
 
 // src/editors/config-editors/guarantee-editor.tsx
-import { jsx as jsx29, jsxs as jsxs29 } from "react/jsx-runtime";
+import { jsx as jsx30, jsxs as jsxs30 } from "react/jsx-runtime";
 function GuaranteeEditor({
   config,
   onChange
 }) {
   const c = config;
-  return /* @__PURE__ */ jsxs29("div", { className: "space-y-3", children: [
-    /* @__PURE__ */ jsxs29("div", { children: [
-      /* @__PURE__ */ jsx29("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Headline" }),
-      /* @__PURE__ */ jsx29("input", { value: c.headline ?? "", onChange: (e) => onChange({ ...config, headline: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
-    ] }),
-    /* @__PURE__ */ jsxs29("div", { children: [
-      /* @__PURE__ */ jsx29("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Guarantee Text" }),
-      /* @__PURE__ */ jsx29("textarea", { value: c.guarantee_text ?? "", onChange: (e) => onChange({ ...config, guarantee_text: e.target.value }), rows: 4, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
-    ] }),
-    /* @__PURE__ */ jsxs29("div", { children: [
-      /* @__PURE__ */ jsx29("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Guarantee Type" }),
-      /* @__PURE__ */ jsxs29("select", { value: c.guarantee_type ?? "money-back", onChange: (e) => onChange({ ...config, guarantee_type: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-        /* @__PURE__ */ jsx29("option", { value: "money-back", children: "Money Back" }),
-        /* @__PURE__ */ jsx29("option", { value: "satisfaction", children: "Satisfaction" }),
-        /* @__PURE__ */ jsx29("option", { value: "fit-guarantee", children: "Fit Guarantee" }),
-        /* @__PURE__ */ jsx29("option", { value: "custom", children: "Custom" })
-      ] })
-    ] }),
-    /* @__PURE__ */ jsxs29("div", { children: [
-      /* @__PURE__ */ jsx29("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Duration" }),
-      /* @__PURE__ */ jsx29("input", { value: c.duration ?? "", onChange: (e) => onChange({ ...config, duration: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "30 days" })
-    ] })
-  ] });
-}
-
-// src/editors/config-editors/urgency-closing-editor.tsx
-import { jsx as jsx30, jsxs as jsxs30 } from "react/jsx-runtime";
-function UrgencyClosingEditor({
-  config,
-  onChange
-}) {
-  const c = config;
-  const cta = c.cta_button ?? {};
   return /* @__PURE__ */ jsxs30("div", { className: "space-y-3", children: [
     /* @__PURE__ */ jsxs30("div", { children: [
       /* @__PURE__ */ jsx30("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Headline" }),
       /* @__PURE__ */ jsx30("input", { value: c.headline ?? "", onChange: (e) => onChange({ ...config, headline: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
     /* @__PURE__ */ jsxs30("div", { children: [
-      /* @__PURE__ */ jsx30("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Body Text" }),
-      /* @__PURE__ */ jsx30("textarea", { value: c.body_text ?? "", onChange: (e) => onChange({ ...config, body_text: e.target.value }), rows: 3, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+      /* @__PURE__ */ jsx30("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Guarantee Text" }),
+      /* @__PURE__ */ jsx30("textarea", { value: c.guarantee_text ?? "", onChange: (e) => onChange({ ...config, guarantee_text: e.target.value }), rows: 4, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
     /* @__PURE__ */ jsxs30("div", { children: [
-      /* @__PURE__ */ jsx30("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Urgency Type" }),
-      /* @__PURE__ */ jsxs30("select", { value: c.urgency_type ?? "seats-limited", onChange: (e) => onChange({ ...config, urgency_type: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-        /* @__PURE__ */ jsx30("option", { value: "seats-limited", children: "Seats Limited" }),
-        /* @__PURE__ */ jsx30("option", { value: "deadline", children: "Deadline" }),
-        /* @__PURE__ */ jsx30("option", { value: "cohort-start", children: "Cohort Start" }),
-        /* @__PURE__ */ jsx30("option", { value: "price-increase", children: "Price Increase" }),
+      /* @__PURE__ */ jsx30("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Guarantee Type" }),
+      /* @__PURE__ */ jsxs30("select", { value: c.guarantee_type ?? "money-back", onChange: (e) => onChange({ ...config, guarantee_type: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+        /* @__PURE__ */ jsx30("option", { value: "money-back", children: "Money Back" }),
+        /* @__PURE__ */ jsx30("option", { value: "satisfaction", children: "Satisfaction" }),
+        /* @__PURE__ */ jsx30("option", { value: "fit-guarantee", children: "Fit Guarantee" }),
         /* @__PURE__ */ jsx30("option", { value: "custom", children: "Custom" })
       ] })
     ] }),
     /* @__PURE__ */ jsxs30("div", { children: [
-      /* @__PURE__ */ jsx30("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Countdown Target (date/time)" }),
-      /* @__PURE__ */ jsx30("input", { type: "datetime-local", value: c.countdown_target ?? "", onChange: (e) => onChange({ ...config, countdown_target: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
-    ] }),
-    /* @__PURE__ */ jsxs30("label", { className: "flex items-center gap-2 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: [
-      /* @__PURE__ */ jsx30("input", { type: "checkbox", checked: c.show_countdown ?? false, onChange: (e) => onChange({ ...config, show_countdown: e.target.checked }), className: "rounded border-zinc-300 dark:border-zinc-600" }),
-      "Show Countdown"
-    ] }),
-    /* @__PURE__ */ jsxs30("div", { className: "grid gap-3 sm:grid-cols-2", children: [
-      /* @__PURE__ */ jsxs30("div", { children: [
-        /* @__PURE__ */ jsx30("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Seats Remaining" }),
-        /* @__PURE__ */ jsx30("input", { type: "number", min: 0, value: c.seats_remaining ?? "", onChange: (e) => onChange({ ...config, seats_remaining: parseInt(e.target.value) || 0 }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
-      ] }),
-      /* @__PURE__ */ jsxs30("div", { children: [
-        /* @__PURE__ */ jsx30("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Seats Total" }),
-        /* @__PURE__ */ jsx30("input", { type: "number", min: 0, value: c.seats_total ?? "", onChange: (e) => onChange({ ...config, seats_total: parseInt(e.target.value) || 0 }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
-      ] })
-    ] }),
-    /* @__PURE__ */ jsxs30("fieldset", { className: "rounded-md border border-zinc-200 p-3 dark:border-zinc-700", children: [
-      /* @__PURE__ */ jsx30("legend", { className: "px-1 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "CTA Button" }),
-      /* @__PURE__ */ jsxs30("div", { className: "grid gap-2 sm:grid-cols-2", children: [
-        /* @__PURE__ */ jsx30("input", { placeholder: "Label", value: cta.label ?? "", onChange: (e) => onChange({ ...config, cta_button: { ...cta, label: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
-        /* @__PURE__ */ jsx30("input", { placeholder: "URL", value: cta.url ?? "", onChange: (e) => onChange({ ...config, cta_button: { ...cta, url: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
-      ] }),
-      /* @__PURE__ */ jsxs30("select", { value: cta.variant ?? "primary", onChange: (e) => onChange({ ...config, cta_button: { ...cta, variant: e.target.value } }), className: "mt-2 w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-        /* @__PURE__ */ jsx30("option", { value: "primary", children: "Primary" }),
-        /* @__PURE__ */ jsx30("option", { value: "secondary", children: "Secondary" }),
-        /* @__PURE__ */ jsx30("option", { value: "ghost", children: "Ghost" }),
-        /* @__PURE__ */ jsx30("option", { value: "text-link", children: "Text Link" })
-      ] })
+      /* @__PURE__ */ jsx30("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Duration" }),
+      /* @__PURE__ */ jsx30("input", { value: c.duration ?? "", onChange: (e) => onChange({ ...config, duration: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "30 days" })
     ] })
   ] });
 }
 
-// src/editors/config-editors/capture-form-editor.tsx
-import { Plus as Plus19, Trash as Trash19 } from "@phosphor-icons/react";
+// src/editors/config-editors/urgency-closing-editor.tsx
 import { jsx as jsx31, jsxs as jsxs31 } from "react/jsx-runtime";
-function CaptureFormEditor({
+function UrgencyClosingEditor({
   config,
   onChange
 }) {
   const c = config;
-  const fields = c.form_fields ?? [];
+  const cta = c.cta_button ?? {};
   return /* @__PURE__ */ jsxs31("div", { className: "space-y-3", children: [
-    /* @__PURE__ */ jsxs31("div", { children: [
-      /* @__PURE__ */ jsx31("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Section Label" }),
-      /* @__PURE__ */ jsx31("input", { value: c.section_label ?? "", onChange: (e) => onChange({ ...config, section_label: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
-    ] }),
     /* @__PURE__ */ jsxs31("div", { children: [
       /* @__PURE__ */ jsx31("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Headline" }),
       /* @__PURE__ */ jsx31("input", { value: c.headline ?? "", onChange: (e) => onChange({ ...config, headline: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
@@ -1788,84 +1777,53 @@ function CaptureFormEditor({
       /* @__PURE__ */ jsx31("textarea", { value: c.body_text ?? "", onChange: (e) => onChange({ ...config, body_text: e.target.value }), rows: 3, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
     /* @__PURE__ */ jsxs31("div", { children: [
-      /* @__PURE__ */ jsx31("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Form Fields" }),
-      /* @__PURE__ */ jsx31("div", { className: "space-y-2", children: fields.map((f, i) => /* @__PURE__ */ jsxs31("div", { className: "rounded-lg border border-zinc-200 p-3 dark:border-zinc-700", children: [
-        /* @__PURE__ */ jsxs31("div", { className: "mb-2 flex items-center justify-between", children: [
-          /* @__PURE__ */ jsxs31("span", { className: "text-xs font-medium text-zinc-400", children: [
-            "Field ",
-            i + 1
-          ] }),
-          /* @__PURE__ */ jsx31("button", { type: "button", onClick: () => onChange({ ...config, form_fields: fields.filter((_, j) => j !== i) }), className: "text-zinc-400 hover:text-red-500", children: /* @__PURE__ */ jsx31(Trash19, { className: "size-3.5" }) })
-        ] }),
-        /* @__PURE__ */ jsxs31("div", { className: "grid gap-2 sm:grid-cols-2", children: [
-          /* @__PURE__ */ jsx31("input", { placeholder: "Field name (key)", value: f.field_name ?? "", onChange: (e) => {
-            const u = [...fields];
-            u[i] = { ...u[i], field_name: e.target.value };
-            onChange({ ...config, form_fields: u });
-          }, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
-          /* @__PURE__ */ jsx31("input", { placeholder: "Label", value: f.field_label ?? "", onChange: (e) => {
-            const u = [...fields];
-            u[i] = { ...u[i], field_label: e.target.value };
-            onChange({ ...config, form_fields: u });
-          }, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
-          /* @__PURE__ */ jsxs31("select", { value: f.field_type ?? "text", onChange: (e) => {
-            const u = [...fields];
-            u[i] = { ...u[i], field_type: e.target.value };
-            onChange({ ...config, form_fields: u });
-          }, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-            /* @__PURE__ */ jsx31("option", { value: "text", children: "Text" }),
-            /* @__PURE__ */ jsx31("option", { value: "email", children: "Email" }),
-            /* @__PURE__ */ jsx31("option", { value: "tel", children: "Phone" }),
-            /* @__PURE__ */ jsx31("option", { value: "textarea", children: "Textarea" }),
-            /* @__PURE__ */ jsx31("option", { value: "select", children: "Select" })
-          ] }),
-          /* @__PURE__ */ jsx31("input", { placeholder: "Placeholder", value: f.placeholder ?? "", onChange: (e) => {
-            const u = [...fields];
-            u[i] = { ...u[i], placeholder: e.target.value };
-            onChange({ ...config, form_fields: u });
-          }, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
-        ] }),
-        /* @__PURE__ */ jsxs31("label", { className: "mt-2 flex items-center gap-2 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: [
-          /* @__PURE__ */ jsx31("input", { type: "checkbox", checked: f.required ?? false, onChange: (e) => {
-            const u = [...fields];
-            u[i] = { ...u[i], required: e.target.checked };
-            onChange({ ...config, form_fields: u });
-          }, className: "rounded border-zinc-300 dark:border-zinc-600" }),
-          "Required"
-        ] })
-      ] }, i)) }),
-      /* @__PURE__ */ jsxs31("button", { type: "button", onClick: () => onChange({ ...config, form_fields: [...fields, { field_name: "", field_type: "text", field_label: "", placeholder: "", required: false }] }), className: "mt-2 inline-flex items-center gap-1 text-xs font-medium text-brand-600 hover:text-brand-500", children: [
-        /* @__PURE__ */ jsx31(Plus19, { className: "size-3" }),
-        " Add Field"
+      /* @__PURE__ */ jsx31("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Urgency Type" }),
+      /* @__PURE__ */ jsxs31("select", { value: c.urgency_type ?? "seats-limited", onChange: (e) => onChange({ ...config, urgency_type: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+        /* @__PURE__ */ jsx31("option", { value: "seats-limited", children: "Seats Limited" }),
+        /* @__PURE__ */ jsx31("option", { value: "deadline", children: "Deadline" }),
+        /* @__PURE__ */ jsx31("option", { value: "cohort-start", children: "Cohort Start" }),
+        /* @__PURE__ */ jsx31("option", { value: "price-increase", children: "Price Increase" }),
+        /* @__PURE__ */ jsx31("option", { value: "custom", children: "Custom" })
       ] })
     ] }),
     /* @__PURE__ */ jsxs31("div", { children: [
-      /* @__PURE__ */ jsx31("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Submit Button Label" }),
-      /* @__PURE__ */ jsx31("input", { value: c.submit_button_label ?? "", onChange: (e) => onChange({ ...config, submit_button_label: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "Submit" })
+      /* @__PURE__ */ jsx31("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Countdown Target (date/time)" }),
+      /* @__PURE__ */ jsx31("input", { type: "datetime-local", value: c.countdown_target ?? "", onChange: (e) => onChange({ ...config, countdown_target: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs31("div", { children: [
-      /* @__PURE__ */ jsx31("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Audience ID" }),
-      /* @__PURE__ */ jsx31("input", { value: c.audience_id ?? "", onChange: (e) => onChange({ ...config, audience_id: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    /* @__PURE__ */ jsxs31("label", { className: "flex items-center gap-2 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: [
+      /* @__PURE__ */ jsx31("input", { type: "checkbox", checked: c.show_countdown ?? false, onChange: (e) => onChange({ ...config, show_countdown: e.target.checked }), className: "rounded border-zinc-300 dark:border-zinc-600" }),
+      "Show Countdown"
     ] }),
-    /* @__PURE__ */ jsxs31("div", { children: [
-      /* @__PURE__ */ jsx31("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Privacy Text" }),
-      /* @__PURE__ */ jsx31("textarea", { value: c.privacy_text ?? "", onChange: (e) => onChange({ ...config, privacy_text: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    /* @__PURE__ */ jsxs31("div", { className: "grid gap-3 sm:grid-cols-2", children: [
+      /* @__PURE__ */ jsxs31("div", { children: [
+        /* @__PURE__ */ jsx31("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Seats Remaining" }),
+        /* @__PURE__ */ jsx31("input", { type: "number", min: 0, value: c.seats_remaining ?? "", onChange: (e) => onChange({ ...config, seats_remaining: parseInt(e.target.value) || 0 }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+      ] }),
+      /* @__PURE__ */ jsxs31("div", { children: [
+        /* @__PURE__ */ jsx31("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Seats Total" }),
+        /* @__PURE__ */ jsx31("input", { type: "number", min: 0, value: c.seats_total ?? "", onChange: (e) => onChange({ ...config, seats_total: parseInt(e.target.value) || 0 }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+      ] })
     ] }),
-    /* @__PURE__ */ jsxs31("div", { children: [
-      /* @__PURE__ */ jsx31("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Layout" }),
-      /* @__PURE__ */ jsxs31("select", { value: c.layout ?? "centered", onChange: (e) => onChange({ ...config, layout: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-        /* @__PURE__ */ jsx31("option", { value: "centered", children: "Centered" }),
-        /* @__PURE__ */ jsx31("option", { value: "card", children: "Card" }),
-        /* @__PURE__ */ jsx31("option", { value: "minimal", children: "Minimal" })
+    /* @__PURE__ */ jsxs31("fieldset", { className: "rounded-md border border-zinc-200 p-3 dark:border-zinc-700", children: [
+      /* @__PURE__ */ jsx31("legend", { className: "px-1 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "CTA Button" }),
+      /* @__PURE__ */ jsxs31("div", { className: "grid gap-2 sm:grid-cols-2", children: [
+        /* @__PURE__ */ jsx31("input", { placeholder: "Label", value: cta.label ?? "", onChange: (e) => onChange({ ...config, cta_button: { ...cta, label: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
+        /* @__PURE__ */ jsx31("input", { placeholder: "URL", value: cta.url ?? "", onChange: (e) => onChange({ ...config, cta_button: { ...cta, url: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+      ] }),
+      /* @__PURE__ */ jsxs31("select", { value: cta.variant ?? "primary", onChange: (e) => onChange({ ...config, cta_button: { ...cta, variant: e.target.value } }), className: "mt-2 w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+        /* @__PURE__ */ jsx31("option", { value: "primary", children: "Primary" }),
+        /* @__PURE__ */ jsx31("option", { value: "secondary", children: "Secondary" }),
+        /* @__PURE__ */ jsx31("option", { value: "ghost", children: "Ghost" }),
+        /* @__PURE__ */ jsx31("option", { value: "text-link", children: "Text Link" })
       ] })
     ] })
   ] });
 }
 
-// src/editors/config-editors/application-form-editor.tsx
-import { Plus as Plus20, Trash as Trash20 } from "@phosphor-icons/react";
+// src/editors/config-editors/capture-form-editor.tsx
+import { Plus as Plus19, Trash as Trash19 } from "@phosphor-icons/react";
 import { jsx as jsx32, jsxs as jsxs32 } from "react/jsx-runtime";
-function ApplicationFormEditor({
+function CaptureFormEditor({
   config,
   onChange
 }) {
@@ -1881,8 +1839,8 @@ function ApplicationFormEditor({
       /* @__PURE__ */ jsx32("input", { value: c.headline ?? "", onChange: (e) => onChange({ ...config, headline: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
     /* @__PURE__ */ jsxs32("div", { children: [
-      /* @__PURE__ */ jsx32("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Introduction" }),
-      /* @__PURE__ */ jsx32("textarea", { value: c.introduction ?? "", onChange: (e) => onChange({ ...config, introduction: e.target.value }), rows: 3, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+      /* @__PURE__ */ jsx32("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Body Text" }),
+      /* @__PURE__ */ jsx32("textarea", { value: c.body_text ?? "", onChange: (e) => onChange({ ...config, body_text: e.target.value }), rows: 3, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
     /* @__PURE__ */ jsxs32("div", { children: [
       /* @__PURE__ */ jsx32("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Form Fields" }),
@@ -1892,7 +1850,7 @@ function ApplicationFormEditor({
             "Field ",
             i + 1
           ] }),
-          /* @__PURE__ */ jsx32("button", { type: "button", onClick: () => onChange({ ...config, form_fields: fields.filter((_, j) => j !== i) }), className: "text-zinc-400 hover:text-red-500", children: /* @__PURE__ */ jsx32(Trash20, { className: "size-3.5" }) })
+          /* @__PURE__ */ jsx32("button", { type: "button", onClick: () => onChange({ ...config, form_fields: fields.filter((_, j) => j !== i) }), className: "text-zinc-400 hover:text-red-500", children: /* @__PURE__ */ jsx32(Trash19, { className: "size-3.5" }) })
         ] }),
         /* @__PURE__ */ jsxs32("div", { className: "grid gap-2 sm:grid-cols-2", children: [
           /* @__PURE__ */ jsx32("input", { placeholder: "Field name (key)", value: f.field_name ?? "", onChange: (e) => {
@@ -1932,35 +1890,132 @@ function ApplicationFormEditor({
         ] })
       ] }, i)) }),
       /* @__PURE__ */ jsxs32("button", { type: "button", onClick: () => onChange({ ...config, form_fields: [...fields, { field_name: "", field_type: "text", field_label: "", placeholder: "", required: false }] }), className: "mt-2 inline-flex items-center gap-1 text-xs font-medium text-brand-600 hover:text-brand-500", children: [
-        /* @__PURE__ */ jsx32(Plus20, { className: "size-3" }),
+        /* @__PURE__ */ jsx32(Plus19, { className: "size-3" }),
         " Add Field"
       ] })
     ] }),
     /* @__PURE__ */ jsxs32("div", { children: [
-      /* @__PURE__ */ jsx32("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Programme Summary" }),
-      /* @__PURE__ */ jsx32("textarea", { value: c.programme_summary ?? "", onChange: (e) => onChange({ ...config, programme_summary: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
-    ] }),
-    /* @__PURE__ */ jsxs32("div", { children: [
-      /* @__PURE__ */ jsx32("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Pricing Display" }),
-      /* @__PURE__ */ jsx32("textarea", { value: c.pricing_display ?? "", onChange: (e) => onChange({ ...config, pricing_display: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
-    ] }),
-    /* @__PURE__ */ jsxs32("div", { children: [
       /* @__PURE__ */ jsx32("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Submit Button Label" }),
-      /* @__PURE__ */ jsx32("input", { value: c.submit_button_label ?? "", onChange: (e) => onChange({ ...config, submit_button_label: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "Apply Now" })
-    ] }),
-    /* @__PURE__ */ jsxs32("div", { children: [
-      /* @__PURE__ */ jsx32("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Post-Submit Message" }),
-      /* @__PURE__ */ jsx32("textarea", { value: c.post_submit_message ?? "", onChange: (e) => onChange({ ...config, post_submit_message: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+      /* @__PURE__ */ jsx32("input", { value: c.submit_button_label ?? "", onChange: (e) => onChange({ ...config, submit_button_label: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "Submit" })
     ] }),
     /* @__PURE__ */ jsxs32("div", { children: [
       /* @__PURE__ */ jsx32("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Audience ID" }),
       /* @__PURE__ */ jsx32("input", { value: c.audience_id ?? "", onChange: (e) => onChange({ ...config, audience_id: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    ] }),
+    /* @__PURE__ */ jsxs32("div", { children: [
+      /* @__PURE__ */ jsx32("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Privacy Text" }),
+      /* @__PURE__ */ jsx32("textarea", { value: c.privacy_text ?? "", onChange: (e) => onChange({ ...config, privacy_text: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    ] }),
+    /* @__PURE__ */ jsxs32("div", { children: [
+      /* @__PURE__ */ jsx32("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Layout" }),
+      /* @__PURE__ */ jsxs32("select", { value: c.layout ?? "centered", onChange: (e) => onChange({ ...config, layout: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+        /* @__PURE__ */ jsx32("option", { value: "centered", children: "Centered" }),
+        /* @__PURE__ */ jsx32("option", { value: "card", children: "Card" }),
+        /* @__PURE__ */ jsx32("option", { value: "minimal", children: "Minimal" })
+      ] })
+    ] })
+  ] });
+}
+
+// src/editors/config-editors/application-form-editor.tsx
+import { Plus as Plus20, Trash as Trash20 } from "@phosphor-icons/react";
+import { jsx as jsx33, jsxs as jsxs33 } from "react/jsx-runtime";
+function ApplicationFormEditor({
+  config,
+  onChange
+}) {
+  const c = config;
+  const fields = c.form_fields ?? [];
+  return /* @__PURE__ */ jsxs33("div", { className: "space-y-3", children: [
+    /* @__PURE__ */ jsxs33("div", { children: [
+      /* @__PURE__ */ jsx33("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Section Label" }),
+      /* @__PURE__ */ jsx33("input", { value: c.section_label ?? "", onChange: (e) => onChange({ ...config, section_label: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    ] }),
+    /* @__PURE__ */ jsxs33("div", { children: [
+      /* @__PURE__ */ jsx33("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Headline" }),
+      /* @__PURE__ */ jsx33("input", { value: c.headline ?? "", onChange: (e) => onChange({ ...config, headline: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    ] }),
+    /* @__PURE__ */ jsxs33("div", { children: [
+      /* @__PURE__ */ jsx33("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Introduction" }),
+      /* @__PURE__ */ jsx33("textarea", { value: c.introduction ?? "", onChange: (e) => onChange({ ...config, introduction: e.target.value }), rows: 3, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    ] }),
+    /* @__PURE__ */ jsxs33("div", { children: [
+      /* @__PURE__ */ jsx33("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Form Fields" }),
+      /* @__PURE__ */ jsx33("div", { className: "space-y-2", children: fields.map((f, i) => /* @__PURE__ */ jsxs33("div", { className: "rounded-lg border border-zinc-200 p-3 dark:border-zinc-700", children: [
+        /* @__PURE__ */ jsxs33("div", { className: "mb-2 flex items-center justify-between", children: [
+          /* @__PURE__ */ jsxs33("span", { className: "text-xs font-medium text-zinc-400", children: [
+            "Field ",
+            i + 1
+          ] }),
+          /* @__PURE__ */ jsx33("button", { type: "button", onClick: () => onChange({ ...config, form_fields: fields.filter((_, j) => j !== i) }), className: "text-zinc-400 hover:text-red-500", children: /* @__PURE__ */ jsx33(Trash20, { className: "size-3.5" }) })
+        ] }),
+        /* @__PURE__ */ jsxs33("div", { className: "grid gap-2 sm:grid-cols-2", children: [
+          /* @__PURE__ */ jsx33("input", { placeholder: "Field name (key)", value: f.field_name ?? "", onChange: (e) => {
+            const u = [...fields];
+            u[i] = { ...u[i], field_name: e.target.value };
+            onChange({ ...config, form_fields: u });
+          }, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
+          /* @__PURE__ */ jsx33("input", { placeholder: "Label", value: f.field_label ?? "", onChange: (e) => {
+            const u = [...fields];
+            u[i] = { ...u[i], field_label: e.target.value };
+            onChange({ ...config, form_fields: u });
+          }, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
+          /* @__PURE__ */ jsxs33("select", { value: f.field_type ?? "text", onChange: (e) => {
+            const u = [...fields];
+            u[i] = { ...u[i], field_type: e.target.value };
+            onChange({ ...config, form_fields: u });
+          }, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+            /* @__PURE__ */ jsx33("option", { value: "text", children: "Text" }),
+            /* @__PURE__ */ jsx33("option", { value: "email", children: "Email" }),
+            /* @__PURE__ */ jsx33("option", { value: "tel", children: "Phone" }),
+            /* @__PURE__ */ jsx33("option", { value: "textarea", children: "Textarea" }),
+            /* @__PURE__ */ jsx33("option", { value: "select", children: "Select" })
+          ] }),
+          /* @__PURE__ */ jsx33("input", { placeholder: "Placeholder", value: f.placeholder ?? "", onChange: (e) => {
+            const u = [...fields];
+            u[i] = { ...u[i], placeholder: e.target.value };
+            onChange({ ...config, form_fields: u });
+          }, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+        ] }),
+        /* @__PURE__ */ jsxs33("label", { className: "mt-2 flex items-center gap-2 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: [
+          /* @__PURE__ */ jsx33("input", { type: "checkbox", checked: f.required ?? false, onChange: (e) => {
+            const u = [...fields];
+            u[i] = { ...u[i], required: e.target.checked };
+            onChange({ ...config, form_fields: u });
+          }, className: "rounded border-zinc-300 dark:border-zinc-600" }),
+          "Required"
+        ] })
+      ] }, i)) }),
+      /* @__PURE__ */ jsxs33("button", { type: "button", onClick: () => onChange({ ...config, form_fields: [...fields, { field_name: "", field_type: "text", field_label: "", placeholder: "", required: false }] }), className: "mt-2 inline-flex items-center gap-1 text-xs font-medium text-brand-600 hover:text-brand-500", children: [
+        /* @__PURE__ */ jsx33(Plus20, { className: "size-3" }),
+        " Add Field"
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxs33("div", { children: [
+      /* @__PURE__ */ jsx33("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Programme Summary" }),
+      /* @__PURE__ */ jsx33("textarea", { value: c.programme_summary ?? "", onChange: (e) => onChange({ ...config, programme_summary: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    ] }),
+    /* @__PURE__ */ jsxs33("div", { children: [
+      /* @__PURE__ */ jsx33("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Pricing Display" }),
+      /* @__PURE__ */ jsx33("textarea", { value: c.pricing_display ?? "", onChange: (e) => onChange({ ...config, pricing_display: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    ] }),
+    /* @__PURE__ */ jsxs33("div", { children: [
+      /* @__PURE__ */ jsx33("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Submit Button Label" }),
+      /* @__PURE__ */ jsx33("input", { value: c.submit_button_label ?? "", onChange: (e) => onChange({ ...config, submit_button_label: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "Apply Now" })
+    ] }),
+    /* @__PURE__ */ jsxs33("div", { children: [
+      /* @__PURE__ */ jsx33("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Post-Submit Message" }),
+      /* @__PURE__ */ jsx33("textarea", { value: c.post_submit_message ?? "", onChange: (e) => onChange({ ...config, post_submit_message: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    ] }),
+    /* @__PURE__ */ jsxs33("div", { children: [
+      /* @__PURE__ */ jsx33("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Audience ID" }),
+      /* @__PURE__ */ jsx33("input", { value: c.audience_id ?? "", onChange: (e) => onChange({ ...config, audience_id: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] })
   ] });
 }
 
 // src/editors/config-editors/inline-cta-editor.tsx
-import { jsx as jsx33, jsxs as jsxs33 } from "react/jsx-runtime";
+import { jsx as jsx34, jsxs as jsxs34 } from "react/jsx-runtime";
 function InlineCtaEditor({
   config,
   onChange
@@ -1968,56 +2023,56 @@ function InlineCtaEditor({
   const c = config;
   const cta = c.cta_button ?? {};
   const secondary = c.secondary_cta ?? {};
-  return /* @__PURE__ */ jsxs33("div", { className: "space-y-3", children: [
-    /* @__PURE__ */ jsxs33("div", { children: [
-      /* @__PURE__ */ jsx33("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Headline" }),
-      /* @__PURE__ */ jsx33("input", { value: c.headline ?? "", onChange: (e) => onChange({ ...config, headline: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+  return /* @__PURE__ */ jsxs34("div", { className: "space-y-3", children: [
+    /* @__PURE__ */ jsxs34("div", { children: [
+      /* @__PURE__ */ jsx34("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Headline" }),
+      /* @__PURE__ */ jsx34("input", { value: c.headline ?? "", onChange: (e) => onChange({ ...config, headline: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs33("div", { children: [
-      /* @__PURE__ */ jsx33("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Body Text" }),
-      /* @__PURE__ */ jsx33("textarea", { value: c.body_text ?? "", onChange: (e) => onChange({ ...config, body_text: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    /* @__PURE__ */ jsxs34("div", { children: [
+      /* @__PURE__ */ jsx34("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Body Text" }),
+      /* @__PURE__ */ jsx34("textarea", { value: c.body_text ?? "", onChange: (e) => onChange({ ...config, body_text: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs33("fieldset", { className: "rounded-md border border-zinc-200 p-3 dark:border-zinc-700", children: [
-      /* @__PURE__ */ jsx33("legend", { className: "px-1 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "CTA Button" }),
-      /* @__PURE__ */ jsxs33("div", { className: "grid gap-2 sm:grid-cols-2", children: [
-        /* @__PURE__ */ jsx33("input", { placeholder: "Label", value: cta.label ?? "", onChange: (e) => onChange({ ...config, cta_button: { ...cta, label: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
-        /* @__PURE__ */ jsx33("input", { placeholder: "URL", value: cta.url ?? "", onChange: (e) => onChange({ ...config, cta_button: { ...cta, url: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    /* @__PURE__ */ jsxs34("fieldset", { className: "rounded-md border border-zinc-200 p-3 dark:border-zinc-700", children: [
+      /* @__PURE__ */ jsx34("legend", { className: "px-1 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "CTA Button" }),
+      /* @__PURE__ */ jsxs34("div", { className: "grid gap-2 sm:grid-cols-2", children: [
+        /* @__PURE__ */ jsx34("input", { placeholder: "Label", value: cta.label ?? "", onChange: (e) => onChange({ ...config, cta_button: { ...cta, label: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
+        /* @__PURE__ */ jsx34("input", { placeholder: "URL", value: cta.url ?? "", onChange: (e) => onChange({ ...config, cta_button: { ...cta, url: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
       ] }),
-      /* @__PURE__ */ jsxs33("select", { value: cta.variant ?? "primary", onChange: (e) => onChange({ ...config, cta_button: { ...cta, variant: e.target.value } }), className: "mt-2 w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-        /* @__PURE__ */ jsx33("option", { value: "primary", children: "Primary" }),
-        /* @__PURE__ */ jsx33("option", { value: "secondary", children: "Secondary" }),
-        /* @__PURE__ */ jsx33("option", { value: "ghost", children: "Ghost" }),
-        /* @__PURE__ */ jsx33("option", { value: "text-link", children: "Text Link" })
+      /* @__PURE__ */ jsxs34("select", { value: cta.variant ?? "primary", onChange: (e) => onChange({ ...config, cta_button: { ...cta, variant: e.target.value } }), className: "mt-2 w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+        /* @__PURE__ */ jsx34("option", { value: "primary", children: "Primary" }),
+        /* @__PURE__ */ jsx34("option", { value: "secondary", children: "Secondary" }),
+        /* @__PURE__ */ jsx34("option", { value: "ghost", children: "Ghost" }),
+        /* @__PURE__ */ jsx34("option", { value: "text-link", children: "Text Link" })
       ] })
     ] }),
-    /* @__PURE__ */ jsxs33("fieldset", { className: "rounded-md border border-zinc-200 p-3 dark:border-zinc-700", children: [
-      /* @__PURE__ */ jsx33("legend", { className: "px-1 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Secondary CTA" }),
-      /* @__PURE__ */ jsxs33("div", { className: "grid gap-2 sm:grid-cols-2", children: [
-        /* @__PURE__ */ jsx33("input", { placeholder: "Label", value: secondary.label ?? "", onChange: (e) => onChange({ ...config, secondary_cta: { ...secondary, label: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
-        /* @__PURE__ */ jsx33("input", { placeholder: "URL", value: secondary.url ?? "", onChange: (e) => onChange({ ...config, secondary_cta: { ...secondary, url: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    /* @__PURE__ */ jsxs34("fieldset", { className: "rounded-md border border-zinc-200 p-3 dark:border-zinc-700", children: [
+      /* @__PURE__ */ jsx34("legend", { className: "px-1 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Secondary CTA" }),
+      /* @__PURE__ */ jsxs34("div", { className: "grid gap-2 sm:grid-cols-2", children: [
+        /* @__PURE__ */ jsx34("input", { placeholder: "Label", value: secondary.label ?? "", onChange: (e) => onChange({ ...config, secondary_cta: { ...secondary, label: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
+        /* @__PURE__ */ jsx34("input", { placeholder: "URL", value: secondary.url ?? "", onChange: (e) => onChange({ ...config, secondary_cta: { ...secondary, url: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
       ] }),
-      /* @__PURE__ */ jsxs33("select", { value: secondary.variant ?? "secondary", onChange: (e) => onChange({ ...config, secondary_cta: { ...secondary, variant: e.target.value } }), className: "mt-2 w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-        /* @__PURE__ */ jsx33("option", { value: "primary", children: "Primary" }),
-        /* @__PURE__ */ jsx33("option", { value: "secondary", children: "Secondary" }),
-        /* @__PURE__ */ jsx33("option", { value: "ghost", children: "Ghost" }),
-        /* @__PURE__ */ jsx33("option", { value: "text-link", children: "Text Link" })
+      /* @__PURE__ */ jsxs34("select", { value: secondary.variant ?? "secondary", onChange: (e) => onChange({ ...config, secondary_cta: { ...secondary, variant: e.target.value } }), className: "mt-2 w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+        /* @__PURE__ */ jsx34("option", { value: "primary", children: "Primary" }),
+        /* @__PURE__ */ jsx34("option", { value: "secondary", children: "Secondary" }),
+        /* @__PURE__ */ jsx34("option", { value: "ghost", children: "Ghost" }),
+        /* @__PURE__ */ jsx34("option", { value: "text-link", children: "Text Link" })
       ] })
     ] }),
-    /* @__PURE__ */ jsxs33("div", { className: "grid gap-3 sm:grid-cols-2", children: [
-      /* @__PURE__ */ jsxs33("div", { children: [
-        /* @__PURE__ */ jsx33("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Background Style" }),
-        /* @__PURE__ */ jsxs33("select", { value: c.background_style ?? "light", onChange: (e) => onChange({ ...config, background_style: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-          /* @__PURE__ */ jsx33("option", { value: "light", children: "Light" }),
-          /* @__PURE__ */ jsx33("option", { value: "dark", children: "Dark" }),
-          /* @__PURE__ */ jsx33("option", { value: "cream", children: "Cream" }),
-          /* @__PURE__ */ jsx33("option", { value: "transparent", children: "Transparent" })
+    /* @__PURE__ */ jsxs34("div", { className: "grid gap-3 sm:grid-cols-2", children: [
+      /* @__PURE__ */ jsxs34("div", { children: [
+        /* @__PURE__ */ jsx34("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Background Style" }),
+        /* @__PURE__ */ jsxs34("select", { value: c.background_style ?? "light", onChange: (e) => onChange({ ...config, background_style: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+          /* @__PURE__ */ jsx34("option", { value: "light", children: "Light" }),
+          /* @__PURE__ */ jsx34("option", { value: "dark", children: "Dark" }),
+          /* @__PURE__ */ jsx34("option", { value: "cream", children: "Cream" }),
+          /* @__PURE__ */ jsx34("option", { value: "transparent", children: "Transparent" })
         ] })
       ] }),
-      /* @__PURE__ */ jsxs33("div", { children: [
-        /* @__PURE__ */ jsx33("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Alignment" }),
-        /* @__PURE__ */ jsxs33("select", { value: c.alignment ?? "centered", onChange: (e) => onChange({ ...config, alignment: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-          /* @__PURE__ */ jsx33("option", { value: "centered", children: "Centered" }),
-          /* @__PURE__ */ jsx33("option", { value: "left", children: "Left" })
+      /* @__PURE__ */ jsxs34("div", { children: [
+        /* @__PURE__ */ jsx34("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Alignment" }),
+        /* @__PURE__ */ jsxs34("select", { value: c.alignment ?? "centered", onChange: (e) => onChange({ ...config, alignment: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+          /* @__PURE__ */ jsx34("option", { value: "centered", children: "Centered" }),
+          /* @__PURE__ */ jsx34("option", { value: "left", children: "Left" })
         ] })
       ] })
     ] })
@@ -2026,39 +2081,39 @@ function InlineCtaEditor({
 
 // src/editors/config-editors/confirmation-message-editor.tsx
 import { Plus as Plus21, Trash as Trash21 } from "@phosphor-icons/react";
-import { jsx as jsx34, jsxs as jsxs34 } from "react/jsx-runtime";
+import { jsx as jsx35, jsxs as jsxs35 } from "react/jsx-runtime";
 function ConfirmationMessageEditor({
   config,
   onChange
 }) {
   const c = config;
   const steps = c.what_happens_next ?? [];
-  return /* @__PURE__ */ jsxs34("div", { className: "space-y-3", children: [
-    /* @__PURE__ */ jsxs34("div", { children: [
-      /* @__PURE__ */ jsx34("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Headline" }),
-      /* @__PURE__ */ jsx34("input", { value: c.headline ?? "", onChange: (e) => onChange({ ...config, headline: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+  return /* @__PURE__ */ jsxs35("div", { className: "space-y-3", children: [
+    /* @__PURE__ */ jsxs35("div", { children: [
+      /* @__PURE__ */ jsx35("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Headline" }),
+      /* @__PURE__ */ jsx35("input", { value: c.headline ?? "", onChange: (e) => onChange({ ...config, headline: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs34("div", { children: [
-      /* @__PURE__ */ jsx34("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Body Text" }),
-      /* @__PURE__ */ jsx34("textarea", { value: c.body_text ?? "", onChange: (e) => onChange({ ...config, body_text: e.target.value }), rows: 3, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    /* @__PURE__ */ jsxs35("div", { children: [
+      /* @__PURE__ */ jsx35("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Body Text" }),
+      /* @__PURE__ */ jsx35("textarea", { value: c.body_text ?? "", onChange: (e) => onChange({ ...config, body_text: e.target.value }), rows: 3, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs34("div", { children: [
-      /* @__PURE__ */ jsx34("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "What Happens Next" }),
-      /* @__PURE__ */ jsx34("div", { className: "space-y-2", children: steps.map((step, i) => /* @__PURE__ */ jsxs34("div", { className: "flex gap-2", children: [
-        /* @__PURE__ */ jsx34("input", { type: "number", value: step.step_number ?? i + 1, onChange: (e) => {
+    /* @__PURE__ */ jsxs35("div", { children: [
+      /* @__PURE__ */ jsx35("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "What Happens Next" }),
+      /* @__PURE__ */ jsx35("div", { className: "space-y-2", children: steps.map((step, i) => /* @__PURE__ */ jsxs35("div", { className: "flex gap-2", children: [
+        /* @__PURE__ */ jsx35("input", { type: "number", value: step.step_number ?? i + 1, onChange: (e) => {
           const u = [...steps];
           u[i] = { ...u[i], step_number: parseInt(e.target.value) || 0 };
           onChange({ ...config, what_happens_next: u });
         }, className: "w-16 rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
-        /* @__PURE__ */ jsx34("input", { value: step.step_description ?? "", onChange: (e) => {
+        /* @__PURE__ */ jsx35("input", { value: step.step_description ?? "", onChange: (e) => {
           const u = [...steps];
           u[i] = { ...u[i], step_description: e.target.value };
           onChange({ ...config, what_happens_next: u });
         }, className: "flex-1 rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "Step description..." }),
-        /* @__PURE__ */ jsx34("button", { type: "button", onClick: () => onChange({ ...config, what_happens_next: steps.filter((_, j) => j !== i) }), className: "rounded p-1 text-zinc-400 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30", children: /* @__PURE__ */ jsx34(Trash21, { className: "size-4" }) })
+        /* @__PURE__ */ jsx35("button", { type: "button", onClick: () => onChange({ ...config, what_happens_next: steps.filter((_, j) => j !== i) }), className: "rounded p-1 text-zinc-400 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30", children: /* @__PURE__ */ jsx35(Trash21, { className: "size-4" }) })
       ] }, i)) }),
-      /* @__PURE__ */ jsxs34("button", { type: "button", onClick: () => onChange({ ...config, what_happens_next: [...steps, { step_number: steps.length + 1, step_description: "" }] }), className: "mt-2 inline-flex items-center gap-1 text-xs font-medium text-brand-600 hover:text-brand-500", children: [
-        /* @__PURE__ */ jsx34(Plus21, { className: "size-3" }),
+      /* @__PURE__ */ jsxs35("button", { type: "button", onClick: () => onChange({ ...config, what_happens_next: [...steps, { step_number: steps.length + 1, step_description: "" }] }), className: "mt-2 inline-flex items-center gap-1 text-xs font-medium text-brand-600 hover:text-brand-500", children: [
+        /* @__PURE__ */ jsx35(Plus21, { className: "size-3" }),
         " Add Step"
       ] })
     ] })
@@ -2066,30 +2121,30 @@ function ConfirmationMessageEditor({
 }
 
 // src/editors/config-editors/diagnostic-framing-editor.tsx
-import { jsx as jsx35, jsxs as jsxs35 } from "react/jsx-runtime";
+import { jsx as jsx36, jsxs as jsxs36 } from "react/jsx-runtime";
 function DiagnosticFramingEditor({
   config,
   onChange
 }) {
   const c = config;
-  return /* @__PURE__ */ jsxs35("div", { className: "space-y-3", children: [
-    /* @__PURE__ */ jsxs35("div", { children: [
-      /* @__PURE__ */ jsx35("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Action Taken" }),
-      /* @__PURE__ */ jsx35("input", { value: c.action_taken ?? "", onChange: (e) => onChange({ ...config, action_taken: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "What the visitor just did..." })
+  return /* @__PURE__ */ jsxs36("div", { className: "space-y-3", children: [
+    /* @__PURE__ */ jsxs36("div", { children: [
+      /* @__PURE__ */ jsx36("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Action Taken" }),
+      /* @__PURE__ */ jsx36("input", { value: c.action_taken ?? "", onChange: (e) => onChange({ ...config, action_taken: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "What the visitor just did..." })
     ] }),
-    /* @__PURE__ */ jsxs35("div", { children: [
-      /* @__PURE__ */ jsx35("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "What It Says About You" }),
-      /* @__PURE__ */ jsx35("textarea", { value: c.what_it_says ?? "", onChange: (e) => onChange({ ...config, what_it_says: e.target.value }), rows: 3, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    /* @__PURE__ */ jsxs36("div", { children: [
+      /* @__PURE__ */ jsx36("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "What It Says About You" }),
+      /* @__PURE__ */ jsx36("textarea", { value: c.what_it_says ?? "", onChange: (e) => onChange({ ...config, what_it_says: e.target.value }), rows: 3, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs35("div", { children: [
-      /* @__PURE__ */ jsx35("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "What Comes Next" }),
-      /* @__PURE__ */ jsx35("textarea", { value: c.what_comes_next ?? "", onChange: (e) => onChange({ ...config, what_comes_next: e.target.value }), rows: 3, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    /* @__PURE__ */ jsxs36("div", { children: [
+      /* @__PURE__ */ jsx36("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "What Comes Next" }),
+      /* @__PURE__ */ jsx36("textarea", { value: c.what_comes_next ?? "", onChange: (e) => onChange({ ...config, what_comes_next: e.target.value }), rows: 3, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] })
   ] });
 }
 
 // src/editors/config-editors/quick-win-editor.tsx
-import { jsx as jsx36, jsxs as jsxs36 } from "react/jsx-runtime";
+import { jsx as jsx37, jsxs as jsxs37 } from "react/jsx-runtime";
 function QuickWinEditor({
   config,
   onChange
@@ -2097,48 +2152,48 @@ function QuickWinEditor({
   const c = config;
   const res = c.resource ?? {};
   const cta = c.cta_button ?? {};
-  return /* @__PURE__ */ jsxs36("div", { className: "space-y-3", children: [
-    /* @__PURE__ */ jsxs36("div", { children: [
-      /* @__PURE__ */ jsx36("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Headline" }),
-      /* @__PURE__ */ jsx36("input", { value: c.headline ?? "", onChange: (e) => onChange({ ...config, headline: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+  return /* @__PURE__ */ jsxs37("div", { className: "space-y-3", children: [
+    /* @__PURE__ */ jsxs37("div", { children: [
+      /* @__PURE__ */ jsx37("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Headline" }),
+      /* @__PURE__ */ jsx37("input", { value: c.headline ?? "", onChange: (e) => onChange({ ...config, headline: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs36("div", { children: [
-      /* @__PURE__ */ jsx36("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Body Text" }),
-      /* @__PURE__ */ jsx36("textarea", { value: c.body_text ?? "", onChange: (e) => onChange({ ...config, body_text: e.target.value }), rows: 3, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    /* @__PURE__ */ jsxs37("div", { children: [
+      /* @__PURE__ */ jsx37("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Body Text" }),
+      /* @__PURE__ */ jsx37("textarea", { value: c.body_text ?? "", onChange: (e) => onChange({ ...config, body_text: e.target.value }), rows: 3, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs36("fieldset", { className: "rounded-md border border-zinc-200 p-3 dark:border-zinc-700", children: [
-      /* @__PURE__ */ jsx36("legend", { className: "px-1 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Resource" }),
-      /* @__PURE__ */ jsxs36("div", { className: "space-y-2", children: [
-        /* @__PURE__ */ jsx36("input", { placeholder: "Title", value: res.resource_title ?? "", onChange: (e) => onChange({ ...config, resource: { ...res, resource_title: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
-        /* @__PURE__ */ jsx36("input", { placeholder: "Description", value: res.resource_description ?? "", onChange: (e) => onChange({ ...config, resource: { ...res, resource_description: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
-        /* @__PURE__ */ jsx36("input", { placeholder: "URL", value: res.resource_url ?? "", onChange: (e) => onChange({ ...config, resource: { ...res, resource_url: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
-        /* @__PURE__ */ jsxs36("select", { value: res.resource_type ?? "pdf", onChange: (e) => onChange({ ...config, resource: { ...res, resource_type: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-          /* @__PURE__ */ jsx36("option", { value: "pdf", children: "PDF" }),
-          /* @__PURE__ */ jsx36("option", { value: "video", children: "Video" }),
-          /* @__PURE__ */ jsx36("option", { value: "article", children: "Article" }),
-          /* @__PURE__ */ jsx36("option", { value: "template", children: "Template" }),
-          /* @__PURE__ */ jsx36("option", { value: "checklist", children: "Checklist" })
+    /* @__PURE__ */ jsxs37("fieldset", { className: "rounded-md border border-zinc-200 p-3 dark:border-zinc-700", children: [
+      /* @__PURE__ */ jsx37("legend", { className: "px-1 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Resource" }),
+      /* @__PURE__ */ jsxs37("div", { className: "space-y-2", children: [
+        /* @__PURE__ */ jsx37("input", { placeholder: "Title", value: res.resource_title ?? "", onChange: (e) => onChange({ ...config, resource: { ...res, resource_title: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
+        /* @__PURE__ */ jsx37("input", { placeholder: "Description", value: res.resource_description ?? "", onChange: (e) => onChange({ ...config, resource: { ...res, resource_description: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
+        /* @__PURE__ */ jsx37("input", { placeholder: "URL", value: res.resource_url ?? "", onChange: (e) => onChange({ ...config, resource: { ...res, resource_url: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
+        /* @__PURE__ */ jsxs37("select", { value: res.resource_type ?? "pdf", onChange: (e) => onChange({ ...config, resource: { ...res, resource_type: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+          /* @__PURE__ */ jsx37("option", { value: "pdf", children: "PDF" }),
+          /* @__PURE__ */ jsx37("option", { value: "video", children: "Video" }),
+          /* @__PURE__ */ jsx37("option", { value: "article", children: "Article" }),
+          /* @__PURE__ */ jsx37("option", { value: "template", children: "Template" }),
+          /* @__PURE__ */ jsx37("option", { value: "checklist", children: "Checklist" })
         ] })
       ] })
     ] }),
-    /* @__PURE__ */ jsxs36("fieldset", { className: "rounded-md border border-zinc-200 p-3 dark:border-zinc-700", children: [
-      /* @__PURE__ */ jsx36("legend", { className: "px-1 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "CTA Button" }),
-      /* @__PURE__ */ jsxs36("div", { className: "grid gap-2 sm:grid-cols-2", children: [
-        /* @__PURE__ */ jsx36("input", { placeholder: "Label", value: cta.label ?? "", onChange: (e) => onChange({ ...config, cta_button: { ...cta, label: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
-        /* @__PURE__ */ jsx36("input", { placeholder: "URL", value: cta.url ?? "", onChange: (e) => onChange({ ...config, cta_button: { ...cta, url: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    /* @__PURE__ */ jsxs37("fieldset", { className: "rounded-md border border-zinc-200 p-3 dark:border-zinc-700", children: [
+      /* @__PURE__ */ jsx37("legend", { className: "px-1 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "CTA Button" }),
+      /* @__PURE__ */ jsxs37("div", { className: "grid gap-2 sm:grid-cols-2", children: [
+        /* @__PURE__ */ jsx37("input", { placeholder: "Label", value: cta.label ?? "", onChange: (e) => onChange({ ...config, cta_button: { ...cta, label: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
+        /* @__PURE__ */ jsx37("input", { placeholder: "URL", value: cta.url ?? "", onChange: (e) => onChange({ ...config, cta_button: { ...cta, url: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
       ] }),
-      /* @__PURE__ */ jsxs36("select", { value: cta.variant ?? "primary", onChange: (e) => onChange({ ...config, cta_button: { ...cta, variant: e.target.value } }), className: "mt-2 w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-        /* @__PURE__ */ jsx36("option", { value: "primary", children: "Primary" }),
-        /* @__PURE__ */ jsx36("option", { value: "secondary", children: "Secondary" }),
-        /* @__PURE__ */ jsx36("option", { value: "ghost", children: "Ghost" }),
-        /* @__PURE__ */ jsx36("option", { value: "text-link", children: "Text Link" })
+      /* @__PURE__ */ jsxs37("select", { value: cta.variant ?? "primary", onChange: (e) => onChange({ ...config, cta_button: { ...cta, variant: e.target.value } }), className: "mt-2 w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+        /* @__PURE__ */ jsx37("option", { value: "primary", children: "Primary" }),
+        /* @__PURE__ */ jsx37("option", { value: "secondary", children: "Secondary" }),
+        /* @__PURE__ */ jsx37("option", { value: "ghost", children: "Ghost" }),
+        /* @__PURE__ */ jsx37("option", { value: "text-link", children: "Text Link" })
       ] })
     ] })
   ] });
 }
 
 // src/editors/config-editors/social-share-editor.tsx
-import { jsx as jsx37, jsxs as jsxs37 } from "react/jsx-runtime";
+import { jsx as jsx38, jsxs as jsxs38 } from "react/jsx-runtime";
 var PLATFORM_OPTIONS = [
   { value: "linkedin", label: "LinkedIn" },
   { value: "twitter", label: "Twitter / X" },
@@ -2155,27 +2210,27 @@ function SocialShareEditor({
     const updated = platforms.includes(value) ? platforms.filter((p) => p !== value) : [...platforms, value];
     onChange({ ...config, platforms: updated });
   };
-  return /* @__PURE__ */ jsxs37("div", { className: "space-y-3", children: [
-    /* @__PURE__ */ jsxs37("div", { children: [
-      /* @__PURE__ */ jsx37("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Share Text" }),
-      /* @__PURE__ */ jsx37("textarea", { value: c.share_text ?? "", onChange: (e) => onChange({ ...config, share_text: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+  return /* @__PURE__ */ jsxs38("div", { className: "space-y-3", children: [
+    /* @__PURE__ */ jsxs38("div", { children: [
+      /* @__PURE__ */ jsx38("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Share Text" }),
+      /* @__PURE__ */ jsx38("textarea", { value: c.share_text ?? "", onChange: (e) => onChange({ ...config, share_text: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs37("div", { children: [
-      /* @__PURE__ */ jsx37("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Platforms" }),
-      /* @__PURE__ */ jsx37("div", { className: "space-y-1", children: PLATFORM_OPTIONS.map((opt) => /* @__PURE__ */ jsxs37("label", { className: "flex items-center gap-2 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: [
-        /* @__PURE__ */ jsx37("input", { type: "checkbox", checked: platforms.includes(opt.value), onChange: () => togglePlatform(opt.value), className: "rounded border-zinc-300 dark:border-zinc-600" }),
+    /* @__PURE__ */ jsxs38("div", { children: [
+      /* @__PURE__ */ jsx38("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Platforms" }),
+      /* @__PURE__ */ jsx38("div", { className: "space-y-1", children: PLATFORM_OPTIONS.map((opt) => /* @__PURE__ */ jsxs38("label", { className: "flex items-center gap-2 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: [
+        /* @__PURE__ */ jsx38("input", { type: "checkbox", checked: platforms.includes(opt.value), onChange: () => togglePlatform(opt.value), className: "rounded border-zinc-300 dark:border-zinc-600" }),
         opt.label
       ] }, opt.value)) })
     ] }),
-    /* @__PURE__ */ jsxs37("div", { children: [
-      /* @__PURE__ */ jsx37("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Share URL" }),
-      /* @__PURE__ */ jsx37("input", { value: c.share_url ?? "", onChange: (e) => onChange({ ...config, share_url: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "https://..." })
+    /* @__PURE__ */ jsxs38("div", { children: [
+      /* @__PURE__ */ jsx38("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Share URL" }),
+      /* @__PURE__ */ jsx38("input", { value: c.share_url ?? "", onChange: (e) => onChange({ ...config, share_url: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "https://..." })
     ] }),
-    /* @__PURE__ */ jsxs37("div", { children: [
-      /* @__PURE__ */ jsx37("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Layout" }),
-      /* @__PURE__ */ jsxs37("select", { value: c.layout ?? "inline", onChange: (e) => onChange({ ...config, layout: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-        /* @__PURE__ */ jsx37("option", { value: "inline", children: "Inline" }),
-        /* @__PURE__ */ jsx37("option", { value: "card", children: "Card" })
+    /* @__PURE__ */ jsxs38("div", { children: [
+      /* @__PURE__ */ jsx38("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Layout" }),
+      /* @__PURE__ */ jsxs38("select", { value: c.layout ?? "inline", onChange: (e) => onChange({ ...config, layout: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+        /* @__PURE__ */ jsx38("option", { value: "inline", children: "Inline" }),
+        /* @__PURE__ */ jsx38("option", { value: "card", children: "Card" })
       ] })
     ] })
   ] });
@@ -2183,7 +2238,7 @@ function SocialShareEditor({
 
 // src/editors/config-editors/post-purchase-welcome-editor.tsx
 import { Plus as Plus22, Trash as Trash22 } from "@phosphor-icons/react";
-import { jsx as jsx38, jsxs as jsxs38 } from "react/jsx-runtime";
+import { jsx as jsx39, jsxs as jsxs39 } from "react/jsx-runtime";
 function PostPurchaseWelcomeEditor({
   config,
   onChange
@@ -2191,111 +2246,111 @@ function PostPurchaseWelcomeEditor({
   const c = config;
   const steps = c.next_steps ?? [];
   const cta = c.cta_button ?? {};
-  return /* @__PURE__ */ jsxs38("div", { className: "space-y-3", children: [
-    /* @__PURE__ */ jsxs38("div", { children: [
-      /* @__PURE__ */ jsx38("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Headline" }),
-      /* @__PURE__ */ jsx38("input", { value: c.headline ?? "", onChange: (e) => onChange({ ...config, headline: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+  return /* @__PURE__ */ jsxs39("div", { className: "space-y-3", children: [
+    /* @__PURE__ */ jsxs39("div", { children: [
+      /* @__PURE__ */ jsx39("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Headline" }),
+      /* @__PURE__ */ jsx39("input", { value: c.headline ?? "", onChange: (e) => onChange({ ...config, headline: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs38("div", { children: [
-      /* @__PURE__ */ jsx38("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Welcome Text" }),
-      /* @__PURE__ */ jsx38("textarea", { value: c.welcome_text ?? "", onChange: (e) => onChange({ ...config, welcome_text: e.target.value }), rows: 3, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    /* @__PURE__ */ jsxs39("div", { children: [
+      /* @__PURE__ */ jsx39("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Welcome Text" }),
+      /* @__PURE__ */ jsx39("textarea", { value: c.welcome_text ?? "", onChange: (e) => onChange({ ...config, welcome_text: e.target.value }), rows: 3, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs38("div", { children: [
-      /* @__PURE__ */ jsx38("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Next Steps" }),
-      /* @__PURE__ */ jsx38("div", { className: "space-y-2", children: steps.map((step, i) => /* @__PURE__ */ jsxs38("div", { className: "rounded-lg border border-zinc-200 p-3 dark:border-zinc-700", children: [
-        /* @__PURE__ */ jsxs38("div", { className: "mb-2 flex items-center justify-between", children: [
-          /* @__PURE__ */ jsxs38("span", { className: "text-xs font-medium text-zinc-400", children: [
+    /* @__PURE__ */ jsxs39("div", { children: [
+      /* @__PURE__ */ jsx39("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Next Steps" }),
+      /* @__PURE__ */ jsx39("div", { className: "space-y-2", children: steps.map((step, i) => /* @__PURE__ */ jsxs39("div", { className: "rounded-lg border border-zinc-200 p-3 dark:border-zinc-700", children: [
+        /* @__PURE__ */ jsxs39("div", { className: "mb-2 flex items-center justify-between", children: [
+          /* @__PURE__ */ jsxs39("span", { className: "text-xs font-medium text-zinc-400", children: [
             "Step ",
             i + 1
           ] }),
-          /* @__PURE__ */ jsx38("button", { type: "button", onClick: () => onChange({ ...config, next_steps: steps.filter((_, j) => j !== i) }), className: "text-zinc-400 hover:text-red-500", children: /* @__PURE__ */ jsx38(Trash22, { className: "size-3.5" }) })
+          /* @__PURE__ */ jsx39("button", { type: "button", onClick: () => onChange({ ...config, next_steps: steps.filter((_, j) => j !== i) }), className: "text-zinc-400 hover:text-red-500", children: /* @__PURE__ */ jsx39(Trash22, { className: "size-3.5" }) })
         ] }),
-        /* @__PURE__ */ jsxs38("div", { className: "grid gap-2 sm:grid-cols-2", children: [
-          /* @__PURE__ */ jsx38("input", { type: "number", placeholder: "#", value: step.step_number ?? i + 1, onChange: (e) => {
+        /* @__PURE__ */ jsxs39("div", { className: "grid gap-2 sm:grid-cols-2", children: [
+          /* @__PURE__ */ jsx39("input", { type: "number", placeholder: "#", value: step.step_number ?? i + 1, onChange: (e) => {
             const u = [...steps];
             u[i] = { ...u[i], step_number: parseInt(e.target.value) || 0 };
             onChange({ ...config, next_steps: u });
           }, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
-          /* @__PURE__ */ jsx38("input", { placeholder: "Title", value: step.step_title ?? "", onChange: (e) => {
+          /* @__PURE__ */ jsx39("input", { placeholder: "Title", value: step.step_title ?? "", onChange: (e) => {
             const u = [...steps];
             u[i] = { ...u[i], step_title: e.target.value };
             onChange({ ...config, next_steps: u });
           }, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
         ] }),
-        /* @__PURE__ */ jsx38("input", { placeholder: "Description", value: step.step_description ?? "", onChange: (e) => {
+        /* @__PURE__ */ jsx39("input", { placeholder: "Description", value: step.step_description ?? "", onChange: (e) => {
           const u = [...steps];
           u[i] = { ...u[i], step_description: e.target.value };
           onChange({ ...config, next_steps: u });
         }, className: "mt-2 w-full rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
       ] }, i)) }),
-      /* @__PURE__ */ jsxs38("button", { type: "button", onClick: () => onChange({ ...config, next_steps: [...steps, { step_number: steps.length + 1, step_title: "", step_description: "" }] }), className: "mt-2 inline-flex items-center gap-1 text-xs font-medium text-brand-600 hover:text-brand-500", children: [
-        /* @__PURE__ */ jsx38(Plus22, { className: "size-3" }),
+      /* @__PURE__ */ jsxs39("button", { type: "button", onClick: () => onChange({ ...config, next_steps: [...steps, { step_number: steps.length + 1, step_title: "", step_description: "" }] }), className: "mt-2 inline-flex items-center gap-1 text-xs font-medium text-brand-600 hover:text-brand-500", children: [
+        /* @__PURE__ */ jsx39(Plus22, { className: "size-3" }),
         " Add Step"
       ] })
     ] }),
-    /* @__PURE__ */ jsxs38("div", { children: [
-      /* @__PURE__ */ jsx38("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Community Link" }),
-      /* @__PURE__ */ jsx38("input", { value: c.community_link ?? "", onChange: (e) => onChange({ ...config, community_link: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "https://..." })
+    /* @__PURE__ */ jsxs39("div", { children: [
+      /* @__PURE__ */ jsx39("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Community Link" }),
+      /* @__PURE__ */ jsx39("input", { value: c.community_link ?? "", onChange: (e) => onChange({ ...config, community_link: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "https://..." })
     ] }),
-    /* @__PURE__ */ jsxs38("div", { children: [
-      /* @__PURE__ */ jsx38("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Personal Note" }),
-      /* @__PURE__ */ jsx38("textarea", { value: c.personal_note ?? "", onChange: (e) => onChange({ ...config, personal_note: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    /* @__PURE__ */ jsxs39("div", { children: [
+      /* @__PURE__ */ jsx39("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Personal Note" }),
+      /* @__PURE__ */ jsx39("textarea", { value: c.personal_note ?? "", onChange: (e) => onChange({ ...config, personal_note: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs38("fieldset", { className: "rounded-md border border-zinc-200 p-3 dark:border-zinc-700", children: [
-      /* @__PURE__ */ jsx38("legend", { className: "px-1 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "CTA Button" }),
-      /* @__PURE__ */ jsxs38("div", { className: "grid gap-2 sm:grid-cols-2", children: [
-        /* @__PURE__ */ jsx38("input", { placeholder: "Label", value: cta.label ?? "", onChange: (e) => onChange({ ...config, cta_button: { ...cta, label: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
-        /* @__PURE__ */ jsx38("input", { placeholder: "URL", value: cta.url ?? "", onChange: (e) => onChange({ ...config, cta_button: { ...cta, url: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    /* @__PURE__ */ jsxs39("fieldset", { className: "rounded-md border border-zinc-200 p-3 dark:border-zinc-700", children: [
+      /* @__PURE__ */ jsx39("legend", { className: "px-1 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "CTA Button" }),
+      /* @__PURE__ */ jsxs39("div", { className: "grid gap-2 sm:grid-cols-2", children: [
+        /* @__PURE__ */ jsx39("input", { placeholder: "Label", value: cta.label ?? "", onChange: (e) => onChange({ ...config, cta_button: { ...cta, label: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
+        /* @__PURE__ */ jsx39("input", { placeholder: "URL", value: cta.url ?? "", onChange: (e) => onChange({ ...config, cta_button: { ...cta, url: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
       ] }),
-      /* @__PURE__ */ jsxs38("select", { value: cta.variant ?? "primary", onChange: (e) => onChange({ ...config, cta_button: { ...cta, variant: e.target.value } }), className: "mt-2 w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-        /* @__PURE__ */ jsx38("option", { value: "primary", children: "Primary" }),
-        /* @__PURE__ */ jsx38("option", { value: "secondary", children: "Secondary" }),
-        /* @__PURE__ */ jsx38("option", { value: "ghost", children: "Ghost" }),
-        /* @__PURE__ */ jsx38("option", { value: "text-link", children: "Text Link" })
+      /* @__PURE__ */ jsxs39("select", { value: cta.variant ?? "primary", onChange: (e) => onChange({ ...config, cta_button: { ...cta, variant: e.target.value } }), className: "mt-2 w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+        /* @__PURE__ */ jsx39("option", { value: "primary", children: "Primary" }),
+        /* @__PURE__ */ jsx39("option", { value: "secondary", children: "Secondary" }),
+        /* @__PURE__ */ jsx39("option", { value: "ghost", children: "Ghost" }),
+        /* @__PURE__ */ jsx39("option", { value: "text-link", children: "Text Link" })
       ] })
     ] })
   ] });
 }
 
 // src/editors/config-editors/rich-text-block-editor.tsx
-import { jsx as jsx39, jsxs as jsxs39 } from "react/jsx-runtime";
+import { jsx as jsx40, jsxs as jsxs40 } from "react/jsx-runtime";
 function RichTextBlockEditor({
   config,
   onChange
 }) {
   const c = config;
-  return /* @__PURE__ */ jsxs39("div", { className: "space-y-3", children: [
-    /* @__PURE__ */ jsxs39("div", { children: [
-      /* @__PURE__ */ jsx39("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Section Label" }),
-      /* @__PURE__ */ jsx39("input", { value: c.section_label ?? "", onChange: (e) => onChange({ ...config, section_label: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+  return /* @__PURE__ */ jsxs40("div", { className: "space-y-3", children: [
+    /* @__PURE__ */ jsxs40("div", { children: [
+      /* @__PURE__ */ jsx40("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Section Label" }),
+      /* @__PURE__ */ jsx40("input", { value: c.section_label ?? "", onChange: (e) => onChange({ ...config, section_label: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs39("div", { children: [
-      /* @__PURE__ */ jsx39("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Body Text" }),
-      /* @__PURE__ */ jsx39("textarea", { value: c.body_text ?? "", onChange: (e) => onChange({ ...config, body_text: e.target.value }), rows: 8, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    /* @__PURE__ */ jsxs40("div", { children: [
+      /* @__PURE__ */ jsx40("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Body Text" }),
+      /* @__PURE__ */ jsx40("textarea", { value: c.body_text ?? "", onChange: (e) => onChange({ ...config, body_text: e.target.value }), rows: 8, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs39("div", { className: "grid gap-3 sm:grid-cols-3", children: [
-      /* @__PURE__ */ jsxs39("div", { children: [
-        /* @__PURE__ */ jsx39("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Max Width" }),
-        /* @__PURE__ */ jsxs39("select", { value: c.max_width ?? "medium", onChange: (e) => onChange({ ...config, max_width: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-          /* @__PURE__ */ jsx39("option", { value: "narrow", children: "Narrow" }),
-          /* @__PURE__ */ jsx39("option", { value: "medium", children: "Medium" }),
-          /* @__PURE__ */ jsx39("option", { value: "full", children: "Full" })
+    /* @__PURE__ */ jsxs40("div", { className: "grid gap-3 sm:grid-cols-3", children: [
+      /* @__PURE__ */ jsxs40("div", { children: [
+        /* @__PURE__ */ jsx40("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Max Width" }),
+        /* @__PURE__ */ jsxs40("select", { value: c.max_width ?? "medium", onChange: (e) => onChange({ ...config, max_width: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+          /* @__PURE__ */ jsx40("option", { value: "narrow", children: "Narrow" }),
+          /* @__PURE__ */ jsx40("option", { value: "medium", children: "Medium" }),
+          /* @__PURE__ */ jsx40("option", { value: "full", children: "Full" })
         ] })
       ] }),
-      /* @__PURE__ */ jsxs39("div", { children: [
-        /* @__PURE__ */ jsx39("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Background" }),
-        /* @__PURE__ */ jsxs39("select", { value: c.background_style ?? "transparent", onChange: (e) => onChange({ ...config, background_style: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-          /* @__PURE__ */ jsx39("option", { value: "light", children: "Light" }),
-          /* @__PURE__ */ jsx39("option", { value: "dark", children: "Dark" }),
-          /* @__PURE__ */ jsx39("option", { value: "cream", children: "Cream" }),
-          /* @__PURE__ */ jsx39("option", { value: "transparent", children: "Transparent" })
+      /* @__PURE__ */ jsxs40("div", { children: [
+        /* @__PURE__ */ jsx40("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Background" }),
+        /* @__PURE__ */ jsxs40("select", { value: c.background_style ?? "transparent", onChange: (e) => onChange({ ...config, background_style: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+          /* @__PURE__ */ jsx40("option", { value: "light", children: "Light" }),
+          /* @__PURE__ */ jsx40("option", { value: "dark", children: "Dark" }),
+          /* @__PURE__ */ jsx40("option", { value: "cream", children: "Cream" }),
+          /* @__PURE__ */ jsx40("option", { value: "transparent", children: "Transparent" })
         ] })
       ] }),
-      /* @__PURE__ */ jsxs39("div", { children: [
-        /* @__PURE__ */ jsx39("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Alignment" }),
-        /* @__PURE__ */ jsxs39("select", { value: c.text_alignment ?? "left", onChange: (e) => onChange({ ...config, text_alignment: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-          /* @__PURE__ */ jsx39("option", { value: "left", children: "Left" }),
-          /* @__PURE__ */ jsx39("option", { value: "centered", children: "Centered" })
+      /* @__PURE__ */ jsxs40("div", { children: [
+        /* @__PURE__ */ jsx40("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Alignment" }),
+        /* @__PURE__ */ jsxs40("select", { value: c.text_alignment ?? "left", onChange: (e) => onChange({ ...config, text_alignment: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+          /* @__PURE__ */ jsx40("option", { value: "left", children: "Left" }),
+          /* @__PURE__ */ jsx40("option", { value: "centered", children: "Centered" })
         ] })
       ] })
     ] })
@@ -2303,37 +2358,37 @@ function RichTextBlockEditor({
 }
 
 // src/editors/config-editors/pullquote-editor.tsx
-import { jsx as jsx40, jsxs as jsxs40 } from "react/jsx-runtime";
+import { jsx as jsx41, jsxs as jsxs41 } from "react/jsx-runtime";
 function PullquoteEditor({
   config,
   onChange
 }) {
   const c = config;
-  return /* @__PURE__ */ jsxs40("div", { className: "space-y-3", children: [
-    /* @__PURE__ */ jsxs40("div", { children: [
-      /* @__PURE__ */ jsx40("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Quote Text" }),
-      /* @__PURE__ */ jsx40("textarea", { value: c.quote_text ?? "", onChange: (e) => onChange({ ...config, quote_text: e.target.value }), rows: 3, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+  return /* @__PURE__ */ jsxs41("div", { className: "space-y-3", children: [
+    /* @__PURE__ */ jsxs41("div", { children: [
+      /* @__PURE__ */ jsx41("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Quote Text" }),
+      /* @__PURE__ */ jsx41("textarea", { value: c.quote_text ?? "", onChange: (e) => onChange({ ...config, quote_text: e.target.value }), rows: 3, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs40("div", { children: [
-      /* @__PURE__ */ jsx40("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Attribution" }),
-      /* @__PURE__ */ jsx40("input", { value: c.attribution ?? "", onChange: (e) => onChange({ ...config, attribution: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    /* @__PURE__ */ jsxs41("div", { children: [
+      /* @__PURE__ */ jsx41("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Attribution" }),
+      /* @__PURE__ */ jsx41("input", { value: c.attribution ?? "", onChange: (e) => onChange({ ...config, attribution: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs40("div", { className: "grid gap-3 sm:grid-cols-2", children: [
-      /* @__PURE__ */ jsxs40("div", { children: [
-        /* @__PURE__ */ jsx40("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Style" }),
-        /* @__PURE__ */ jsxs40("select", { value: c.style ?? "large-text", onChange: (e) => onChange({ ...config, style: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-          /* @__PURE__ */ jsx40("option", { value: "large-text", children: "Large Text" }),
-          /* @__PURE__ */ jsx40("option", { value: "bordered-left", children: "Bordered Left" }),
-          /* @__PURE__ */ jsx40("option", { value: "dark-card", children: "Dark Card" })
+    /* @__PURE__ */ jsxs41("div", { className: "grid gap-3 sm:grid-cols-2", children: [
+      /* @__PURE__ */ jsxs41("div", { children: [
+        /* @__PURE__ */ jsx41("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Style" }),
+        /* @__PURE__ */ jsxs41("select", { value: c.style ?? "large-text", onChange: (e) => onChange({ ...config, style: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+          /* @__PURE__ */ jsx41("option", { value: "large-text", children: "Large Text" }),
+          /* @__PURE__ */ jsx41("option", { value: "bordered-left", children: "Bordered Left" }),
+          /* @__PURE__ */ jsx41("option", { value: "dark-card", children: "Dark Card" })
         ] })
       ] }),
-      /* @__PURE__ */ jsxs40("div", { children: [
-        /* @__PURE__ */ jsx40("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Background" }),
-        /* @__PURE__ */ jsxs40("select", { value: c.background_style ?? "", onChange: (e) => onChange({ ...config, background_style: e.target.value || void 0 }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-          /* @__PURE__ */ jsx40("option", { value: "", children: "Default" }),
-          /* @__PURE__ */ jsx40("option", { value: "light", children: "Light" }),
-          /* @__PURE__ */ jsx40("option", { value: "dark", children: "Dark" }),
-          /* @__PURE__ */ jsx40("option", { value: "cream", children: "Cream" })
+      /* @__PURE__ */ jsxs41("div", { children: [
+        /* @__PURE__ */ jsx41("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Background" }),
+        /* @__PURE__ */ jsxs41("select", { value: c.background_style ?? "", onChange: (e) => onChange({ ...config, background_style: e.target.value || void 0 }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+          /* @__PURE__ */ jsx41("option", { value: "", children: "Default" }),
+          /* @__PURE__ */ jsx41("option", { value: "light", children: "Light" }),
+          /* @__PURE__ */ jsx41("option", { value: "dark", children: "Dark" }),
+          /* @__PURE__ */ jsx41("option", { value: "cream", children: "Cream" })
         ] })
       ] })
     ] })
@@ -2341,98 +2396,98 @@ function PullquoteEditor({
 }
 
 // src/editors/config-editors/data-statistic-editor.tsx
-import { jsx as jsx41, jsxs as jsxs41 } from "react/jsx-runtime";
+import { jsx as jsx42, jsxs as jsxs42 } from "react/jsx-runtime";
 function DataStatisticEditor({
   config,
   onChange
 }) {
   const c = config;
-  return /* @__PURE__ */ jsxs41("div", { className: "space-y-3", children: [
-    /* @__PURE__ */ jsxs41("div", { className: "grid gap-3 sm:grid-cols-2", children: [
-      /* @__PURE__ */ jsxs41("div", { children: [
-        /* @__PURE__ */ jsx41("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Metric" }),
-        /* @__PURE__ */ jsx41("input", { value: c.metric ?? "", onChange: (e) => onChange({ ...config, metric: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "87%" })
+  return /* @__PURE__ */ jsxs42("div", { className: "space-y-3", children: [
+    /* @__PURE__ */ jsxs42("div", { className: "grid gap-3 sm:grid-cols-2", children: [
+      /* @__PURE__ */ jsxs42("div", { children: [
+        /* @__PURE__ */ jsx42("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Metric" }),
+        /* @__PURE__ */ jsx42("input", { value: c.metric ?? "", onChange: (e) => onChange({ ...config, metric: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "87%" })
       ] }),
-      /* @__PURE__ */ jsxs41("div", { children: [
-        /* @__PURE__ */ jsx41("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Metric Label" }),
-        /* @__PURE__ */ jsx41("input", { value: c.metric_label ?? "", onChange: (e) => onChange({ ...config, metric_label: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "completion rate" })
+      /* @__PURE__ */ jsxs42("div", { children: [
+        /* @__PURE__ */ jsx42("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Metric Label" }),
+        /* @__PURE__ */ jsx42("input", { value: c.metric_label ?? "", onChange: (e) => onChange({ ...config, metric_label: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "completion rate" })
       ] })
     ] }),
-    /* @__PURE__ */ jsxs41("div", { children: [
-      /* @__PURE__ */ jsx41("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Source" }),
-      /* @__PURE__ */ jsx41("input", { value: c.source ?? "", onChange: (e) => onChange({ ...config, source: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "Source attribution" })
+    /* @__PURE__ */ jsxs42("div", { children: [
+      /* @__PURE__ */ jsx42("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Source" }),
+      /* @__PURE__ */ jsx42("input", { value: c.source ?? "", onChange: (e) => onChange({ ...config, source: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "Source attribution" })
     ] }),
-    /* @__PURE__ */ jsxs41("div", { children: [
-      /* @__PURE__ */ jsx41("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Context Text" }),
-      /* @__PURE__ */ jsx41("textarea", { value: c.context_text ?? "", onChange: (e) => onChange({ ...config, context_text: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    /* @__PURE__ */ jsxs42("div", { children: [
+      /* @__PURE__ */ jsx42("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Context Text" }),
+      /* @__PURE__ */ jsx42("textarea", { value: c.context_text ?? "", onChange: (e) => onChange({ ...config, context_text: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs41("div", { children: [
-      /* @__PURE__ */ jsx41("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Style" }),
-      /* @__PURE__ */ jsxs41("select", { value: c.style ?? "dark-card", onChange: (e) => onChange({ ...config, style: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-        /* @__PURE__ */ jsx41("option", { value: "dark-card", children: "Dark Card" }),
-        /* @__PURE__ */ jsx41("option", { value: "inline", children: "Inline" }),
-        /* @__PURE__ */ jsx41("option", { value: "large", children: "Large" })
+    /* @__PURE__ */ jsxs42("div", { children: [
+      /* @__PURE__ */ jsx42("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Style" }),
+      /* @__PURE__ */ jsxs42("select", { value: c.style ?? "dark-card", onChange: (e) => onChange({ ...config, style: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+        /* @__PURE__ */ jsx42("option", { value: "dark-card", children: "Dark Card" }),
+        /* @__PURE__ */ jsx42("option", { value: "inline", children: "Inline" }),
+        /* @__PURE__ */ jsx42("option", { value: "large", children: "Large" })
       ] })
     ] })
   ] });
 }
 
 // src/editors/config-editors/image-block-editor.tsx
-import { jsx as jsx42, jsxs as jsxs42 } from "react/jsx-runtime";
+import { jsx as jsx43, jsxs as jsxs43 } from "react/jsx-runtime";
 function ImageBlockEditor({
   config,
   onChange
 }) {
   const c = config;
   const img = c.image ?? {};
-  return /* @__PURE__ */ jsxs42("div", { className: "space-y-3", children: [
-    /* @__PURE__ */ jsxs42("fieldset", { className: "rounded-md border border-zinc-200 p-3 dark:border-zinc-700", children: [
-      /* @__PURE__ */ jsx42("legend", { className: "px-1 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Image" }),
-      /* @__PURE__ */ jsxs42("div", { className: "space-y-2", children: [
-        /* @__PURE__ */ jsx42("input", { placeholder: "Image URL", value: img.url ?? "", onChange: (e) => onChange({ ...config, image: { ...img, url: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
-        /* @__PURE__ */ jsx42("input", { placeholder: "Alt text", value: img.alt_text ?? "", onChange: (e) => onChange({ ...config, image: { ...img, alt_text: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+  return /* @__PURE__ */ jsxs43("div", { className: "space-y-3", children: [
+    /* @__PURE__ */ jsxs43("fieldset", { className: "rounded-md border border-zinc-200 p-3 dark:border-zinc-700", children: [
+      /* @__PURE__ */ jsx43("legend", { className: "px-1 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Image" }),
+      /* @__PURE__ */ jsxs43("div", { className: "space-y-2", children: [
+        /* @__PURE__ */ jsx43("input", { placeholder: "Image URL", value: img.url ?? "", onChange: (e) => onChange({ ...config, image: { ...img, url: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
+        /* @__PURE__ */ jsx43("input", { placeholder: "Alt text", value: img.alt_text ?? "", onChange: (e) => onChange({ ...config, image: { ...img, alt_text: e.target.value } }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
       ] })
     ] }),
-    /* @__PURE__ */ jsxs42("div", { children: [
-      /* @__PURE__ */ jsx42("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Caption" }),
-      /* @__PURE__ */ jsx42("textarea", { value: c.caption ?? "", onChange: (e) => onChange({ ...config, caption: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    /* @__PURE__ */ jsxs43("div", { children: [
+      /* @__PURE__ */ jsx43("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Caption" }),
+      /* @__PURE__ */ jsx43("textarea", { value: c.caption ?? "", onChange: (e) => onChange({ ...config, caption: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs42("div", { children: [
-      /* @__PURE__ */ jsx42("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Layout" }),
-      /* @__PURE__ */ jsxs42("select", { value: c.layout ?? "contained", onChange: (e) => onChange({ ...config, layout: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-        /* @__PURE__ */ jsx42("option", { value: "full-width", children: "Full Width" }),
-        /* @__PURE__ */ jsx42("option", { value: "contained", children: "Contained" }),
-        /* @__PURE__ */ jsx42("option", { value: "small-centered", children: "Small Centered" })
+    /* @__PURE__ */ jsxs43("div", { children: [
+      /* @__PURE__ */ jsx43("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Layout" }),
+      /* @__PURE__ */ jsxs43("select", { value: c.layout ?? "contained", onChange: (e) => onChange({ ...config, layout: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+        /* @__PURE__ */ jsx43("option", { value: "full-width", children: "Full Width" }),
+        /* @__PURE__ */ jsx43("option", { value: "contained", children: "Contained" }),
+        /* @__PURE__ */ jsx43("option", { value: "small-centered", children: "Small Centered" })
       ] })
     ] })
   ] });
 }
 
 // src/editors/config-editors/video-block-editor.tsx
-import { jsx as jsx43, jsxs as jsxs43 } from "react/jsx-runtime";
+import { jsx as jsx44, jsxs as jsxs44 } from "react/jsx-runtime";
 function VideoBlockEditor({
   config,
   onChange
 }) {
   const c = config;
-  return /* @__PURE__ */ jsxs43("div", { className: "space-y-3", children: [
-    /* @__PURE__ */ jsxs43("div", { children: [
-      /* @__PURE__ */ jsx43("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Video URL" }),
-      /* @__PURE__ */ jsx43("input", { value: c.video_url ?? "", onChange: (e) => onChange({ ...config, video_url: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "https://youtube.com/..." })
+  return /* @__PURE__ */ jsxs44("div", { className: "space-y-3", children: [
+    /* @__PURE__ */ jsxs44("div", { children: [
+      /* @__PURE__ */ jsx44("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Video URL" }),
+      /* @__PURE__ */ jsx44("input", { value: c.video_url ?? "", onChange: (e) => onChange({ ...config, video_url: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "https://youtube.com/..." })
     ] }),
-    /* @__PURE__ */ jsxs43("div", { children: [
-      /* @__PURE__ */ jsx43("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Caption" }),
-      /* @__PURE__ */ jsx43("textarea", { value: c.caption ?? "", onChange: (e) => onChange({ ...config, caption: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    /* @__PURE__ */ jsxs44("div", { children: [
+      /* @__PURE__ */ jsx44("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Caption" }),
+      /* @__PURE__ */ jsx44("textarea", { value: c.caption ?? "", onChange: (e) => onChange({ ...config, caption: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs43("label", { className: "flex items-center gap-2 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: [
-      /* @__PURE__ */ jsx43("input", { type: "checkbox", checked: c.autoplay ?? false, onChange: (e) => onChange({ ...config, autoplay: e.target.checked }), className: "rounded border-zinc-300 dark:border-zinc-600" }),
+    /* @__PURE__ */ jsxs44("label", { className: "flex items-center gap-2 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: [
+      /* @__PURE__ */ jsx44("input", { type: "checkbox", checked: c.autoplay ?? false, onChange: (e) => onChange({ ...config, autoplay: e.target.checked }), className: "rounded border-zinc-300 dark:border-zinc-600" }),
       "Autoplay"
     ] }),
-    /* @__PURE__ */ jsxs43("div", { children: [
-      /* @__PURE__ */ jsx43("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Layout" }),
-      /* @__PURE__ */ jsxs43("select", { value: c.layout ?? "contained", onChange: (e) => onChange({ ...config, layout: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-        /* @__PURE__ */ jsx43("option", { value: "full-width", children: "Full Width" }),
-        /* @__PURE__ */ jsx43("option", { value: "contained", children: "Contained" })
+    /* @__PURE__ */ jsxs44("div", { children: [
+      /* @__PURE__ */ jsx44("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Layout" }),
+      /* @__PURE__ */ jsxs44("select", { value: c.layout ?? "contained", onChange: (e) => onChange({ ...config, layout: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+        /* @__PURE__ */ jsx44("option", { value: "full-width", children: "Full Width" }),
+        /* @__PURE__ */ jsx44("option", { value: "contained", children: "Contained" })
       ] })
     ] })
   ] });
@@ -2440,7 +2495,7 @@ function VideoBlockEditor({
 
 // src/editors/config-editors/comparison-table-editor.tsx
 import { Plus as Plus23, Trash as Trash23 } from "@phosphor-icons/react";
-import { jsx as jsx44, jsxs as jsxs44 } from "react/jsx-runtime";
+import { jsx as jsx45, jsxs as jsxs45 } from "react/jsx-runtime";
 function ComparisonTableEditor({
   config,
   onChange
@@ -2448,50 +2503,50 @@ function ComparisonTableEditor({
   const c = config;
   const headers = c.column_headers ?? ["", ""];
   const rows = c.rows ?? [];
-  return /* @__PURE__ */ jsxs44("div", { className: "space-y-3", children: [
-    /* @__PURE__ */ jsxs44("div", { children: [
-      /* @__PURE__ */ jsx44("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Headline" }),
-      /* @__PURE__ */ jsx44("input", { value: c.headline ?? "", onChange: (e) => onChange({ ...config, headline: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+  return /* @__PURE__ */ jsxs45("div", { className: "space-y-3", children: [
+    /* @__PURE__ */ jsxs45("div", { children: [
+      /* @__PURE__ */ jsx45("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Headline" }),
+      /* @__PURE__ */ jsx45("input", { value: c.headline ?? "", onChange: (e) => onChange({ ...config, headline: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs44("div", { children: [
-      /* @__PURE__ */ jsx44("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Column Headers" }),
-      /* @__PURE__ */ jsx44("div", { className: "space-y-2", children: headers.map((h, i) => /* @__PURE__ */ jsxs44("div", { className: "flex gap-2", children: [
-        /* @__PURE__ */ jsx44("input", { value: h, onChange: (e) => {
+    /* @__PURE__ */ jsxs45("div", { children: [
+      /* @__PURE__ */ jsx45("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Column Headers" }),
+      /* @__PURE__ */ jsx45("div", { className: "space-y-2", children: headers.map((h, i) => /* @__PURE__ */ jsxs45("div", { className: "flex gap-2", children: [
+        /* @__PURE__ */ jsx45("input", { value: h, onChange: (e) => {
           const u = [...headers];
           u[i] = e.target.value;
           onChange({ ...config, column_headers: u });
         }, className: "flex-1 rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: `Column ${i + 1}` }),
-        headers.length > 2 && /* @__PURE__ */ jsx44("button", { type: "button", onClick: () => {
+        headers.length > 2 && /* @__PURE__ */ jsx45("button", { type: "button", onClick: () => {
           const u = headers.filter((_, j) => j !== i);
           const ur = rows.map((r) => ({ ...r, column_values: (r.column_values ?? []).filter((_, j) => j !== i) }));
           onChange({ ...config, column_headers: u, rows: ur });
-        }, className: "rounded p-1 text-zinc-400 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30", children: /* @__PURE__ */ jsx44(Trash23, { className: "size-4" }) })
+        }, className: "rounded p-1 text-zinc-400 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30", children: /* @__PURE__ */ jsx45(Trash23, { className: "size-4" }) })
       ] }, i)) }),
-      headers.length < 3 && /* @__PURE__ */ jsxs44("button", { type: "button", onClick: () => {
+      headers.length < 3 && /* @__PURE__ */ jsxs45("button", { type: "button", onClick: () => {
         const u = [...headers, ""];
         const ur = rows.map((r) => ({ ...r, column_values: [...r.column_values ?? [], ""] }));
         onChange({ ...config, column_headers: u, rows: ur });
       }, className: "mt-2 inline-flex items-center gap-1 text-xs font-medium text-brand-600 hover:text-brand-500", children: [
-        /* @__PURE__ */ jsx44(Plus23, { className: "size-3" }),
+        /* @__PURE__ */ jsx45(Plus23, { className: "size-3" }),
         " Add Column"
       ] })
     ] }),
-    /* @__PURE__ */ jsxs44("div", { children: [
-      /* @__PURE__ */ jsx44("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Rows" }),
-      /* @__PURE__ */ jsx44("div", { className: "space-y-2", children: rows.map((row, i) => /* @__PURE__ */ jsxs44("div", { className: "rounded-lg border border-zinc-200 p-3 dark:border-zinc-700", children: [
-        /* @__PURE__ */ jsxs44("div", { className: "mb-2 flex items-center justify-between", children: [
-          /* @__PURE__ */ jsxs44("span", { className: "text-xs font-medium text-zinc-400", children: [
+    /* @__PURE__ */ jsxs45("div", { children: [
+      /* @__PURE__ */ jsx45("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Rows" }),
+      /* @__PURE__ */ jsx45("div", { className: "space-y-2", children: rows.map((row, i) => /* @__PURE__ */ jsxs45("div", { className: "rounded-lg border border-zinc-200 p-3 dark:border-zinc-700", children: [
+        /* @__PURE__ */ jsxs45("div", { className: "mb-2 flex items-center justify-between", children: [
+          /* @__PURE__ */ jsxs45("span", { className: "text-xs font-medium text-zinc-400", children: [
             "Row ",
             i + 1
           ] }),
-          /* @__PURE__ */ jsx44("button", { type: "button", onClick: () => onChange({ ...config, rows: rows.filter((_, j) => j !== i) }), className: "text-zinc-400 hover:text-red-500", children: /* @__PURE__ */ jsx44(Trash23, { className: "size-3.5" }) })
+          /* @__PURE__ */ jsx45("button", { type: "button", onClick: () => onChange({ ...config, rows: rows.filter((_, j) => j !== i) }), className: "text-zinc-400 hover:text-red-500", children: /* @__PURE__ */ jsx45(Trash23, { className: "size-3.5" }) })
         ] }),
-        /* @__PURE__ */ jsx44("input", { placeholder: "Row label", value: row.row_label ?? "", onChange: (e) => {
+        /* @__PURE__ */ jsx45("input", { placeholder: "Row label", value: row.row_label ?? "", onChange: (e) => {
           const u = [...rows];
           u[i] = { ...u[i], row_label: e.target.value };
           onChange({ ...config, rows: u });
         }, className: "mb-2 w-full rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
-        /* @__PURE__ */ jsx44("div", { className: "grid gap-2", style: { gridTemplateColumns: `repeat(${headers.length}, 1fr)` }, children: headers.map((_, ci) => /* @__PURE__ */ jsx44("input", { placeholder: headers[ci] || `Col ${ci + 1}`, value: (row.column_values ?? [])[ci] ?? "", onChange: (e) => {
+        /* @__PURE__ */ jsx45("div", { className: "grid gap-2", style: { gridTemplateColumns: `repeat(${headers.length}, 1fr)` }, children: headers.map((_, ci) => /* @__PURE__ */ jsx45("input", { placeholder: headers[ci] || `Col ${ci + 1}`, value: (row.column_values ?? [])[ci] ?? "", onChange: (e) => {
           const u = [...rows];
           const vals = [...u[i]?.column_values ?? []];
           vals[ci] = e.target.value;
@@ -2499,41 +2554,41 @@ function ComparisonTableEditor({
           onChange({ ...config, rows: u });
         }, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }, ci)) })
       ] }, i)) }),
-      /* @__PURE__ */ jsxs44("button", { type: "button", onClick: () => onChange({ ...config, rows: [...rows, { row_label: "", column_values: headers.map(() => "") }] }), className: "mt-2 inline-flex items-center gap-1 text-xs font-medium text-brand-600 hover:text-brand-500", children: [
-        /* @__PURE__ */ jsx44(Plus23, { className: "size-3" }),
+      /* @__PURE__ */ jsxs45("button", { type: "button", onClick: () => onChange({ ...config, rows: [...rows, { row_label: "", column_values: headers.map(() => "") }] }), className: "mt-2 inline-flex items-center gap-1 text-xs font-medium text-brand-600 hover:text-brand-500", children: [
+        /* @__PURE__ */ jsx45(Plus23, { className: "size-3" }),
         " Add Row"
       ] })
     ] }),
-    /* @__PURE__ */ jsxs44("div", { children: [
-      /* @__PURE__ */ jsx44("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Highlight Column (0-indexed)" }),
-      /* @__PURE__ */ jsx44("input", { type: "number", min: 0, max: headers.length - 1, value: c.highlight_column ?? 0, onChange: (e) => onChange({ ...config, highlight_column: parseInt(e.target.value) || 0 }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+    /* @__PURE__ */ jsxs45("div", { children: [
+      /* @__PURE__ */ jsx45("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Highlight Column (0-indexed)" }),
+      /* @__PURE__ */ jsx45("input", { type: "number", min: 0, max: headers.length - 1, value: c.highlight_column ?? 0, onChange: (e) => onChange({ ...config, highlight_column: parseInt(e.target.value) || 0 }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] })
   ] });
 }
 
 // src/editors/config-editors/section-divider-editor.tsx
-import { jsx as jsx45, jsxs as jsxs45 } from "react/jsx-runtime";
+import { jsx as jsx46, jsxs as jsxs46 } from "react/jsx-runtime";
 function SectionDividerEditor({
   config,
   onChange
 }) {
   const c = config;
-  return /* @__PURE__ */ jsxs45("div", { className: "space-y-3", children: [
-    /* @__PURE__ */ jsxs45("div", { children: [
-      /* @__PURE__ */ jsx45("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Divider Style" }),
-      /* @__PURE__ */ jsxs45("select", { value: c.divider_style ?? "line", onChange: (e) => onChange({ ...config, divider_style: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-        /* @__PURE__ */ jsx45("option", { value: "line", children: "Line" }),
-        /* @__PURE__ */ jsx45("option", { value: "dots", children: "Dots" }),
-        /* @__PURE__ */ jsx45("option", { value: "space-only", children: "Space Only" }),
-        /* @__PURE__ */ jsx45("option", { value: "bird-icon", children: "Bird Icon" })
+  return /* @__PURE__ */ jsxs46("div", { className: "space-y-3", children: [
+    /* @__PURE__ */ jsxs46("div", { children: [
+      /* @__PURE__ */ jsx46("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Divider Style" }),
+      /* @__PURE__ */ jsxs46("select", { value: c.divider_style ?? "line", onChange: (e) => onChange({ ...config, divider_style: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+        /* @__PURE__ */ jsx46("option", { value: "line", children: "Line" }),
+        /* @__PURE__ */ jsx46("option", { value: "dots", children: "Dots" }),
+        /* @__PURE__ */ jsx46("option", { value: "space-only", children: "Space Only" }),
+        /* @__PURE__ */ jsx46("option", { value: "bird-icon", children: "Bird Icon" })
       ] })
     ] }),
-    /* @__PURE__ */ jsxs45("div", { children: [
-      /* @__PURE__ */ jsx45("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Spacing" }),
-      /* @__PURE__ */ jsxs45("select", { value: c.spacing ?? "medium", onChange: (e) => onChange({ ...config, spacing: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-        /* @__PURE__ */ jsx45("option", { value: "small", children: "Small" }),
-        /* @__PURE__ */ jsx45("option", { value: "medium", children: "Medium" }),
-        /* @__PURE__ */ jsx45("option", { value: "large", children: "Large" })
+    /* @__PURE__ */ jsxs46("div", { children: [
+      /* @__PURE__ */ jsx46("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Spacing" }),
+      /* @__PURE__ */ jsxs46("select", { value: c.spacing ?? "medium", onChange: (e) => onChange({ ...config, spacing: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+        /* @__PURE__ */ jsx46("option", { value: "small", children: "Small" }),
+        /* @__PURE__ */ jsx46("option", { value: "medium", children: "Medium" }),
+        /* @__PURE__ */ jsx46("option", { value: "large", children: "Large" })
       ] })
     ] })
   ] });
@@ -2541,44 +2596,44 @@ function SectionDividerEditor({
 
 // src/editors/config-editors/anchor-navigation-editor.tsx
 import { Plus as Plus24, Trash as Trash24 } from "@phosphor-icons/react";
-import { jsx as jsx46, jsxs as jsxs46 } from "react/jsx-runtime";
+import { jsx as jsx47, jsxs as jsxs47 } from "react/jsx-runtime";
 function AnchorNavigationEditor({
   config,
   onChange
 }) {
   const c = config;
   const items = c.nav_items ?? [];
-  return /* @__PURE__ */ jsxs46("div", { className: "space-y-3", children: [
-    /* @__PURE__ */ jsxs46("div", { children: [
-      /* @__PURE__ */ jsx46("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Nav Items" }),
-      /* @__PURE__ */ jsx46("div", { className: "space-y-2", children: items.map((item, i) => /* @__PURE__ */ jsxs46("div", { className: "flex gap-2", children: [
-        /* @__PURE__ */ jsx46("input", { placeholder: "Label", value: item.label ?? "", onChange: (e) => {
+  return /* @__PURE__ */ jsxs47("div", { className: "space-y-3", children: [
+    /* @__PURE__ */ jsxs47("div", { children: [
+      /* @__PURE__ */ jsx47("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Nav Items" }),
+      /* @__PURE__ */ jsx47("div", { className: "space-y-2", children: items.map((item, i) => /* @__PURE__ */ jsxs47("div", { className: "flex gap-2", children: [
+        /* @__PURE__ */ jsx47("input", { placeholder: "Label", value: item.label ?? "", onChange: (e) => {
           const u = [...items];
           u[i] = { ...u[i], label: e.target.value };
           onChange({ ...config, nav_items: u });
         }, className: "flex-1 rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
-        /* @__PURE__ */ jsx46("input", { placeholder: "Anchor ID", value: item.anchor_id ?? "", onChange: (e) => {
+        /* @__PURE__ */ jsx47("input", { placeholder: "Anchor ID", value: item.anchor_id ?? "", onChange: (e) => {
           const u = [...items];
           u[i] = { ...u[i], anchor_id: e.target.value };
           onChange({ ...config, nav_items: u });
         }, className: "flex-1 rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
-        /* @__PURE__ */ jsx46("button", { type: "button", onClick: () => onChange({ ...config, nav_items: items.filter((_, j) => j !== i) }), className: "rounded p-1 text-zinc-400 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30", children: /* @__PURE__ */ jsx46(Trash24, { className: "size-4" }) })
+        /* @__PURE__ */ jsx47("button", { type: "button", onClick: () => onChange({ ...config, nav_items: items.filter((_, j) => j !== i) }), className: "rounded p-1 text-zinc-400 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30", children: /* @__PURE__ */ jsx47(Trash24, { className: "size-4" }) })
       ] }, i)) }),
-      /* @__PURE__ */ jsxs46("button", { type: "button", onClick: () => onChange({ ...config, nav_items: [...items, { label: "", anchor_id: "" }] }), className: "mt-2 inline-flex items-center gap-1 text-xs font-medium text-brand-600 hover:text-brand-500", children: [
-        /* @__PURE__ */ jsx46(Plus24, { className: "size-3" }),
+      /* @__PURE__ */ jsxs47("button", { type: "button", onClick: () => onChange({ ...config, nav_items: [...items, { label: "", anchor_id: "" }] }), className: "mt-2 inline-flex items-center gap-1 text-xs font-medium text-brand-600 hover:text-brand-500", children: [
+        /* @__PURE__ */ jsx47(Plus24, { className: "size-3" }),
         " Add Nav Item"
       ] })
     ] }),
-    /* @__PURE__ */ jsxs46("div", { children: [
-      /* @__PURE__ */ jsx46("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Style" }),
-      /* @__PURE__ */ jsxs46("select", { value: c.style ?? "sticky-top", onChange: (e) => onChange({ ...config, style: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
-        /* @__PURE__ */ jsx46("option", { value: "sticky-top", children: "Sticky Top" }),
-        /* @__PURE__ */ jsx46("option", { value: "inline", children: "Inline" }),
-        /* @__PURE__ */ jsx46("option", { value: "sidebar", children: "Sidebar" })
+    /* @__PURE__ */ jsxs47("div", { children: [
+      /* @__PURE__ */ jsx47("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Style" }),
+      /* @__PURE__ */ jsxs47("select", { value: c.style ?? "sticky-top", onChange: (e) => onChange({ ...config, style: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", children: [
+        /* @__PURE__ */ jsx47("option", { value: "sticky-top", children: "Sticky Top" }),
+        /* @__PURE__ */ jsx47("option", { value: "inline", children: "Inline" }),
+        /* @__PURE__ */ jsx47("option", { value: "sidebar", children: "Sidebar" })
       ] })
     ] }),
-    /* @__PURE__ */ jsxs46("label", { className: "flex items-center gap-2 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: [
-      /* @__PURE__ */ jsx46("input", { type: "checkbox", checked: c.show_on_mobile ?? false, onChange: (e) => onChange({ ...config, show_on_mobile: e.target.checked }), className: "rounded border-zinc-300 dark:border-zinc-600" }),
+    /* @__PURE__ */ jsxs47("label", { className: "flex items-center gap-2 text-xs font-medium text-zinc-500 dark:text-zinc-400", children: [
+      /* @__PURE__ */ jsx47("input", { type: "checkbox", checked: c.show_on_mobile ?? false, onChange: (e) => onChange({ ...config, show_on_mobile: e.target.checked }), className: "rounded border-zinc-300 dark:border-zinc-600" }),
       "Show on Mobile"
     ] })
   ] });
@@ -2586,35 +2641,35 @@ function AnchorNavigationEditor({
 
 // src/editors/config-editors/page-header-editor.tsx
 import { Plus as Plus25, Trash as Trash25 } from "@phosphor-icons/react";
-import { jsx as jsx47, jsxs as jsxs47 } from "react/jsx-runtime";
+import { jsx as jsx48, jsxs as jsxs48 } from "react/jsx-runtime";
 function PageHeaderEditor({
   config,
   onChange
 }) {
   const c = config;
   const items = c.breadcrumb_items ?? [];
-  return /* @__PURE__ */ jsxs47("div", { className: "space-y-3", children: [
-    /* @__PURE__ */ jsxs47("div", { children: [
-      /* @__PURE__ */ jsx47("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Page Title" }),
-      /* @__PURE__ */ jsx47("input", { value: c.page_title ?? "", onChange: (e) => onChange({ ...config, page_title: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+  return /* @__PURE__ */ jsxs48("div", { className: "space-y-3", children: [
+    /* @__PURE__ */ jsxs48("div", { children: [
+      /* @__PURE__ */ jsx48("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Page Title" }),
+      /* @__PURE__ */ jsx48("input", { value: c.page_title ?? "", onChange: (e) => onChange({ ...config, page_title: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
-    /* @__PURE__ */ jsxs47("div", { children: [
-      /* @__PURE__ */ jsx47("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Breadcrumbs" }),
-      /* @__PURE__ */ jsx47("div", { className: "space-y-2", children: items.map((item, i) => /* @__PURE__ */ jsxs47("div", { className: "flex gap-2", children: [
-        /* @__PURE__ */ jsx47("input", { placeholder: "Label", value: item.label ?? "", onChange: (e) => {
+    /* @__PURE__ */ jsxs48("div", { children: [
+      /* @__PURE__ */ jsx48("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Breadcrumbs" }),
+      /* @__PURE__ */ jsx48("div", { className: "space-y-2", children: items.map((item, i) => /* @__PURE__ */ jsxs48("div", { className: "flex gap-2", children: [
+        /* @__PURE__ */ jsx48("input", { placeholder: "Label", value: item.label ?? "", onChange: (e) => {
           const u = [...items];
           u[i] = { ...u[i], label: e.target.value };
           onChange({ ...config, breadcrumb_items: u });
         }, className: "flex-1 rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
-        /* @__PURE__ */ jsx47("input", { placeholder: "URL", value: item.url ?? "", onChange: (e) => {
+        /* @__PURE__ */ jsx48("input", { placeholder: "URL", value: item.url ?? "", onChange: (e) => {
           const u = [...items];
           u[i] = { ...u[i], url: e.target.value };
           onChange({ ...config, breadcrumb_items: u });
         }, className: "flex-1 rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" }),
-        /* @__PURE__ */ jsx47("button", { type: "button", onClick: () => onChange({ ...config, breadcrumb_items: items.filter((_, j) => j !== i) }), className: "rounded p-1 text-zinc-400 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30", children: /* @__PURE__ */ jsx47(Trash25, { className: "size-4" }) })
+        /* @__PURE__ */ jsx48("button", { type: "button", onClick: () => onChange({ ...config, breadcrumb_items: items.filter((_, j) => j !== i) }), className: "rounded p-1 text-zinc-400 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30", children: /* @__PURE__ */ jsx48(Trash25, { className: "size-4" }) })
       ] }, i)) }),
-      /* @__PURE__ */ jsxs47("button", { type: "button", onClick: () => onChange({ ...config, breadcrumb_items: [...items, { label: "", url: "" }] }), className: "mt-2 inline-flex items-center gap-1 text-xs font-medium text-brand-600 hover:text-brand-500", children: [
-        /* @__PURE__ */ jsx47(Plus25, { className: "size-3" }),
+      /* @__PURE__ */ jsxs48("button", { type: "button", onClick: () => onChange({ ...config, breadcrumb_items: [...items, { label: "", url: "" }] }), className: "mt-2 inline-flex items-center gap-1 text-xs font-medium text-brand-600 hover:text-brand-500", children: [
+        /* @__PURE__ */ jsx48(Plus25, { className: "size-3" }),
         " Add Breadcrumb"
       ] })
     ] })
@@ -2622,102 +2677,104 @@ function PageHeaderEditor({
 }
 
 // src/editors/landing-section-config-editor.tsx
-import { jsx as jsx48, jsxs as jsxs48 } from "react/jsx-runtime";
+import { jsx as jsx49, jsxs as jsxs49 } from "react/jsx-runtime";
 function SectionConfigEditor({ type, config, onChange }) {
   const props = { config, onChange };
   switch (type) {
     // Hero
     case "hero_statement":
-      return /* @__PURE__ */ jsx48(HeroStatementEditor, { ...props });
+      return /* @__PURE__ */ jsx49(HeroStatementEditor, { ...props });
     case "hero_capture_form":
-      return /* @__PURE__ */ jsx48(HeroCaptureFormEditor, { ...props });
+      return /* @__PURE__ */ jsx49(HeroCaptureFormEditor, { ...props });
     case "hero_video":
-      return /* @__PURE__ */ jsx48(HeroVideoEditor, { ...props });
+      return /* @__PURE__ */ jsx49(HeroVideoEditor, { ...props });
     // Problem & Recognition
     case "pattern_recognition":
-      return /* @__PURE__ */ jsx48(PatternRecognitionEditor, { ...props });
+      return /* @__PURE__ */ jsx49(PatternRecognitionEditor, { ...props });
     case "problem_statement":
-      return /* @__PURE__ */ jsx48(ProblemStatementEditor, { ...props });
+      return /* @__PURE__ */ jsx49(ProblemStatementEditor, { ...props });
     case "sacred_cow_challenge":
-      return /* @__PURE__ */ jsx48(SacredCowEditor, { ...props });
+      return /* @__PURE__ */ jsx49(SacredCowEditor, { ...props });
     case "rome_is_burning":
-      return /* @__PURE__ */ jsx48(RomeBurningEditor, { ...props });
+      return /* @__PURE__ */ jsx49(RomeBurningEditor, { ...props });
     // Solution & Programme
     case "programme_overview":
-      return /* @__PURE__ */ jsx48(ProgrammeOverviewEditor, { ...props });
+      return /* @__PURE__ */ jsx49(ProgrammeOverviewEditor, { ...props });
     case "programme_arc":
-      return /* @__PURE__ */ jsx48(ProgrammeArcEditor, { ...props });
+      return /* @__PURE__ */ jsx49(ProgrammeArcEditor, { ...props });
     case "what_this_is_isnt":
-      return /* @__PURE__ */ jsx48(WhatThisIsIsntEditor, { ...props });
+      return /* @__PURE__ */ jsx49(WhatThisIsIsntEditor, { ...props });
     case "what_youll_experience":
-      return /* @__PURE__ */ jsx48(WhatYoullExperienceEditor, { ...props });
+      return /* @__PURE__ */ jsx49(WhatYoullExperienceEditor, { ...props });
     case "curriculum_breakdown":
-      return /* @__PURE__ */ jsx48(CurriculumBreakdownEditor, { ...props });
+      return /* @__PURE__ */ jsx49(CurriculumBreakdownEditor, { ...props });
     case "features_grid":
-      return /* @__PURE__ */ jsx48(FeaturesGridEditor, { ...props });
+      return /* @__PURE__ */ jsx49(FeaturesGridEditor, { ...props });
     // Trust & Proof
     case "testimonials":
-      return /* @__PURE__ */ jsx48(TestimonialsEditor, { ...props });
+      return /* @__PURE__ */ jsx49(TestimonialsEditor, { ...props });
     case "case_study":
-      return /* @__PURE__ */ jsx48(CaseStudyEditor, { ...props });
+      return /* @__PURE__ */ jsx49(CaseStudyEditor, { ...props });
     case "coach_bio":
-      return /* @__PURE__ */ jsx48(CoachBioEditor, { ...props });
+      return /* @__PURE__ */ jsx49(CoachBioEditor, { ...props });
     case "social_proof_bar":
-      return /* @__PURE__ */ jsx48(SocialProofBarEditor, { ...props });
+      return /* @__PURE__ */ jsx49(SocialProofBarEditor, { ...props });
+    case "huma_widget":
+      return /* @__PURE__ */ jsx49(HumaWidgetEditor, { ...props });
     // Qualification & Objection
     case "perfect_for_you":
-      return /* @__PURE__ */ jsx48(PerfectForYouEditor, { ...props });
+      return /* @__PURE__ */ jsx49(PerfectForYouEditor, { ...props });
     case "faq":
-      return /* @__PURE__ */ jsx48(FaqEditor, { ...props });
+      return /* @__PURE__ */ jsx49(FaqEditor, { ...props });
     case "objection_block":
-      return /* @__PURE__ */ jsx48(ObjectionBlockEditor, { ...props });
+      return /* @__PURE__ */ jsx49(ObjectionBlockEditor, { ...props });
     // Pricing & Commitment
     case "investment_pricing":
-      return /* @__PURE__ */ jsx48(InvestmentPricingEditor, { ...props });
+      return /* @__PURE__ */ jsx49(InvestmentPricingEditor, { ...props });
     case "guarantee":
-      return /* @__PURE__ */ jsx48(GuaranteeEditor, { ...props });
+      return /* @__PURE__ */ jsx49(GuaranteeEditor, { ...props });
     case "urgency_closing":
-      return /* @__PURE__ */ jsx48(UrgencyClosingEditor, { ...props });
+      return /* @__PURE__ */ jsx49(UrgencyClosingEditor, { ...props });
     // Forms & Capture
     case "capture_form":
-      return /* @__PURE__ */ jsx48(CaptureFormEditor, { ...props });
+      return /* @__PURE__ */ jsx49(CaptureFormEditor, { ...props });
     case "application_form":
-      return /* @__PURE__ */ jsx48(ApplicationFormEditor, { ...props });
+      return /* @__PURE__ */ jsx49(ApplicationFormEditor, { ...props });
     case "inline_cta":
-      return /* @__PURE__ */ jsx48(InlineCtaEditor, { ...props });
+      return /* @__PURE__ */ jsx49(InlineCtaEditor, { ...props });
     // Confirmation & Thank You
     case "confirmation_message":
-      return /* @__PURE__ */ jsx48(ConfirmationMessageEditor, { ...props });
+      return /* @__PURE__ */ jsx49(ConfirmationMessageEditor, { ...props });
     case "diagnostic_framing":
-      return /* @__PURE__ */ jsx48(DiagnosticFramingEditor, { ...props });
+      return /* @__PURE__ */ jsx49(DiagnosticFramingEditor, { ...props });
     case "quick_win":
-      return /* @__PURE__ */ jsx48(QuickWinEditor, { ...props });
+      return /* @__PURE__ */ jsx49(QuickWinEditor, { ...props });
     case "social_share":
-      return /* @__PURE__ */ jsx48(SocialShareEditor, { ...props });
+      return /* @__PURE__ */ jsx49(SocialShareEditor, { ...props });
     case "post_purchase_welcome":
-      return /* @__PURE__ */ jsx48(PostPurchaseWelcomeEditor, { ...props });
+      return /* @__PURE__ */ jsx49(PostPurchaseWelcomeEditor, { ...props });
     // Content & Narrative
     case "rich_text":
-      return /* @__PURE__ */ jsx48(RichTextBlockEditor, { ...props });
+      return /* @__PURE__ */ jsx49(RichTextBlockEditor, { ...props });
     case "pullquote":
-      return /* @__PURE__ */ jsx48(PullquoteEditor, { ...props });
+      return /* @__PURE__ */ jsx49(PullquoteEditor, { ...props });
     case "data_statistic":
-      return /* @__PURE__ */ jsx48(DataStatisticEditor, { ...props });
+      return /* @__PURE__ */ jsx49(DataStatisticEditor, { ...props });
     case "image_block":
-      return /* @__PURE__ */ jsx48(ImageBlockEditor, { ...props });
+      return /* @__PURE__ */ jsx49(ImageBlockEditor, { ...props });
     case "video_block":
-      return /* @__PURE__ */ jsx48(VideoBlockEditor, { ...props });
+      return /* @__PURE__ */ jsx49(VideoBlockEditor, { ...props });
     case "comparison_table":
-      return /* @__PURE__ */ jsx48(ComparisonTableEditor, { ...props });
+      return /* @__PURE__ */ jsx49(ComparisonTableEditor, { ...props });
     // Structural & Navigation
     case "section_divider":
-      return /* @__PURE__ */ jsx48(SectionDividerEditor, { ...props });
+      return /* @__PURE__ */ jsx49(SectionDividerEditor, { ...props });
     case "anchor_navigation":
-      return /* @__PURE__ */ jsx48(AnchorNavigationEditor, { ...props });
+      return /* @__PURE__ */ jsx49(AnchorNavigationEditor, { ...props });
     case "page_header_breadcrumb":
-      return /* @__PURE__ */ jsx48(PageHeaderEditor, { ...props });
+      return /* @__PURE__ */ jsx49(PageHeaderEditor, { ...props });
     default:
-      return /* @__PURE__ */ jsxs48("p", { className: "text-xs text-zinc-500", children: [
+      return /* @__PURE__ */ jsxs49("p", { className: "text-xs text-zinc-500", children: [
         "No editor available for section type \u201C",
         type,
         "\u201D."
@@ -2726,7 +2783,7 @@ function SectionConfigEditor({ type, config, onChange }) {
 }
 
 // src/editors/landing-page-editor.tsx
-import { jsx as jsx49, jsxs as jsxs49 } from "react/jsx-runtime";
+import { jsx as jsx50, jsxs as jsxs50 } from "react/jsx-runtime";
 function getSectionSummary(section) {
   const c = section.config;
   const headline = c.headline || c.section_label || "";
@@ -2775,61 +2832,61 @@ function SortableSectionCard({
     transition
   };
   const summary = getSectionSummary(section);
-  return /* @__PURE__ */ jsxs49(
+  return /* @__PURE__ */ jsxs50(
     "div",
     {
       ref: setNodeRef,
       style,
       className: `rounded-xl border bg-white shadow-sm dark:bg-surface-raised ${isDragging ? "ring-2 ring-brand-500 shadow-lg border-brand-500" : "border-zinc-200 dark:border-surface-border"}`,
       children: [
-        /* @__PURE__ */ jsxs49("div", { className: "flex items-center gap-3 px-3 py-3", children: [
-          /* @__PURE__ */ jsx49(
+        /* @__PURE__ */ jsxs50("div", { className: "flex items-center gap-3 px-3 py-3", children: [
+          /* @__PURE__ */ jsx50(
             "button",
             {
               type: "button",
               className: "text-zinc-400 hover:text-zinc-600 dark:text-zinc-500 dark:hover:text-zinc-300 cursor-grab active:cursor-grabbing",
               ...attributes,
               ...listeners,
-              children: /* @__PURE__ */ jsx49(DotsSixVertical, { className: "size-5", weight: "bold" })
+              children: /* @__PURE__ */ jsx50(DotsSixVertical, { className: "size-5", weight: "bold" })
             }
           ),
-          /* @__PURE__ */ jsxs49("div", { className: "flex-1 min-w-0", children: [
-            /* @__PURE__ */ jsx49("span", { className: "text-sm font-semibold text-zinc-900 dark:text-white", children: SECTION_TYPE_LABELS[section.section_type] }),
-            summary && /* @__PURE__ */ jsxs49("span", { className: "ml-2 text-secondary text-zinc-500 dark:text-zinc-400 truncate", children: [
+          /* @__PURE__ */ jsxs50("div", { className: "flex-1 min-w-0", children: [
+            /* @__PURE__ */ jsx50("span", { className: "text-sm font-semibold text-zinc-900 dark:text-white", children: SECTION_TYPE_LABELS[section.section_type] }),
+            summary && /* @__PURE__ */ jsxs50("span", { className: "ml-2 text-secondary text-zinc-500 dark:text-zinc-400 truncate", children: [
               "\u2014 ",
               summary
             ] })
           ] }),
-          /* @__PURE__ */ jsx49(
+          /* @__PURE__ */ jsx50(
             "button",
             {
               onClick: onToggleVisibility,
               className: "rounded p-1 text-zinc-400 hover:bg-zinc-100 dark:hover:bg-surface-hover",
               title: section.visible ? "Hide" : "Show",
-              children: section.visible ? /* @__PURE__ */ jsx49(Eye, { className: "size-4" }) : /* @__PURE__ */ jsx49(EyeSlash, { className: "size-4" })
+              children: section.visible ? /* @__PURE__ */ jsx50(Eye, { className: "size-4" }) : /* @__PURE__ */ jsx50(EyeSlash, { className: "size-4" })
             }
           ),
-          /* @__PURE__ */ jsx49(
+          /* @__PURE__ */ jsx50(
             "button",
             {
               onClick: onToggleEdit,
               className: `rounded p-1 ${isEditing ? "bg-brand-50 text-brand-600 dark:bg-brand-600/10 dark:text-brand-400" : "text-zinc-400 hover:bg-zinc-100 dark:hover:bg-surface-hover"}`,
-              children: /* @__PURE__ */ jsx49(PencilSimple, { className: "size-4" })
+              children: /* @__PURE__ */ jsx50(PencilSimple, { className: "size-4" })
             }
           ),
-          /* @__PURE__ */ jsx49(
+          /* @__PURE__ */ jsx50(
             "button",
             {
               onClick: onRemove,
               className: "rounded p-1 text-zinc-400 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30 dark:hover:text-red-400",
-              children: /* @__PURE__ */ jsx49(Trash26, { className: "size-4" })
+              children: /* @__PURE__ */ jsx50(Trash26, { className: "size-4" })
             }
           )
         ] }),
-        isEditing && /* @__PURE__ */ jsxs49("div", { className: "border-t border-zinc-100 px-4 py-3 dark:border-surface-border", children: [
-          /* @__PURE__ */ jsxs49("div", { className: "mb-4", children: [
-            /* @__PURE__ */ jsx49("label", { className: "mb-1.5 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Section Background" }),
-            /* @__PURE__ */ jsx49("div", { className: "flex gap-2", children: [
+        isEditing && /* @__PURE__ */ jsxs50("div", { className: "border-t border-zinc-100 px-4 py-3 dark:border-surface-border max-w-2xl", children: [
+          /* @__PURE__ */ jsxs50("div", { className: "mb-4", children: [
+            /* @__PURE__ */ jsx50("label", { className: "mb-1.5 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Section Background" }),
+            /* @__PURE__ */ jsx50("div", { className: "flex gap-2", children: [
               { value: void 0, label: "Default", preview: "bg-zinc-100 dark:bg-surface-base" },
               { value: "light", label: "Light", preview: "bg-white dark:bg-surface-secondary" },
               { value: "cream", label: "Cream", preview: "bg-amber-100 dark:bg-surface-overlay" },
@@ -2838,7 +2895,7 @@ function SortableSectionCard({
             ].map((opt) => {
               const current = section.config.background_style ?? void 0;
               const isActive = current === opt.value;
-              return /* @__PURE__ */ jsxs49(
+              return /* @__PURE__ */ jsxs50(
                 "button",
                 {
                   type: "button",
@@ -2853,7 +2910,7 @@ function SortableSectionCard({
                   },
                   className: `flex items-center gap-2 rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors ${isActive ? "border-brand-500 bg-brand-50 text-brand-700 dark:bg-brand-600/10 dark:text-brand-400 dark:border-brand-400" : "border-zinc-200 text-zinc-600 hover:bg-zinc-50 dark:border-surface-border dark:text-zinc-400 dark:hover:bg-surface-hover"}`,
                   children: [
-                    /* @__PURE__ */ jsx49("span", { className: `size-3 rounded-full ${opt.preview}` }),
+                    /* @__PURE__ */ jsx50("span", { className: `size-3 rounded-full ${opt.preview}` }),
                     opt.label
                   ]
                 },
@@ -2861,7 +2918,7 @@ function SortableSectionCard({
               );
             }) })
           ] }),
-          /* @__PURE__ */ jsx49(
+          /* @__PURE__ */ jsx50(
             SectionConfigEditor,
             {
               type: section.section_type,
@@ -2876,31 +2933,40 @@ function SortableSectionCard({
 }
 function SectionOverlayCard({ section }) {
   const summary = getSectionSummary(section);
-  return /* @__PURE__ */ jsx49("div", { className: "rounded-xl border border-brand-500 bg-white shadow-lg ring-2 ring-brand-500 dark:bg-surface-raised px-3 py-3", children: /* @__PURE__ */ jsxs49("div", { className: "flex items-center gap-3", children: [
-    /* @__PURE__ */ jsx49(DotsSixVertical, { className: "size-5 text-zinc-400", weight: "bold" }),
-    /* @__PURE__ */ jsx49("span", { className: "text-sm font-semibold text-zinc-900 dark:text-white", children: SECTION_TYPE_LABELS[section.section_type] }),
-    summary && /* @__PURE__ */ jsxs49("span", { className: "text-secondary text-zinc-500 dark:text-zinc-400 truncate", children: [
+  return /* @__PURE__ */ jsx50("div", { className: "rounded-xl border border-brand-500 bg-white shadow-lg ring-2 ring-brand-500 dark:bg-surface-raised px-3 py-3", children: /* @__PURE__ */ jsxs50("div", { className: "flex items-center gap-3", children: [
+    /* @__PURE__ */ jsx50(DotsSixVertical, { className: "size-5 text-zinc-400", weight: "bold" }),
+    /* @__PURE__ */ jsx50("span", { className: "text-sm font-semibold text-zinc-900 dark:text-white", children: SECTION_TYPE_LABELS[section.section_type] }),
+    summary && /* @__PURE__ */ jsxs50("span", { className: "text-secondary text-zinc-500 dark:text-zinc-400 truncate", children: [
       "\u2014 ",
       summary
     ] })
   ] }) });
 }
 function AddSectionMenu({ onAdd }) {
-  return /* @__PURE__ */ jsxs49(Menu, { children: [
-    /* @__PURE__ */ jsxs49(
+  return /* @__PURE__ */ jsxs50(Menu, { children: [
+    /* @__PURE__ */ jsxs50(
       MenuButton,
       {
         as: "button",
         className: "inline-flex items-center gap-1.5 rounded-lg bg-brand-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-brand-500",
         children: [
-          /* @__PURE__ */ jsx49(Plus26, { className: "size-3.5" }),
+          /* @__PURE__ */ jsx50(Plus26, { className: "size-3.5" }),
           "Add Section"
         ]
       }
     ),
-    /* @__PURE__ */ jsx49(MenuItems, { anchor: "bottom end", className: "max-h-96 overflow-y-auto", children: SECTION_TYPE_CATEGORIES.map((cat) => /* @__PURE__ */ jsxs49("div", { children: [
-      /* @__PURE__ */ jsx49("div", { className: "px-3 py-1.5 text-caption font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500", children: cat.label }),
-      cat.types.map((type) => /* @__PURE__ */ jsx49(MenuItem, { as: "button", onClick: () => onAdd(type), children: SECTION_TYPE_LABELS[type] }, type))
+    /* @__PURE__ */ jsx50(MenuItems, { anchor: "bottom end", className: "bg-white dark:bg-surface-raised rounded-xl shadow-lg ring-1 ring-black/5 dark:ring-white/10 p-2 max-h-96 overflow-y-auto w-72", children: SECTION_TYPE_CATEGORIES.map((cat, i) => /* @__PURE__ */ jsxs50("div", { className: i > 0 ? "mt-2" : "", children: [
+      /* @__PURE__ */ jsx50("div", { className: "px-2 py-1.5 text-xs font-semibold uppercase tracking-wide text-zinc-400 dark:text-zinc-500", children: cat.label }),
+      cat.types.map((type) => /* @__PURE__ */ jsx50(
+        MenuItem,
+        {
+          as: "button",
+          onClick: () => onAdd(type),
+          className: "block w-full rounded-lg px-2 py-1.5 text-sm text-zinc-700 dark:text-zinc-300 data-[focus]:bg-brand-50 data-[focus]:text-brand-700 dark:data-[focus]:bg-brand-600/10 dark:data-[focus]:text-brand-400 cursor-pointer",
+          children: SECTION_TYPE_LABELS[type]
+        },
+        type
+      ))
     ] }, cat.label)) })
   ] });
 }
@@ -3050,27 +3116,28 @@ function LandingPageEditor(props) {
       setSections(arrayMove(sections, oldIndex, newIndex));
     }
   }
-  return /* @__PURE__ */ jsxs49("div", { children: [
-    /* @__PURE__ */ jsxs49("div", { className: "flex items-center gap-3 mb-6", children: [
-      /* @__PURE__ */ jsx49(
+  const showHeader = props.showHeader ?? true;
+  return /* @__PURE__ */ jsxs50("div", { children: [
+    showHeader && /* @__PURE__ */ jsxs50("div", { className: "flex items-center gap-3 mb-6", children: [
+      /* @__PURE__ */ jsx50(
         "button",
         {
           type: "button",
           onClick: onBack,
           className: "rounded p-1.5 text-zinc-400 hover:bg-zinc-100 dark:hover:bg-surface-hover",
-          children: /* @__PURE__ */ jsx49(ArrowLeft, { className: "size-5" })
+          children: /* @__PURE__ */ jsx50(ArrowLeft, { className: "size-5" })
         }
       ),
-      /* @__PURE__ */ jsxs49("div", { className: "flex-1", children: [
-        /* @__PURE__ */ jsx49("h2", { className: "text-page-heading font-semibold text-zinc-900 dark:text-white", children: page.title }),
-        /* @__PURE__ */ jsx49("p", { className: "text-caption text-zinc-400", children: page.pageType.replace(/_/g, " ") })
+      /* @__PURE__ */ jsxs50("div", { className: "flex-1", children: [
+        /* @__PURE__ */ jsx50("h2", { className: "text-page-heading font-semibold text-zinc-900 dark:text-white", children: page.title }),
+        /* @__PURE__ */ jsx50("p", { className: "text-caption text-zinc-400", children: page.pageType.replace(/_/g, " ") })
       ] })
     ] }),
-    /* @__PURE__ */ jsxs49("div", { className: "mb-6 rounded-xl border border-zinc-200 bg-white p-4 dark:border-surface-border dark:bg-surface-raised", children: [
-      /* @__PURE__ */ jsxs49("div", { className: "grid gap-3 sm:grid-cols-3", children: [
-        /* @__PURE__ */ jsxs49("div", { children: [
-          /* @__PURE__ */ jsx49("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Title" }),
-          /* @__PURE__ */ jsx49(
+    /* @__PURE__ */ jsxs50("div", { className: "mb-6 rounded-xl border border-zinc-200 bg-white p-4 dark:border-surface-border dark:bg-surface-raised", children: [
+      /* @__PURE__ */ jsxs50("div", { className: "grid grid-cols-1 gap-4 sm:grid-cols-2 max-w-3xl", children: [
+        /* @__PURE__ */ jsxs50("div", { children: [
+          /* @__PURE__ */ jsx50("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Title" }),
+          /* @__PURE__ */ jsx50(
             "input",
             {
               value: pageTitle,
@@ -3079,9 +3146,9 @@ function LandingPageEditor(props) {
             }
           )
         ] }),
-        /* @__PURE__ */ jsxs49("div", { children: [
-          /* @__PURE__ */ jsx49("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Slug" }),
-          /* @__PURE__ */ jsx49(
+        /* @__PURE__ */ jsxs50("div", { children: [
+          /* @__PURE__ */ jsx50("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Slug" }),
+          /* @__PURE__ */ jsx50(
             "input",
             {
               value: pageSlug,
@@ -3091,31 +3158,31 @@ function LandingPageEditor(props) {
             }
           )
         ] }),
-        /* @__PURE__ */ jsxs49("div", { children: [
-          /* @__PURE__ */ jsx49("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Status" }),
-          /* @__PURE__ */ jsxs49(
+        /* @__PURE__ */ jsxs50("div", { children: [
+          /* @__PURE__ */ jsx50("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Status" }),
+          /* @__PURE__ */ jsxs50(
             "select",
             {
               value: pageStatus,
               onChange: (e) => setPageStatus(e.target.value),
               className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white",
               children: [
-                /* @__PURE__ */ jsx49("option", { value: "draft", children: "Draft" }),
-                /* @__PURE__ */ jsx49("option", { value: "published", children: "Published" }),
-                /* @__PURE__ */ jsx49("option", { value: "archived", children: "Archived" })
+                /* @__PURE__ */ jsx50("option", { value: "draft", children: "Draft" }),
+                /* @__PURE__ */ jsx50("option", { value: "published", children: "Published" }),
+                /* @__PURE__ */ jsx50("option", { value: "archived", children: "Archived" })
               ]
             }
           )
         ] })
       ] }),
-      /* @__PURE__ */ jsxs49("div", { className: "mt-3", children: [
-        /* @__PURE__ */ jsx49("label", { className: "mb-1.5 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "CTA Button Action" }),
-        /* @__PURE__ */ jsx49("div", { className: "mb-3 flex gap-1 rounded-lg border border-zinc-200 bg-zinc-50 p-1 dark:border-surface-border dark:bg-surface-base", children: [
+      /* @__PURE__ */ jsxs50("div", { className: "mt-3", children: [
+        /* @__PURE__ */ jsx50("label", { className: "mb-1.5 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "CTA Button Action" }),
+        /* @__PURE__ */ jsx50("div", { className: "mb-3 flex gap-1 rounded-lg border border-zinc-200 bg-zinc-50 p-1 dark:border-surface-border dark:bg-surface-base", children: [
           { value: "none", label: "Not set" },
           { value: "checkout", label: "Checkout" },
           { value: "external_link", label: "External Link" },
           { value: "form_capture", label: "Form on Page" }
-        ].map((opt) => /* @__PURE__ */ jsx49(
+        ].map((opt) => /* @__PURE__ */ jsx50(
           "button",
           {
             type: "button",
@@ -3125,28 +3192,28 @@ function LandingPageEditor(props) {
           },
           opt.value
         )) }),
-        ctaModeType === "checkout" && /* @__PURE__ */ jsxs49("div", { children: [
-          /* @__PURE__ */ jsx49("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Plan" }),
-          /* @__PURE__ */ jsxs49(
+        ctaModeType === "checkout" && /* @__PURE__ */ jsxs50("div", { children: [
+          /* @__PURE__ */ jsx50("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Plan" }),
+          /* @__PURE__ */ jsxs50(
             "select",
             {
               value: ctaPlanId,
               onChange: (e) => setCtaPlanId(e.target.value),
               className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white",
               children: [
-                /* @__PURE__ */ jsx49("option", { value: "", children: "Select a plan..." }),
-                plansData?.map((plan) => /* @__PURE__ */ jsxs49("option", { value: plan.id, children: [
+                /* @__PURE__ */ jsx50("option", { value: "", children: "Select a plan..." }),
+                plansData?.map((plan) => /* @__PURE__ */ jsxs50("option", { value: plan.id, children: [
                   plan.name,
                   plan.amountCents ? ` \u2014 ${plan.currency} ${(plan.amountCents / 100).toFixed(0)}` : " \u2014 Free"
                 ] }, plan.id))
               ]
             }
           ),
-          /* @__PURE__ */ jsx49("p", { className: "mt-1 text-xs text-zinc-400 dark:text-zinc-500", children: "CTA buttons link to this plan's checkout page." })
+          /* @__PURE__ */ jsx50("p", { className: "mt-1 text-xs text-zinc-400 dark:text-zinc-500", children: "CTA buttons link to this plan's checkout page." })
         ] }),
-        ctaModeType === "external_link" && /* @__PURE__ */ jsxs49("div", { children: [
-          /* @__PURE__ */ jsx49("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "URL" }),
-          /* @__PURE__ */ jsx49(
+        ctaModeType === "external_link" && /* @__PURE__ */ jsxs50("div", { children: [
+          /* @__PURE__ */ jsx50("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "URL" }),
+          /* @__PURE__ */ jsx50(
             "input",
             {
               value: ctaExternalUrl,
@@ -3155,63 +3222,38 @@ function LandingPageEditor(props) {
               className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white"
             }
           ),
-          /* @__PURE__ */ jsx49("p", { className: "mt-1 text-xs text-zinc-400 dark:text-zinc-500", children: "CTA buttons open this URL (booking page, application form, etc.)." })
+          /* @__PURE__ */ jsx50("p", { className: "mt-1 text-xs text-zinc-400 dark:text-zinc-500", children: "CTA buttons open this URL (booking page, application form, etc.)." })
         ] }),
-        ctaModeType === "form_capture" && /* @__PURE__ */ jsxs49("div", { children: [
-          /* @__PURE__ */ jsx49("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Scroll to" }),
-          /* @__PURE__ */ jsxs49(
+        ctaModeType === "form_capture" && /* @__PURE__ */ jsxs50("div", { children: [
+          /* @__PURE__ */ jsx50("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Scroll to" }),
+          /* @__PURE__ */ jsxs50(
             "select",
             {
               value: ctaFormTarget,
               onChange: (e) => setCtaFormTarget(e.target.value),
               className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white",
               children: [
-                /* @__PURE__ */ jsx49("option", { value: "capture_form", children: "Capture Form" }),
-                /* @__PURE__ */ jsx49("option", { value: "application_form", children: "Application Form" })
+                /* @__PURE__ */ jsx50("option", { value: "capture_form", children: "Capture Form" }),
+                /* @__PURE__ */ jsx50("option", { value: "application_form", children: "Application Form" })
               ]
             }
           ),
-          !sections.some((s) => s.section_type === ctaFormTarget) && /* @__PURE__ */ jsxs49("p", { className: "mt-1 text-xs text-amber-600 dark:text-amber-400", children: [
+          !sections.some((s) => s.section_type === ctaFormTarget) && /* @__PURE__ */ jsxs50("p", { className: "mt-1 text-xs text-amber-600 dark:text-amber-400", children: [
             "No ",
             ctaFormTarget === "capture_form" ? "Capture Form" : "Application Form",
             " section on this page yet. Add one for this to work."
           ] }),
-          /* @__PURE__ */ jsx49("p", { className: "mt-1 text-xs text-zinc-400 dark:text-zinc-500", children: "CTA buttons scroll to the form section on this page." })
+          /* @__PURE__ */ jsx50("p", { className: "mt-1 text-xs text-zinc-400 dark:text-zinc-500", children: "CTA buttons scroll to the form section on this page." })
         ] }),
-        ctaModeType === "none" && /* @__PURE__ */ jsx49("p", { className: "text-xs text-zinc-400 dark:text-zinc-500", children: "Each section's CTA button uses its own URL. Set a mode to override all buttons at once." })
-      ] }),
-      /* @__PURE__ */ jsx49("div", { className: "mt-3 flex justify-end", children: /* @__PURE__ */ jsx49(
-        "button",
-        {
-          type: "button",
-          onClick: handleSavePage,
-          disabled: isSavingPage,
-          className: "rounded-lg bg-zinc-800 px-3 py-1.5 text-xs font-semibold text-white hover:bg-zinc-700 disabled:opacity-50 dark:bg-zinc-200 dark:text-zinc-900 dark:hover:bg-zinc-300",
-          children: isSavingPage ? "Saving..." : "Save Page Settings"
-        }
-      ) })
-    ] }),
-    /* @__PURE__ */ jsxs49("div", { className: "flex items-center justify-between mb-2", children: [
-      /* @__PURE__ */ jsx49("h3", { className: "text-sm font-semibold text-zinc-900 dark:text-white", children: "Sections" }),
-      /* @__PURE__ */ jsxs49("div", { className: "flex items-center gap-2", children: [
-        /* @__PURE__ */ jsx49(AddSectionMenu, { onAdd: addSection }),
-        /* @__PURE__ */ jsxs49(
-          "button",
-          {
-            type: "button",
-            onClick: handleSaveSections,
-            disabled: !isDirty || isSavingSections,
-            className: "inline-flex items-center gap-1.5 rounded-lg bg-brand-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-brand-500 disabled:cursor-not-allowed disabled:opacity-40",
-            children: [
-              /* @__PURE__ */ jsx49(FloppyDisk, { className: "size-3.5" }),
-              isSavingSections ? "Saving..." : "Save Sections"
-            ]
-          }
-        )
+        ctaModeType === "none" && /* @__PURE__ */ jsx50("p", { className: "text-xs text-zinc-400 dark:text-zinc-500", children: "Each section's CTA button uses its own URL. Set a mode to override all buttons at once." })
       ] })
     ] }),
-    saveSectionsSuccess && /* @__PURE__ */ jsx49("div", { className: "mb-3 rounded-md bg-green-50 p-2 text-xs text-green-700 dark:bg-green-950/30 dark:text-green-400", children: "Sections saved." }),
-    sections.length === 0 ? /* @__PURE__ */ jsx49("div", { className: "rounded-xl border border-dashed border-zinc-300 p-6 text-center dark:border-zinc-600", children: /* @__PURE__ */ jsx49("p", { className: "text-sm text-zinc-500 dark:text-zinc-400", children: "No sections yet. Click \u201CAdd Section\u201D to start building." }) }) : /* @__PURE__ */ jsxs49(
+    /* @__PURE__ */ jsxs50("div", { className: "flex items-center justify-between mb-2", children: [
+      /* @__PURE__ */ jsx50("h3", { className: "text-sm font-semibold text-zinc-900 dark:text-white", children: "Sections" }),
+      /* @__PURE__ */ jsx50(AddSectionMenu, { onAdd: addSection })
+    ] }),
+    saveSectionsSuccess && /* @__PURE__ */ jsx50("div", { className: "mb-3 rounded-md bg-green-50 p-2 text-xs text-green-700 dark:bg-green-950/30 dark:text-green-400", children: "Sections saved." }),
+    sections.length === 0 ? /* @__PURE__ */ jsx50("div", { className: "rounded-xl border border-dashed border-zinc-300 p-6 text-center dark:border-zinc-600", children: /* @__PURE__ */ jsx50("p", { className: "text-sm text-zinc-500 dark:text-zinc-400", children: "No sections yet. Click \u201CAdd Section\u201D to start building." }) }) : /* @__PURE__ */ jsxs50(
       DndContext,
       {
         sensors,
@@ -3219,12 +3261,12 @@ function LandingPageEditor(props) {
         onDragStart: handleDragStart,
         onDragEnd: handleDragEnd,
         children: [
-          /* @__PURE__ */ jsx49(
+          /* @__PURE__ */ jsx50(
             SortableContext,
             {
               items: sections.map((s) => s.id),
               strategy: verticalListSortingStrategy,
-              children: /* @__PURE__ */ jsx49("div", { className: "space-y-2", children: sections.map((section) => /* @__PURE__ */ jsx49(
+              children: /* @__PURE__ */ jsx50("div", { className: "space-y-2", children: sections.map((section) => /* @__PURE__ */ jsx50(
                 SortableSectionCard,
                 {
                   section,
@@ -3240,10 +3282,35 @@ function LandingPageEditor(props) {
               )) })
             }
           ),
-          /* @__PURE__ */ jsx49(DragOverlay, { children: activeSection ? /* @__PURE__ */ jsx49(SectionOverlayCard, { section: activeSection }) : null })
+          /* @__PURE__ */ jsx50(DragOverlay, { children: activeSection ? /* @__PURE__ */ jsx50(SectionOverlayCard, { section: activeSection }) : null })
         ]
       }
-    )
+    ),
+    /* @__PURE__ */ jsx50("div", { className: "sticky bottom-0 mt-6 -mx-4 border-t border-zinc-200 bg-white/95 px-4 py-3 backdrop-blur dark:border-surface-border dark:bg-surface-raised/95", children: /* @__PURE__ */ jsxs50("div", { className: "flex items-center justify-end gap-3", children: [
+      /* @__PURE__ */ jsx50(
+        "button",
+        {
+          type: "button",
+          onClick: handleSavePage,
+          disabled: isSavingPage,
+          className: "rounded-lg bg-zinc-800 px-4 py-2 text-sm font-semibold text-white hover:bg-zinc-700 disabled:opacity-50 dark:bg-zinc-200 dark:text-zinc-900 dark:hover:bg-zinc-300",
+          children: isSavingPage ? "Saving..." : "Save Page Settings"
+        }
+      ),
+      /* @__PURE__ */ jsxs50(
+        "button",
+        {
+          type: "button",
+          onClick: handleSaveSections,
+          disabled: !isDirty || isSavingSections,
+          className: "inline-flex items-center gap-1.5 rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-500 disabled:cursor-not-allowed disabled:opacity-40",
+          children: [
+            /* @__PURE__ */ jsx50(FloppyDisk, { className: "size-4" }),
+            isSavingSections ? "Saving..." : "Save Sections"
+          ]
+        }
+      )
+    ] }) })
   ] });
 }
 
@@ -3256,7 +3323,7 @@ import {
   Copy,
   Globe
 } from "@phosphor-icons/react";
-import { Fragment, jsx as jsx50, jsxs as jsxs50 } from "react/jsx-runtime";
+import { Fragment, jsx as jsx51, jsxs as jsxs51 } from "react/jsx-runtime";
 var PAGE_TYPE_LABELS = {
   lead_magnet: "Lead Magnet Landing",
   waiting_list: "Waiting List",
@@ -3284,7 +3351,7 @@ function LandingPagesList({
   const [newPageType, setNewPageType] = useState2("course_landing");
   const [newPageTitle, setNewPageTitle] = useState2("");
   if (isLoading) {
-    return /* @__PURE__ */ jsx50("div", { className: "space-y-3", children: [1, 2].map((i) => /* @__PURE__ */ jsx50(
+    return /* @__PURE__ */ jsx51("div", { className: "space-y-3", children: [1, 2].map((i) => /* @__PURE__ */ jsx51(
       "div",
       {
         className: "h-16 animate-pulse rounded-xl bg-zinc-100 dark:bg-surface-raised"
@@ -3292,41 +3359,41 @@ function LandingPagesList({
       i
     )) });
   }
-  return /* @__PURE__ */ jsxs50("div", { children: [
-    /* @__PURE__ */ jsxs50("div", { className: "flex items-center justify-between", children: [
-      /* @__PURE__ */ jsxs50("div", { children: [
-        /* @__PURE__ */ jsx50("h2", { className: "text-page-heading font-semibold text-zinc-900 dark:text-white", children: "Landing Pages" }),
-        /* @__PURE__ */ jsx50("p", { className: "mt-1 text-body text-zinc-500 dark:text-zinc-400", children: "Create and manage landing pages for your network." })
+  return /* @__PURE__ */ jsxs51("div", { children: [
+    /* @__PURE__ */ jsxs51("div", { className: "flex items-center justify-between", children: [
+      /* @__PURE__ */ jsxs51("div", { children: [
+        /* @__PURE__ */ jsx51("h2", { className: "text-page-heading font-semibold text-zinc-900 dark:text-white", children: "Landing Pages" }),
+        /* @__PURE__ */ jsx51("p", { className: "mt-1 text-body text-zinc-500 dark:text-zinc-400", children: "Create and manage landing pages for your network." })
       ] }),
-      /* @__PURE__ */ jsxs50(
+      /* @__PURE__ */ jsxs51(
         "button",
         {
           type: "button",
           onClick: () => setShowCreateForm(true),
           className: "inline-flex items-center gap-1.5 rounded-lg bg-brand-600 px-3 py-1.5 text-xs font-semibold text-white hover:bg-brand-500",
           children: [
-            /* @__PURE__ */ jsx50(Plus27, { className: "size-3.5" }),
+            /* @__PURE__ */ jsx51(Plus27, { className: "size-3.5" }),
             "New Page"
           ]
         }
       )
     ] }),
-    showCreateForm && /* @__PURE__ */ jsx50("div", { className: "mt-4 rounded-xl border border-zinc-200 bg-white p-4 dark:border-surface-border dark:bg-surface-raised", children: /* @__PURE__ */ jsxs50("div", { className: "space-y-3", children: [
-      /* @__PURE__ */ jsxs50("div", { children: [
-        /* @__PURE__ */ jsx50("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Page Type" }),
-        /* @__PURE__ */ jsx50(
+    showCreateForm && /* @__PURE__ */ jsx51("div", { className: "mt-4 rounded-xl border border-zinc-200 bg-white p-4 dark:border-surface-border dark:bg-surface-raised", children: /* @__PURE__ */ jsxs51("div", { className: "space-y-3", children: [
+      /* @__PURE__ */ jsxs51("div", { children: [
+        /* @__PURE__ */ jsx51("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Page Type" }),
+        /* @__PURE__ */ jsx51(
           "select",
           {
             value: newPageType,
             onChange: (e) => setNewPageType(e.target.value),
             className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white",
-            children: Object.entries(PAGE_TYPE_LABELS).map(([value, label]) => /* @__PURE__ */ jsx50("option", { value, children: label }, value))
+            children: Object.entries(PAGE_TYPE_LABELS).map(([value, label]) => /* @__PURE__ */ jsx51("option", { value, children: label }, value))
           }
         )
       ] }),
-      /* @__PURE__ */ jsxs50("div", { children: [
-        /* @__PURE__ */ jsx50("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Title" }),
-        /* @__PURE__ */ jsx50(
+      /* @__PURE__ */ jsxs51("div", { children: [
+        /* @__PURE__ */ jsx51("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Title" }),
+        /* @__PURE__ */ jsx51(
           "input",
           {
             type: "text",
@@ -3337,8 +3404,8 @@ function LandingPagesList({
           }
         )
       ] }),
-      /* @__PURE__ */ jsxs50("div", { className: "flex gap-2", children: [
-        /* @__PURE__ */ jsx50(
+      /* @__PURE__ */ jsxs51("div", { className: "flex gap-2", children: [
+        /* @__PURE__ */ jsx51(
           "button",
           {
             type: "button",
@@ -3354,7 +3421,7 @@ function LandingPagesList({
             children: "Create Page"
           }
         ),
-        /* @__PURE__ */ jsx50(
+        /* @__PURE__ */ jsx51(
           "button",
           {
             type: "button",
@@ -3365,58 +3432,58 @@ function LandingPagesList({
         )
       ] })
     ] }) }),
-    !pages || pages.length === 0 ? /* @__PURE__ */ jsxs50("div", { className: "mt-4 rounded-xl border border-dashed border-zinc-300 p-6 text-center dark:border-zinc-600", children: [
-      /* @__PURE__ */ jsx50(Globe, { className: "mx-auto size-8 text-zinc-300 dark:text-zinc-600" }),
-      /* @__PURE__ */ jsx50("p", { className: "mt-2 text-sm text-zinc-500 dark:text-zinc-400", children: "No landing pages yet. Create one to get started." })
-    ] }) : /* @__PURE__ */ jsx50("div", { className: "mt-4 space-y-2", children: pages.map((page) => /* @__PURE__ */ jsxs50(
+    !pages || pages.length === 0 ? /* @__PURE__ */ jsxs51("div", { className: "mt-4 rounded-xl border border-dashed border-zinc-300 p-6 text-center dark:border-zinc-600", children: [
+      /* @__PURE__ */ jsx51(Globe, { className: "mx-auto size-8 text-zinc-300 dark:text-zinc-600" }),
+      /* @__PURE__ */ jsx51("p", { className: "mt-2 text-sm text-zinc-500 dark:text-zinc-400", children: "No landing pages yet. Create one to get started." })
+    ] }) : /* @__PURE__ */ jsx51("div", { className: "mt-4 space-y-2", children: pages.map((page) => /* @__PURE__ */ jsxs51(
       "div",
       {
         className: "flex items-center gap-3 rounded-xl border border-zinc-200 bg-white px-4 py-3 shadow-sm dark:border-surface-border dark:bg-surface-raised",
         children: [
-          /* @__PURE__ */ jsxs50("div", { className: "flex-1 min-w-0", children: [
-            /* @__PURE__ */ jsxs50("div", { className: "flex items-center gap-2", children: [
-              /* @__PURE__ */ jsx50("span", { className: "text-sm font-semibold text-zinc-900 dark:text-white truncate", children: page.title }),
-              /* @__PURE__ */ jsx50(
+          /* @__PURE__ */ jsxs51("div", { className: "flex-1 min-w-0", children: [
+            /* @__PURE__ */ jsxs51("div", { className: "flex items-center gap-2", children: [
+              /* @__PURE__ */ jsx51("span", { className: "text-sm font-semibold text-zinc-900 dark:text-white truncate", children: page.title }),
+              /* @__PURE__ */ jsx51(
                 "span",
                 {
                   className: `rounded-full px-2 py-0.5 text-caption font-medium ${STATUS_COLORS[page.status]}`,
                   children: page.status
                 }
               ),
-              page.isDefault && /* @__PURE__ */ jsx50("span", { className: "rounded-full bg-brand-100 px-2 py-0.5 text-caption font-medium text-brand-700 dark:bg-brand-900/30 dark:text-brand-400", children: "Default" })
+              page.isDefault && /* @__PURE__ */ jsx51("span", { className: "rounded-full bg-brand-100 px-2 py-0.5 text-caption font-medium text-brand-700 dark:bg-brand-900/30 dark:text-brand-400", children: "Default" })
             ] }),
-            /* @__PURE__ */ jsxs50("div", { className: "mt-0.5 flex items-center gap-2 text-caption text-zinc-400 dark:text-zinc-500", children: [
-              /* @__PURE__ */ jsx50("span", { children: PAGE_TYPE_LABELS[page.pageType] ?? page.pageType }),
-              page.slug && /* @__PURE__ */ jsxs50(Fragment, { children: [
-                /* @__PURE__ */ jsx50("span", { children: "\xB7" }),
-                /* @__PURE__ */ jsxs50("span", { children: [
+            /* @__PURE__ */ jsxs51("div", { className: "mt-0.5 flex items-center gap-2 text-caption text-zinc-400 dark:text-zinc-500", children: [
+              /* @__PURE__ */ jsx51("span", { children: PAGE_TYPE_LABELS[page.pageType] ?? page.pageType }),
+              page.slug && /* @__PURE__ */ jsxs51(Fragment, { children: [
+                /* @__PURE__ */ jsx51("span", { children: "\xB7" }),
+                /* @__PURE__ */ jsxs51("span", { children: [
                   "/landing/",
                   page.slug
                 ] })
               ] })
             ] })
           ] }),
-          /* @__PURE__ */ jsx50(
+          /* @__PURE__ */ jsx51(
             "button",
             {
               type: "button",
               onClick: () => onSelectPage(page.id),
               className: "rounded p-1 text-zinc-400 hover:bg-zinc-100 dark:hover:bg-surface-hover",
               title: "Edit sections",
-              children: /* @__PURE__ */ jsx50(PencilSimple2, { className: "size-4" })
+              children: /* @__PURE__ */ jsx51(PencilSimple2, { className: "size-4" })
             }
           ),
-          /* @__PURE__ */ jsx50(
+          /* @__PURE__ */ jsx51(
             "button",
             {
               type: "button",
               onClick: () => onDuplicatePage(page.id),
               className: "rounded p-1 text-zinc-400 hover:bg-zinc-100 dark:hover:bg-surface-hover",
               title: "Duplicate",
-              children: /* @__PURE__ */ jsx50(Copy, { className: "size-4" })
+              children: /* @__PURE__ */ jsx51(Copy, { className: "size-4" })
             }
           ),
-          /* @__PURE__ */ jsx50(
+          /* @__PURE__ */ jsx51(
             "button",
             {
               type: "button",
@@ -3427,7 +3494,7 @@ function LandingPagesList({
               },
               className: "rounded p-1 text-zinc-400 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30 dark:hover:text-red-400",
               title: "Delete",
-              children: /* @__PURE__ */ jsx50(Trash27, { className: "size-4" })
+              children: /* @__PURE__ */ jsx51(Trash27, { className: "size-4" })
             }
           )
         ]
@@ -3438,7 +3505,7 @@ function LandingPagesList({
 }
 
 // src/editors/landing-pages-section.tsx
-import { jsx as jsx51 } from "react/jsx-runtime";
+import { jsx as jsx52 } from "react/jsx-runtime";
 function LandingPagesSection(props) {
   const {
     pages,
@@ -3458,7 +3525,7 @@ function LandingPagesSection(props) {
     onSelectPage
   } = props;
   if (selectedPageId && selectedPage) {
-    return /* @__PURE__ */ jsx51(
+    return /* @__PURE__ */ jsx52(
       LandingPageEditor,
       {
         pageId: selectedPageId,
@@ -3474,7 +3541,7 @@ function LandingPagesSection(props) {
       }
     );
   }
-  return /* @__PURE__ */ jsx51(
+  return /* @__PURE__ */ jsx52(
     LandingPagesList,
     {
       pages,

@@ -1,5 +1,5 @@
 import * as react_jsx_runtime from 'react/jsx-runtime';
-import { L as LandingSectionType } from './landing-pages-Deeg6ZyQ.js';
+import { L as LandingSectionType } from './landing-pages-C2rQvBu8.js';
 
 interface LandingPageEditorProps {
     pageId: string;
@@ -43,6 +43,8 @@ interface LandingPageEditorProps {
     isSavingPage?: boolean;
     saveSectionsSuccess?: boolean;
     savePageSuccess?: boolean;
+    /** Set to false to hide the built-in back arrow + page name header. Defaults to true. */
+    showHeader?: boolean;
 }
 declare function LandingPageEditor(props: LandingPageEditorProps): react_jsx_runtime.JSX.Element;
 

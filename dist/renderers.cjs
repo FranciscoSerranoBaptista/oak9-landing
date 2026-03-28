@@ -37,6 +37,7 @@ __export(renderers_exports, {
   LandingHeroCaptureForm: () => LandingHeroCaptureForm,
   LandingHeroStatement: () => LandingHeroStatement,
   LandingHeroVideo: () => LandingHeroVideo,
+  LandingHumaWidget: () => LandingHumaWidget,
   LandingImageBlock: () => LandingImageBlock,
   LandingInlineCta: () => LandingInlineCta,
   LandingInvestmentPricing: () => LandingInvestmentPricing,
@@ -883,8 +884,40 @@ function LandingSocialProofBar({ config }) {
   ] }) });
 }
 
-// src/renderers/landing-perfect-for-you.tsx
+// src/renderers/landing-huma-widget.tsx
+var import_react4 = require("react");
 var import_jsx_runtime18 = require("react/jsx-runtime");
+var EMBED_SCRIPT_URL = "https://www.humaproof.app/static/embed.js";
+function LandingHumaWidget({ config }) {
+  const c = config;
+  (0, import_react4.useEffect)(() => {
+    if (!c.widget_id) return;
+    const existing = document.querySelector(`script[src="${EMBED_SCRIPT_URL}"]`);
+    if (!existing) {
+      const script = document.createElement("script");
+      script.src = EMBED_SCRIPT_URL;
+      script.async = true;
+      document.body.appendChild(script);
+    } else {
+      const win = window;
+      const embed = win.HumaEmbed;
+      if (embed && typeof embed === "object" && typeof embed.refresh === "function") {
+        embed.refresh();
+      }
+    }
+  }, [c.widget_id]);
+  if (!c.widget_id) {
+    return /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("section", { className: "mx-auto max-w-5xl px-6 py-12 text-center", children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { className: "text-sm text-zinc-400", children: "Huma widget \u2014 no widget ID configured" }) });
+  }
+  return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("section", { className: "mx-auto max-w-6xl px-6 py-16", children: [
+    c.section_label && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { className: "mb-3 text-center text-xs font-semibold uppercase tracking-widest text-zinc-500 dark:text-zinc-400", children: c.section_label }),
+    c.headline && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("h2", { className: "mb-10 text-center text-3xl font-bold text-zinc-900 dark:text-white sm:text-4xl", children: c.headline }),
+    /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { "data-widget-id": c.widget_id })
+  ] });
+}
+
+// src/renderers/landing-perfect-for-you.tsx
+var import_jsx_runtime19 = require("react/jsx-runtime");
 function LandingPerfectForYou({ config }) {
   const c = config;
   const forList = c.for_items ?? [];
@@ -892,21 +925,21 @@ function LandingPerfectForYou({ config }) {
   const layout = c.layout || "two-columns";
   if (forList.length === 0 && notList.length === 0) return null;
   if (layout === "checklist") {
-    return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("section", { className: "mx-auto max-w-4xl px-4 py-16", "aria-label": c.headline || "Is this for you?", children: [
-      c.section_label && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { className: "mb-3 text-center text-sm font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-400", children: c.section_label }),
-      c.headline && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("h2", { className: "mb-10 text-center text-3xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
-      /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "space-y-3", children: [
-        forList.map((item, i) => /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "flex items-start gap-3 rounded-lg p-3", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { className: "mt-0.5 text-lg text-green-600 dark:text-green-400", "aria-hidden": "true", children: "\u2713" }),
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { className: "text-base text-zinc-700 dark:text-zinc-300", children: item.statement })
+    return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("section", { className: "mx-auto max-w-4xl px-4 py-16", "aria-label": c.headline || "Is this for you?", children: [
+      c.section_label && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "mb-3 text-center text-sm font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-400", children: c.section_label }),
+      c.headline && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("h2", { className: "mb-10 text-center text-3xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
+      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "space-y-3", children: [
+        forList.map((item, i) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "flex items-start gap-3 rounded-lg p-3", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "mt-0.5 text-lg text-green-600 dark:text-green-400", "aria-hidden": "true", children: "\u2713" }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "text-base text-zinc-700 dark:text-zinc-300", children: item.statement })
         ] }, `y-${i}`)),
-        notList.map((item, i) => /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "flex items-start gap-3 rounded-lg p-3", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { className: "mt-0.5 text-lg text-red-500 dark:text-red-400", "aria-hidden": "true", children: "\u2717" }),
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { className: "text-base text-zinc-700 dark:text-zinc-300", children: item.statement })
+        notList.map((item, i) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "flex items-start gap-3 rounded-lg p-3", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "mt-0.5 text-lg text-red-500 dark:text-red-400", "aria-hidden": "true", children: "\u2717" }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "text-base text-zinc-700 dark:text-zinc-300", children: item.statement })
         ] }, `n-${i}`))
       ] }),
-      c.closing_text && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { className: "mt-8 text-center text-base text-zinc-600 dark:text-zinc-400", children: c.closing_text }),
-      c.cta_button && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "mt-8 text-center", children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
+      c.closing_text && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "mt-8 text-center text-base text-zinc-600 dark:text-zinc-400", children: c.closing_text }),
+      c.cta_button && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "mt-8 text-center", children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(
         "a",
         {
           href: c.cta_button.url,
@@ -918,27 +951,27 @@ function LandingPerfectForYou({ config }) {
   }
   const isSingle = layout === "single-column";
   const gridClass = isSingle ? "mx-auto max-w-xl space-y-8" : "grid gap-8 md:grid-cols-2";
-  return /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("section", { className: "mx-auto max-w-4xl px-4 py-16", "aria-label": c.headline || "Is this for you?", children: [
-    c.section_label && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { className: "mb-3 text-center text-sm font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-400", children: c.section_label }),
-    c.headline && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("h2", { className: "mb-10 text-center text-3xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
-    /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: gridClass, children: [
-      forList.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "rounded-2xl border border-green-200 bg-green-50/50 p-6 dark:border-green-900/30 dark:bg-green-900/10", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("h3", { className: "mb-4 text-lg font-semibold text-green-700 dark:text-green-400", children: "This is for you if\u2026" }),
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("ul", { className: "space-y-3", role: "list", children: forList.map((item, i) => /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("li", { className: "flex items-start gap-3", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { className: "mt-0.5 text-green-600 dark:text-green-400", "aria-hidden": "true", children: "\u2713" }),
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { className: "text-base text-zinc-700 dark:text-zinc-300", children: item.statement })
+  return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("section", { className: "mx-auto max-w-4xl px-4 py-16", "aria-label": c.headline || "Is this for you?", children: [
+    c.section_label && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "mb-3 text-center text-sm font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-400", children: c.section_label }),
+    c.headline && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("h2", { className: "mb-10 text-center text-3xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
+    /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: gridClass, children: [
+      forList.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "rounded-2xl border border-green-200 bg-green-50/50 p-6 dark:border-green-900/30 dark:bg-green-900/10", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("h3", { className: "mb-4 text-lg font-semibold text-green-700 dark:text-green-400", children: "This is for you if\u2026" }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("ul", { className: "space-y-3", role: "list", children: forList.map((item, i) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("li", { className: "flex items-start gap-3", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "mt-0.5 text-green-600 dark:text-green-400", "aria-hidden": "true", children: "\u2713" }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "text-base text-zinc-700 dark:text-zinc-300", children: item.statement })
         ] }, i)) })
       ] }),
-      notList.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("div", { className: "rounded-2xl border border-red-200 bg-red-50/50 p-6 dark:border-red-900/30 dark:bg-red-900/10", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("h3", { className: "mb-4 text-lg font-semibold text-red-600 dark:text-red-400", children: "This is not for you if\u2026" }),
-        /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("ul", { className: "space-y-3", role: "list", children: notList.map((item, i) => /* @__PURE__ */ (0, import_jsx_runtime18.jsxs)("li", { className: "flex items-start gap-3", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { className: "mt-0.5 text-red-500 dark:text-red-400", "aria-hidden": "true", children: "\u2717" }),
-          /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("span", { className: "text-base text-zinc-700 dark:text-zinc-300", children: item.statement })
+      notList.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "rounded-2xl border border-red-200 bg-red-50/50 p-6 dark:border-red-900/30 dark:bg-red-900/10", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("h3", { className: "mb-4 text-lg font-semibold text-red-600 dark:text-red-400", children: "This is not for you if\u2026" }),
+        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("ul", { className: "space-y-3", role: "list", children: notList.map((item, i) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("li", { className: "flex items-start gap-3", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "mt-0.5 text-red-500 dark:text-red-400", "aria-hidden": "true", children: "\u2717" }),
+          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "text-base text-zinc-700 dark:text-zinc-300", children: item.statement })
         ] }, i)) })
       ] })
     ] }),
-    c.closing_text && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { className: "mt-8 text-center text-base text-zinc-600 dark:text-zinc-400", children: c.closing_text }),
-    c.cta_button && /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("div", { className: "mt-8 text-center", children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)(
+    c.closing_text && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "mt-8 text-center text-base text-zinc-600 dark:text-zinc-400", children: c.closing_text }),
+    c.cta_button && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "mt-8 text-center", children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(
       "a",
       {
         href: c.cta_button.url,
@@ -950,144 +983,144 @@ function LandingPerfectForYou({ config }) {
 }
 
 // src/renderers/landing-faq-new.tsx
-var import_react4 = require("react");
-var import_jsx_runtime19 = require("react/jsx-runtime");
+var import_react5 = require("react");
+var import_jsx_runtime20 = require("react/jsx-runtime");
 function LandingFaqNew({ config }) {
   const c = config;
   const items = c.faq_items ?? [];
   const layout = c.layout || "accordion";
   if (items.length === 0) return null;
-  return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("section", { className: "mx-auto max-w-4xl px-4 py-16", "aria-label": c.headline || "Frequently Asked Questions", children: [
-    c.section_label && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "mb-3 text-center text-sm font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-400", children: c.section_label }),
-    c.headline && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("h2", { className: "mb-4 text-center text-3xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
-    c.introduction && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "mx-auto mb-10 max-w-2xl text-center text-base text-zinc-600 dark:text-zinc-400", children: c.introduction }),
-    layout === "accordion" && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("dl", { className: "mx-auto max-w-4xl space-y-3", children: items.map((item, i) => /* @__PURE__ */ (0, import_jsx_runtime19.jsx)(AccordionItem, { item }, i)) }),
-    layout === "stacked" && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("dl", { className: "mx-auto max-w-4xl space-y-6", children: items.map((item, i) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("dt", { className: "mb-2 flex items-center gap-2", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "font-semibold text-zinc-900 dark:text-white", children: item.question }),
-        item.objection_type && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-500 dark:bg-surface-hover dark:text-zinc-400", children: item.objection_type })
+  return /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("section", { className: "mx-auto max-w-4xl px-4 py-16", "aria-label": c.headline || "Frequently Asked Questions", children: [
+    c.section_label && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "mb-3 text-center text-sm font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-400", children: c.section_label }),
+    c.headline && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("h2", { className: "mb-4 text-center text-3xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
+    c.introduction && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "mx-auto mb-10 max-w-2xl text-center text-base text-zinc-600 dark:text-zinc-400", children: c.introduction }),
+    layout === "accordion" && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("dl", { className: "mx-auto max-w-4xl space-y-3", children: items.map((item, i) => /* @__PURE__ */ (0, import_jsx_runtime20.jsx)(AccordionItem, { item }, i)) }),
+    layout === "stacked" && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("dl", { className: "mx-auto max-w-4xl space-y-6", children: items.map((item, i) => /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("dt", { className: "mb-2 flex items-center gap-2", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { className: "font-semibold text-zinc-900 dark:text-white", children: item.question }),
+        item.objection_type && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { className: "rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-500 dark:bg-surface-hover dark:text-zinc-400", children: item.objection_type })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("dd", { className: "text-base leading-relaxed text-zinc-600 dark:text-zinc-400", children: item.answer })
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("dd", { className: "text-base leading-relaxed text-zinc-600 dark:text-zinc-400", children: item.answer })
     ] }, i)) }),
-    layout === "two-columns" && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("div", { className: "grid gap-6 sm:grid-cols-2", children: items.map((item, i) => /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "rounded-2xl border border-zinc-200 p-5 dark:border-surface-border dark:bg-surface-raised", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "mb-2 flex items-center gap-2", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("h3", { className: "font-semibold text-zinc-900 dark:text-white", children: item.question }),
-        item.objection_type && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-500 dark:bg-surface-hover dark:text-zinc-400", children: item.objection_type })
+    layout === "two-columns" && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "grid gap-6 sm:grid-cols-2", children: items.map((item, i) => /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "rounded-2xl border border-zinc-200 p-5 dark:border-surface-border dark:bg-surface-raised", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "mb-2 flex items-center gap-2", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("h3", { className: "font-semibold text-zinc-900 dark:text-white", children: item.question }),
+        item.objection_type && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { className: "rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-500 dark:bg-surface-hover dark:text-zinc-400", children: item.objection_type })
       ] }),
-      /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "text-sm text-zinc-600 dark:text-zinc-400", children: item.answer })
+      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "text-sm text-zinc-600 dark:text-zinc-400", children: item.answer })
     ] }, i)) }),
-    c.closing_text && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "mt-10 text-center text-base text-zinc-600 dark:text-zinc-400", children: c.closing_text })
+    c.closing_text && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "mt-10 text-center text-base text-zinc-600 dark:text-zinc-400", children: c.closing_text })
   ] });
 }
 function AccordionItem({ item }) {
-  const [open, setOpen] = (0, import_react4.useState)(false);
-  return /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("div", { className: "rounded-xl border border-zinc-200 dark:border-surface-border", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("dt", { children: /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)(
+  const [open, setOpen] = (0, import_react5.useState)(false);
+  return /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("div", { className: "rounded-xl border border-zinc-200 dark:border-surface-border", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("dt", { children: /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(
       "button",
       {
         onClick: () => setOpen(!open),
         className: "flex w-full items-center justify-between p-4 text-left",
         "aria-expanded": open,
         children: [
-          /* @__PURE__ */ (0, import_jsx_runtime19.jsxs)("span", { className: "flex items-center gap-2 pr-4", children: [
-            /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "font-semibold text-zinc-900 dark:text-white", children: item.question }),
-            item.objection_type && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-500 dark:bg-surface-hover dark:text-zinc-400", children: item.objection_type })
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("span", { className: "flex items-center gap-2 pr-4", children: [
+            /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { className: "font-semibold text-zinc-900 dark:text-white", children: item.question }),
+            item.objection_type && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { className: "rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-500 dark:bg-surface-hover dark:text-zinc-400", children: item.objection_type })
           ] }),
-          /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("span", { className: "shrink-0 text-zinc-400", children: open ? "\u2212" : "+" })
+          /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("span", { className: "shrink-0 text-zinc-400", children: open ? "\u2212" : "+" })
         ]
       }
     ) }),
-    open && /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("dd", { className: "border-t border-zinc-100 px-4 pb-4 pt-3 dark:border-surface-border", children: /* @__PURE__ */ (0, import_jsx_runtime19.jsx)("p", { className: "whitespace-pre-line text-sm leading-relaxed text-zinc-600 dark:text-zinc-400", children: item.answer }) })
+    open && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("dd", { className: "border-t border-zinc-100 px-4 pb-4 pt-3 dark:border-surface-border", children: /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "whitespace-pre-line text-sm leading-relaxed text-zinc-600 dark:text-zinc-400", children: item.answer }) })
   ] });
 }
 
 // src/renderers/landing-objection-block.tsx
-var import_jsx_runtime20 = require("react/jsx-runtime");
+var import_jsx_runtime21 = require("react/jsx-runtime");
 function LandingObjectionBlock({ config }) {
   const c = config;
   const style = c.visual_style || "card";
   if (!c.objection) return null;
   if (style === "pullquote") {
-    return /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("section", { className: "mx-auto max-w-4xl px-4 py-16", "aria-label": "Addressing concerns", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("blockquote", { className: "mb-6 border-l-4 border-zinc-300 pl-4 text-xl italic text-zinc-700 dark:border-zinc-600 dark:text-zinc-300", children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("section", { className: "mx-auto max-w-4xl px-4 py-16", "aria-label": "Addressing concerns", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("blockquote", { className: "mb-6 border-l-4 border-zinc-300 pl-4 text-xl italic text-zinc-700 dark:border-zinc-600 dark:text-zinc-300", children: [
         "\u201C",
         c.objection,
         "\u201D"
       ] }),
-      c.response && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "mb-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400", children: c.response }),
-      c.reframe && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "text-lg font-semibold text-brand-600 dark:text-brand-400", children: c.reframe })
+      c.response && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "mb-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400", children: c.response }),
+      c.reframe && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "text-lg font-semibold text-brand-600 dark:text-brand-400", children: c.reframe })
     ] });
   }
   if (style === "inline") {
-    return /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("section", { className: "mx-auto max-w-4xl px-4 py-16", "aria-label": "Addressing concerns", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("p", { className: "mb-3 text-lg font-medium text-zinc-900 dark:text-white", children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("section", { className: "mx-auto max-w-4xl px-4 py-16", "aria-label": "Addressing concerns", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("p", { className: "mb-3 text-lg font-medium text-zinc-900 dark:text-white", children: [
         "\u201C",
         c.objection,
         "\u201D"
       ] }),
-      c.response && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "mb-3 text-base text-zinc-600 dark:text-zinc-400", children: c.response }),
-      c.reframe && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "text-base font-medium text-brand-600 dark:text-brand-400", children: c.reframe })
+      c.response && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "mb-3 text-base text-zinc-600 dark:text-zinc-400", children: c.response }),
+      c.reframe && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "text-base font-medium text-brand-600 dark:text-brand-400", children: c.reframe })
     ] });
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("section", { className: "mx-auto max-w-4xl px-4 py-16", "aria-label": "Addressing concerns", children: /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("article", { className: "rounded-2xl border border-zinc-200 p-8 dark:border-surface-border dark:bg-surface-raised", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "mb-2 text-xs font-semibold uppercase tracking-wider text-zinc-400", children: "Common concern" }),
-    /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)("blockquote", { className: "mb-4 text-xl font-medium text-zinc-900 dark:text-white", children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("section", { className: "mx-auto max-w-4xl px-4 py-16", "aria-label": "Addressing concerns", children: /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("article", { className: "rounded-2xl border border-zinc-200 p-8 dark:border-surface-border dark:bg-surface-raised", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "mb-2 text-xs font-semibold uppercase tracking-wider text-zinc-400", children: "Common concern" }),
+    /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("blockquote", { className: "mb-4 text-xl font-medium text-zinc-900 dark:text-white", children: [
       "\u201C",
       c.objection,
       "\u201D"
     ] }),
-    c.response && /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "mb-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400", children: c.response }),
-    c.reframe && /* @__PURE__ */ (0, import_jsx_runtime20.jsxs)(import_jsx_runtime20.Fragment, { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("div", { className: "mb-4 h-px bg-zinc-100 dark:bg-surface-border", "aria-hidden": "true" }),
-      /* @__PURE__ */ (0, import_jsx_runtime20.jsx)("p", { className: "text-base font-semibold text-brand-600 dark:text-brand-400", children: c.reframe })
+    c.response && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "mb-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400", children: c.response }),
+    c.reframe && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(import_jsx_runtime21.Fragment, { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "mb-4 h-px bg-zinc-100 dark:bg-surface-border", "aria-hidden": "true" }),
+      /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "text-base font-semibold text-brand-600 dark:text-brand-400", children: c.reframe })
     ] })
   ] }) });
 }
 
 // src/renderers/landing-investment-pricing.tsx
-var import_jsx_runtime21 = require("react/jsx-runtime");
+var import_jsx_runtime22 = require("react/jsx-runtime");
 function LandingInvestmentPricing({ config }) {
   const c = config;
   const tiers = c.pricing_tiers ?? [];
   const layout = c.layout || "cards-side-by-side";
   if (tiers.length === 0) return null;
-  return /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("section", { className: "mx-auto max-w-4xl px-4 py-16", "aria-label": c.headline || "Pricing", children: [
-    c.section_label && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "mb-2 text-center text-sm font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-400", children: c.section_label }),
-    c.headline && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("h2", { className: "mb-4 text-center text-3xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
-    c.introduction && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "mx-auto mb-10 max-w-4xl space-y-3 text-center text-lg text-zinc-600 dark:text-zinc-400", children: c.introduction.split("\n\n").map((p, i) => /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { children: p }, i)) }),
-    layout === "single-centered" && tiers[0] && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "mx-auto max-w-md", children: /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(TierCard, { tier: tiers[0] }) }),
-    layout === "stacked" && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: "mx-auto max-w-lg space-y-6", children: tiers.map((tier, i) => /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(TierCard, { tier }, i)) }),
-    layout === "cards-side-by-side" && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("div", { className: `grid gap-6 ${tiers.length === 1 ? "mx-auto max-w-md" : tiers.length === 2 ? "mx-auto max-w-4xl sm:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3"}`, children: tiers.map((tier, i) => /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(TierCard, { tier }, i)) }),
-    c.comparison_note && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "mt-8 text-center text-sm text-zinc-500 dark:text-zinc-400", children: c.comparison_note }),
-    c.guarantee && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "mt-4 text-center text-sm text-zinc-500 dark:text-zinc-400", children: c.guarantee })
+  return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("section", { className: "mx-auto max-w-4xl px-4 py-16", "aria-label": c.headline || "Pricing", children: [
+    c.section_label && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { className: "mb-2 text-center text-sm font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-400", children: c.section_label }),
+    c.headline && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("h2", { className: "mb-4 text-center text-3xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
+    c.introduction && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "mx-auto mb-10 max-w-4xl space-y-3 text-center text-lg text-zinc-600 dark:text-zinc-400", children: c.introduction.split("\n\n").map((p, i) => /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { children: p }, i)) }),
+    layout === "single-centered" && tiers[0] && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "mx-auto max-w-md", children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(TierCard, { tier: tiers[0] }) }),
+    layout === "stacked" && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "mx-auto max-w-lg space-y-6", children: tiers.map((tier, i) => /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(TierCard, { tier }, i)) }),
+    layout === "cards-side-by-side" && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: `grid gap-6 ${tiers.length === 1 ? "mx-auto max-w-md" : tiers.length === 2 ? "mx-auto max-w-4xl sm:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3"}`, children: tiers.map((tier, i) => /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(TierCard, { tier }, i)) }),
+    c.comparison_note && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { className: "mt-8 text-center text-sm text-zinc-500 dark:text-zinc-400", children: c.comparison_note }),
+    c.guarantee && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { className: "mt-4 text-center text-sm text-zinc-500 dark:text-zinc-400", children: c.guarantee })
   ] });
 }
 function TierCard({ tier }) {
-  return /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)(
+  return /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)(
     "article",
     {
       className: `relative rounded-2xl border p-8 ${tier.is_featured ? "border-brand-500 bg-white ring-2 ring-brand-500/20 dark:bg-surface-raised dark:ring-brand-400/20" : "border-zinc-200 bg-white dark:border-surface-border dark:bg-surface-raised"}`,
       children: [
-        tier.is_featured && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-brand-600 px-3 py-1 text-xs font-semibold text-white", children: "Recommended" }),
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("h3", { className: "mb-2 text-xl font-bold text-zinc-900 dark:text-white", children: tier.tier_name }),
-        tier.tier_description && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "mb-4 text-sm text-zinc-600 dark:text-zinc-400", children: tier.tier_description }),
-        /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("div", { className: "mb-4", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("span", { className: "text-4xl font-bold text-zinc-900 dark:text-white", children: [
+        tier.is_featured && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: "absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-brand-600 px-3 py-1 text-xs font-semibold text-white", children: "Recommended" }),
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("h3", { className: "mb-2 text-xl font-bold text-zinc-900 dark:text-white", children: tier.tier_name }),
+        tier.tier_description && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { className: "mb-4 text-sm text-zinc-600 dark:text-zinc-400", children: tier.tier_description }),
+        /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "mb-4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("span", { className: "text-4xl font-bold text-zinc-900 dark:text-white", children: [
             tier.currency || "EUR",
             " ",
             tier.price
           ] }),
-          tier.price_period && /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("span", { className: "ml-1 text-sm text-zinc-500 dark:text-zinc-400", children: [
+          tier.price_period && /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("span", { className: "ml-1 text-sm text-zinc-500 dark:text-zinc-400", children: [
             "/",
             tier.price_period
           ] })
         ] }),
-        tier.price_note && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("p", { className: "mb-4 text-sm text-zinc-500 dark:text-zinc-400", children: tier.price_note }),
-        tier.included_items && tier.included_items.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("ul", { className: "mb-6 space-y-2", children: tier.included_items.map((item, i) => /* @__PURE__ */ (0, import_jsx_runtime21.jsxs)("li", { className: "flex items-start gap-2 text-sm text-zinc-700 dark:text-zinc-300", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime21.jsx)("span", { className: "mt-0.5 text-green-600 dark:text-green-400", "aria-hidden": "true", children: "\u2713" }),
+        tier.price_note && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { className: "mb-4 text-sm text-zinc-500 dark:text-zinc-400", children: tier.price_note }),
+        tier.included_items && tier.included_items.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("ul", { className: "mb-6 space-y-2", children: tier.included_items.map((item, i) => /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("li", { className: "flex items-start gap-2 text-sm text-zinc-700 dark:text-zinc-300", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: "mt-0.5 text-green-600 dark:text-green-400", "aria-hidden": "true", children: "\u2713" }),
           item
         ] }, i)) }),
-        tier.cta_button && /* @__PURE__ */ (0, import_jsx_runtime21.jsx)(
+        tier.cta_button && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)(
           "a",
           {
             href: tier.cta_button.url,
@@ -1102,47 +1135,47 @@ function TierCard({ tier }) {
 }
 
 // src/renderers/landing-guarantee.tsx
-var import_jsx_runtime22 = require("react/jsx-runtime");
+var import_jsx_runtime23 = require("react/jsx-runtime");
 function LandingGuarantee({ config }) {
   const c = config;
   if (!c.guarantee_text) return null;
-  return /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("section", { className: "mx-auto max-w-4xl px-4 py-16", "aria-label": c.headline || "Our guarantee", children: /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("article", { className: "rounded-2xl border-2 border-green-200 bg-green-50/50 p-8 text-center dark:border-green-900/40 dark:bg-green-900/10", children: [
-    c.icon ? /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "mb-4", children: /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("img", { src: c.icon.url, alt: c.icon.alt_text || "", className: "mx-auto h-12 w-auto" }) }) : /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "mb-4 inline-flex size-12 items-center justify-center rounded-full bg-green-100 text-2xl dark:bg-green-900/30", "aria-hidden": "true", children: "\u2705" }),
-    c.headline && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("h2", { className: "mb-4 text-2xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
-    /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("div", { className: "mb-4 space-y-3 text-base leading-relaxed text-zinc-700 dark:text-zinc-300", children: c.guarantee_text.split("\n\n").map((p, i) => /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("p", { children: p }, i)) }),
-    /* @__PURE__ */ (0, import_jsx_runtime22.jsxs)("div", { className: "flex flex-wrap items-center justify-center gap-3", children: [
-      c.guarantee_type && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: "rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-700 dark:bg-green-900/30 dark:text-green-400", children: c.guarantee_type }),
-      c.duration && /* @__PURE__ */ (0, import_jsx_runtime22.jsx)("span", { className: "rounded-full bg-zinc-100 px-3 py-1 text-sm font-medium text-zinc-600 dark:bg-surface-hover dark:text-zinc-300", children: c.duration })
+  return /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("section", { className: "mx-auto max-w-4xl px-4 py-16", "aria-label": c.headline || "Our guarantee", children: /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("article", { className: "rounded-2xl border-2 border-green-200 bg-green-50/50 p-8 text-center dark:border-green-900/40 dark:bg-green-900/10", children: [
+    c.icon ? /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: "mb-4", children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("img", { src: c.icon.url, alt: c.icon.alt_text || "", className: "mx-auto h-12 w-auto" }) }) : /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: "mb-4 inline-flex size-12 items-center justify-center rounded-full bg-green-100 text-2xl dark:bg-green-900/30", "aria-hidden": "true", children: "\u2705" }),
+    c.headline && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("h2", { className: "mb-4 text-2xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
+    /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: "mb-4 space-y-3 text-base leading-relaxed text-zinc-700 dark:text-zinc-300", children: c.guarantee_text.split("\n\n").map((p, i) => /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { children: p }, i)) }),
+    /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "flex flex-wrap items-center justify-center gap-3", children: [
+      c.guarantee_type && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("span", { className: "rounded-full bg-green-100 px-3 py-1 text-sm font-medium text-green-700 dark:bg-green-900/30 dark:text-green-400", children: c.guarantee_type }),
+      c.duration && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("span", { className: "rounded-full bg-zinc-100 px-3 py-1 text-sm font-medium text-zinc-600 dark:bg-surface-hover dark:text-zinc-300", children: c.duration })
     ] })
   ] }) });
 }
 
 // src/renderers/landing-urgency-closing.tsx
-var import_react5 = require("react");
-var import_jsx_runtime23 = require("react/jsx-runtime");
+var import_react6 = require("react");
+var import_jsx_runtime24 = require("react/jsx-runtime");
 function LandingUrgencyClosing({ config }) {
   const c = config;
   const showCountdown = c.show_countdown !== false;
-  return /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("section", { className: "px-4 py-16 text-center", "aria-label": c.headline || "Limited availability", children: /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "mx-auto max-w-4xl", children: [
-    c.headline && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("h2", { className: "mb-4 text-3xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
-    c.body_text && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: "mb-8 space-y-4 text-lg text-zinc-600 dark:text-zinc-400", children: c.body_text.split("\n\n").map((p, i) => /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { children: p }, i)) }),
-    c.countdown_target && showCountdown && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(Countdown, { target: c.countdown_target }),
-    c.seats_remaining != null && c.seats_total != null && c.seats_total > 0 && /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "mb-8", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: "mx-auto mb-2 h-3 max-w-xs overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-700", children: /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("section", { className: "px-4 py-16 text-center", "aria-label": c.headline || "Limited availability", children: /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "mx-auto max-w-4xl", children: [
+    c.headline && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("h2", { className: "mb-4 text-3xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
+    c.body_text && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: "mb-8 space-y-4 text-lg text-zinc-600 dark:text-zinc-400", children: c.body_text.split("\n\n").map((p, i) => /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { children: p }, i)) }),
+    c.countdown_target && showCountdown && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(Countdown, { target: c.countdown_target }),
+    c.seats_remaining != null && c.seats_total != null && c.seats_total > 0 && /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "mb-8", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: "mx-auto mb-2 h-3 max-w-xs overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-700", children: /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(
         "div",
         {
           className: "h-full rounded-full bg-brand-500 transition-all",
           style: { width: `${(c.seats_total - c.seats_remaining) / c.seats_total * 100}%` }
         }
       ) }),
-      /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("p", { className: "text-sm text-zinc-500 dark:text-zinc-400", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("span", { className: "font-semibold text-zinc-900 dark:text-white", children: c.seats_remaining }),
+      /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("p", { className: "text-sm text-zinc-500 dark:text-zinc-400", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("span", { className: "font-semibold text-zinc-900 dark:text-white", children: c.seats_remaining }),
         " of ",
         c.seats_total,
         " spots remaining"
       ] })
     ] }),
-    c.cta_button && /* @__PURE__ */ (0, import_jsx_runtime23.jsx)(
+    c.cta_button && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(
       "a",
       {
         href: c.cta_button.url,
@@ -1153,24 +1186,24 @@ function LandingUrgencyClosing({ config }) {
   ] }) });
 }
 function Countdown({ target }) {
-  const [remaining, setRemaining] = (0, import_react5.useState)(calcRemaining(target));
-  (0, import_react5.useEffect)(() => {
+  const [remaining, setRemaining] = (0, import_react6.useState)(calcRemaining(target));
+  (0, import_react6.useEffect)(() => {
     const interval = setInterval(() => {
       setRemaining(calcRemaining(target));
     }, 1e3);
     return () => clearInterval(interval);
   }, [target]);
   if (remaining.total <= 0) {
-    return /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { className: "mb-8 text-lg font-semibold text-red-400", children: "Time's up!" });
+    return /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { className: "mb-8 text-lg font-semibold text-red-400", children: "Time's up!" });
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: "mb-8 flex justify-center gap-4", children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: "mb-8 flex justify-center gap-4", children: [
     { value: remaining.days, label: "Days" },
     { value: remaining.hours, label: "Hours" },
     { value: remaining.minutes, label: "Min" },
     { value: remaining.seconds, label: "Sec" }
-  ].map((unit) => /* @__PURE__ */ (0, import_jsx_runtime23.jsxs)("div", { className: "text-center", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("div", { className: "flex size-16 items-center justify-center rounded-xl bg-zinc-100 text-2xl font-bold text-zinc-900 dark:bg-surface-raised dark:text-white", children: String(unit.value).padStart(2, "0") }),
-    /* @__PURE__ */ (0, import_jsx_runtime23.jsx)("p", { className: "mt-1 text-xs text-zinc-500", children: unit.label })
+  ].map((unit) => /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "text-center", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: "flex size-16 items-center justify-center rounded-xl bg-zinc-100 text-2xl font-bold text-zinc-900 dark:bg-surface-raised dark:text-white", children: String(unit.value).padStart(2, "0") }),
+    /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { className: "mt-1 text-xs text-zinc-500", children: unit.label })
   ] }, unit.label)) });
 }
 function calcRemaining(target) {
@@ -1186,8 +1219,8 @@ function calcRemaining(target) {
 }
 
 // src/renderers/landing-capture-form.tsx
-var import_react6 = require("react");
-var import_jsx_runtime24 = require("react/jsx-runtime");
+var import_react7 = require("react");
+var import_jsx_runtime25 = require("react/jsx-runtime");
 function LandingCaptureForm({
   config,
   networkId,
@@ -1199,102 +1232,6 @@ function LandingCaptureForm({
     { field_name: "email", field_type: "email", field_label: "Email", required: true }
   ];
   const submitLabel = c.submit_button_label || "Join the waiting list";
-  const [isPending, setIsPending] = (0, import_react6.useState)(false);
-  const [submitted, setSubmitted] = (0, import_react6.useState)(false);
-  const [error, setError] = (0, import_react6.useState)(false);
-  async function handleSubmit(e) {
-    e.preventDefault();
-    if (!onSubmitForm) return;
-    setIsPending(true);
-    setError(false);
-    const formData = new FormData(e.currentTarget);
-    const data = {};
-    for (const [key, val] of formData.entries()) {
-      data[key] = val;
-    }
-    try {
-      await onSubmitForm({ networkId, sectionId, fields: data });
-      setSubmitted(true);
-    } catch {
-      setError(true);
-    } finally {
-      setIsPending(false);
-    }
-  }
-  return /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("section", { className: "mx-auto max-w-xl px-4 py-16", "aria-label": c.headline || "Sign up", children: [
-    c.headline && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("h2", { className: "mb-4 text-center text-3xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
-    c.body_text && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { className: "mb-8 text-center text-base text-zinc-600 dark:text-zinc-400", children: c.body_text }),
-    submitted ? /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { className: "rounded-2xl border border-green-200 bg-green-50 p-8 text-center dark:border-green-900/40 dark:bg-green-900/10", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { className: "text-lg font-semibold text-zinc-900 dark:text-white", children: "Thank you!" }),
-      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { className: "mt-2 text-sm text-zinc-600 dark:text-zinc-400", children: "We'll be in touch soon." })
-    ] }) : /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("form", { onSubmit: handleSubmit, className: "rounded-2xl border border-zinc-200 bg-white p-6 dark:border-surface-border dark:bg-surface-raised", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("div", { className: "space-y-4", children: fields.map((field) => /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)("div", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("label", { htmlFor: field.field_name, className: "mb-1 block text-sm font-medium text-zinc-700 dark:text-zinc-300", children: field.field_label }),
-        field.help_text && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { className: "mb-1 text-xs text-zinc-400", children: field.help_text }),
-        field.field_type === "textarea" ? /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(
-          "textarea",
-          {
-            id: field.field_name,
-            name: field.field_name,
-            placeholder: field.placeholder,
-            required: field.required,
-            rows: 3,
-            className: "w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 focus:border-brand-500 focus:outline-none dark:border-surface-border dark:bg-surface-base dark:text-white dark:placeholder-zinc-500"
-          }
-        ) : field.field_type === "select" ? /* @__PURE__ */ (0, import_jsx_runtime24.jsxs)(
-          "select",
-          {
-            id: field.field_name,
-            name: field.field_name,
-            required: field.required,
-            className: "w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 focus:border-brand-500 focus:outline-none dark:border-surface-border dark:bg-surface-base dark:text-white",
-            children: [
-              /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("option", { value: "", children: field.placeholder || "Select..." }),
-              field.options?.map((opt) => /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("option", { value: opt, children: opt }, opt))
-            ]
-          }
-        ) : /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(
-          "input",
-          {
-            id: field.field_name,
-            name: field.field_name,
-            type: field.field_type || "text",
-            placeholder: field.placeholder,
-            required: field.required,
-            className: "w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 focus:border-brand-500 focus:outline-none dark:border-surface-border dark:bg-surface-base dark:text-white dark:placeholder-zinc-500"
-          }
-        )
-      ] }, field.field_name)) }),
-      /* @__PURE__ */ (0, import_jsx_runtime24.jsx)(
-        "button",
-        {
-          type: "submit",
-          disabled: isPending,
-          className: "mt-4 w-full rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-500 disabled:opacity-60",
-          children: isPending ? "Submitting..." : submitLabel
-        }
-      ),
-      error && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { className: "mt-2 text-center text-sm text-red-500", children: "Something went wrong. Please try again." }),
-      c.privacy_text && /* @__PURE__ */ (0, import_jsx_runtime24.jsx)("p", { className: "mt-3 text-center text-xs text-zinc-400", children: c.privacy_text })
-    ] })
-  ] });
-}
-
-// src/renderers/landing-application-form.tsx
-var import_react7 = require("react");
-var import_jsx_runtime25 = require("react/jsx-runtime");
-function LandingApplicationForm({
-  config,
-  networkId,
-  sectionId,
-  onSubmitForm
-}) {
-  const c = config;
-  const fields = c.form_fields ?? [
-    { field_name: "name", field_type: "text", field_label: "Full Name", required: true },
-    { field_name: "email", field_type: "email", field_label: "Email", required: true }
-  ];
-  const submitLabel = c.submit_button_label || "Apply for the next cohort";
   const [isPending, setIsPending] = (0, import_react7.useState)(false);
   const [submitted, setSubmitted] = (0, import_react7.useState)(false);
   const [error, setError] = (0, import_react7.useState)(false);
@@ -1317,21 +1254,13 @@ function LandingApplicationForm({
       setIsPending(false);
     }
   }
-  if (submitted) {
-    return /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("section", { className: "mx-auto max-w-xl px-4 py-16", "aria-label": "Application submitted", children: /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "rounded-2xl border border-green-200 bg-green-50 p-8 text-center dark:border-green-900/40 dark:bg-green-900/10", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "mb-4 text-4xl", "aria-hidden": "true", children: "\u2713" }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("h2", { className: "mb-2 text-2xl font-bold text-zinc-900 dark:text-white", children: "Application Received" }),
-      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { className: "text-base text-zinc-600 dark:text-zinc-400", children: c.post_submit_message || "Thank you for applying. We'll review your application and get back to you soon." })
-    ] }) });
-  }
-  return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("section", { className: "mx-auto max-w-xl px-4 py-16", "aria-label": c.headline || "Apply now", children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("section", { className: "mx-auto max-w-xl px-4 py-16", "aria-label": c.headline || "Sign up", children: [
     c.headline && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("h2", { className: "mb-4 text-center text-3xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
-    c.introduction && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { className: "mb-6 text-center text-base text-zinc-600 dark:text-zinc-400", children: c.introduction }),
-    (c.programme_summary || c.pricing_display) && /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "mb-6 rounded-xl border border-zinc-200 bg-zinc-50 p-4 dark:border-surface-border dark:bg-surface-raised", children: [
-      c.programme_summary && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { className: "text-sm text-zinc-700 dark:text-zinc-300", children: c.programme_summary }),
-      c.pricing_display && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { className: "mt-2 text-lg font-bold text-zinc-900 dark:text-white", children: c.pricing_display })
-    ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("form", { onSubmit: handleSubmit, className: "rounded-2xl border border-zinc-200 bg-white p-6 dark:border-surface-border dark:bg-surface-raised", children: [
+    c.body_text && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { className: "mb-8 text-center text-base text-zinc-600 dark:text-zinc-400", children: c.body_text }),
+    submitted ? /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { className: "rounded-2xl border border-green-200 bg-green-50 p-8 text-center dark:border-green-900/40 dark:bg-green-900/10", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { className: "text-lg font-semibold text-zinc-900 dark:text-white", children: "Thank you!" }),
+      /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { className: "mt-2 text-sm text-zinc-600 dark:text-zinc-400", children: "We'll be in touch soon." })
+    ] }) : /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("form", { onSubmit: handleSubmit, className: "rounded-2xl border border-zinc-200 bg-white p-6 dark:border-surface-border dark:bg-surface-raised", children: [
       /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("div", { className: "space-y-4", children: fields.map((field) => /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)("div", { children: [
         /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("label", { htmlFor: field.field_name, className: "mb-1 block text-sm font-medium text-zinc-700 dark:text-zinc-300", children: field.field_label }),
         field.help_text && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { className: "mb-1 text-xs text-zinc-400", children: field.help_text }),
@@ -1342,7 +1271,7 @@ function LandingApplicationForm({
             name: field.field_name,
             placeholder: field.placeholder,
             required: field.required,
-            rows: 4,
+            rows: 3,
             className: "w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 focus:border-brand-500 focus:outline-none dark:border-surface-border dark:bg-surface-base dark:text-white dark:placeholder-zinc-500"
           }
         ) : field.field_type === "select" ? /* @__PURE__ */ (0, import_jsx_runtime25.jsxs)(
@@ -1378,24 +1307,128 @@ function LandingApplicationForm({
           children: isPending ? "Submitting..." : submitLabel
         }
       ),
-      error && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { className: "mt-2 text-center text-sm text-red-500", children: "Something went wrong. Please try again." })
+      error && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { className: "mt-2 text-center text-sm text-red-500", children: "Something went wrong. Please try again." }),
+      c.privacy_text && /* @__PURE__ */ (0, import_jsx_runtime25.jsx)("p", { className: "mt-3 text-center text-xs text-zinc-400", children: c.privacy_text })
+    ] })
+  ] });
+}
+
+// src/renderers/landing-application-form.tsx
+var import_react8 = require("react");
+var import_jsx_runtime26 = require("react/jsx-runtime");
+function LandingApplicationForm({
+  config,
+  networkId,
+  sectionId,
+  onSubmitForm
+}) {
+  const c = config;
+  const fields = c.form_fields ?? [
+    { field_name: "name", field_type: "text", field_label: "Full Name", required: true },
+    { field_name: "email", field_type: "email", field_label: "Email", required: true }
+  ];
+  const submitLabel = c.submit_button_label || "Apply for the next cohort";
+  const [isPending, setIsPending] = (0, import_react8.useState)(false);
+  const [submitted, setSubmitted] = (0, import_react8.useState)(false);
+  const [error, setError] = (0, import_react8.useState)(false);
+  async function handleSubmit(e) {
+    e.preventDefault();
+    if (!onSubmitForm) return;
+    setIsPending(true);
+    setError(false);
+    const formData = new FormData(e.currentTarget);
+    const data = {};
+    for (const [key, val] of formData.entries()) {
+      data[key] = val;
+    }
+    try {
+      await onSubmitForm({ networkId, sectionId, fields: data });
+      setSubmitted(true);
+    } catch {
+      setError(true);
+    } finally {
+      setIsPending(false);
+    }
+  }
+  if (submitted) {
+    return /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("section", { className: "mx-auto max-w-xl px-4 py-16", "aria-label": "Application submitted", children: /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "rounded-2xl border border-green-200 bg-green-50 p-8 text-center dark:border-green-900/40 dark:bg-green-900/10", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "mb-4 text-4xl", "aria-hidden": "true", children: "\u2713" }),
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("h2", { className: "mb-2 text-2xl font-bold text-zinc-900 dark:text-white", children: "Application Received" }),
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { className: "text-base text-zinc-600 dark:text-zinc-400", children: c.post_submit_message || "Thank you for applying. We'll review your application and get back to you soon." })
+    ] }) });
+  }
+  return /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("section", { className: "mx-auto max-w-xl px-4 py-16", "aria-label": c.headline || "Apply now", children: [
+    c.headline && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("h2", { className: "mb-4 text-center text-3xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
+    c.introduction && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { className: "mb-6 text-center text-base text-zinc-600 dark:text-zinc-400", children: c.introduction }),
+    (c.programme_summary || c.pricing_display) && /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "mb-6 rounded-xl border border-zinc-200 bg-zinc-50 p-4 dark:border-surface-border dark:bg-surface-raised", children: [
+      c.programme_summary && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { className: "text-sm text-zinc-700 dark:text-zinc-300", children: c.programme_summary }),
+      c.pricing_display && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { className: "mt-2 text-lg font-bold text-zinc-900 dark:text-white", children: c.pricing_display })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("form", { onSubmit: handleSubmit, className: "rounded-2xl border border-zinc-200 bg-white p-6 dark:border-surface-border dark:bg-surface-raised", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("div", { className: "space-y-4", children: fields.map((field) => /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("label", { htmlFor: field.field_name, className: "mb-1 block text-sm font-medium text-zinc-700 dark:text-zinc-300", children: field.field_label }),
+        field.help_text && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { className: "mb-1 text-xs text-zinc-400", children: field.help_text }),
+        field.field_type === "textarea" ? /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(
+          "textarea",
+          {
+            id: field.field_name,
+            name: field.field_name,
+            placeholder: field.placeholder,
+            required: field.required,
+            rows: 4,
+            className: "w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 focus:border-brand-500 focus:outline-none dark:border-surface-border dark:bg-surface-base dark:text-white dark:placeholder-zinc-500"
+          }
+        ) : field.field_type === "select" ? /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)(
+          "select",
+          {
+            id: field.field_name,
+            name: field.field_name,
+            required: field.required,
+            className: "w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 focus:border-brand-500 focus:outline-none dark:border-surface-border dark:bg-surface-base dark:text-white",
+            children: [
+              /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("option", { value: "", children: field.placeholder || "Select..." }),
+              field.options?.map((opt) => /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("option", { value: opt, children: opt }, opt))
+            ]
+          }
+        ) : /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(
+          "input",
+          {
+            id: field.field_name,
+            name: field.field_name,
+            type: field.field_type || "text",
+            placeholder: field.placeholder,
+            required: field.required,
+            className: "w-full rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-900 placeholder-zinc-400 focus:border-brand-500 focus:outline-none dark:border-surface-border dark:bg-surface-base dark:text-white dark:placeholder-zinc-500"
+          }
+        )
+      ] }, field.field_name)) }),
+      /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(
+        "button",
+        {
+          type: "submit",
+          disabled: isPending,
+          className: "mt-4 w-full rounded-xl bg-brand-600 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand-500 disabled:opacity-60",
+          children: isPending ? "Submitting..." : submitLabel
+        }
+      ),
+      error && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { className: "mt-2 text-center text-sm text-red-500", children: "Something went wrong. Please try again." })
     ] })
   ] });
 }
 
 // src/renderers/landing-inline-cta.tsx
-var import_jsx_runtime26 = require("react/jsx-runtime");
+var import_jsx_runtime27 = require("react/jsx-runtime");
 function LandingInlineCta({ config }) {
   const c = config;
   const alignment = c.alignment || "centered";
   if (!c.headline && !c.cta_button) return null;
-  return /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("section", { className: "px-4 py-12", "aria-label": "Call to action", children: /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: `mx-auto flex max-w-4xl flex-col items-center gap-6 ${alignment === "centered" ? "text-center" : "text-left"} sm:flex-row sm:text-left`, children: [
-    /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "flex-1", children: [
-      c.headline && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("h2", { className: "text-2xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
-      c.body_text && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)("p", { className: "mt-2 text-base text-zinc-600 dark:text-zinc-400", children: c.body_text })
+  return /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("section", { className: "px-4 py-12", "aria-label": "Call to action", children: /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)("div", { className: `mx-auto flex max-w-4xl flex-col items-center gap-6 ${alignment === "centered" ? "text-center" : "text-left"} sm:flex-row sm:text-left`, children: [
+    /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)("div", { className: "flex-1", children: [
+      c.headline && /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("h2", { className: "text-2xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
+      c.body_text && /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("p", { className: "mt-2 text-base text-zinc-600 dark:text-zinc-400", children: c.body_text })
     ] }),
-    /* @__PURE__ */ (0, import_jsx_runtime26.jsxs)("div", { className: "flex shrink-0 items-center gap-3", children: [
-      c.cta_button && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(
+    /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)("div", { className: "flex shrink-0 items-center gap-3", children: [
+      c.cta_button && /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(
         "a",
         {
           href: c.cta_button.url,
@@ -1404,7 +1437,7 @@ function LandingInlineCta({ config }) {
           children: c.cta_button.label
         }
       ),
-      c.secondary_cta && /* @__PURE__ */ (0, import_jsx_runtime26.jsx)(
+      c.secondary_cta && /* @__PURE__ */ (0, import_jsx_runtime27.jsx)(
         "a",
         {
           href: c.secondary_cta.url,
@@ -1418,50 +1451,50 @@ function LandingInlineCta({ config }) {
 }
 
 // src/renderers/landing-confirmation-message.tsx
-var import_jsx_runtime27 = require("react/jsx-runtime");
+var import_jsx_runtime28 = require("react/jsx-runtime");
 function LandingConfirmationMessage({ config }) {
   const c = config;
   const steps = c.what_happens_next ?? [];
-  return /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)("section", { className: "mx-auto max-w-3xl px-4 py-16 text-center", "aria-label": c.headline || "Confirmation", children: [
-    c.icon ? /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("div", { className: "mb-6", children: /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("img", { src: c.icon.url, alt: c.icon.alt_text || "", className: "mx-auto h-16 w-auto" }) }) : /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("div", { className: "mb-6 text-4xl", "aria-hidden": "true", children: "\u2713" }),
-    c.headline && /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("h2", { className: "mb-4 text-3xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
-    c.body_text && /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("p", { className: "mb-8 text-lg text-zinc-600 dark:text-zinc-400", children: c.body_text }),
-    steps.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)("div", { className: "mx-auto max-w-md text-left", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("h3", { className: "mb-4 text-sm font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400", children: "What happens next" }),
-      /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("ol", { className: "space-y-4", children: steps.map((step) => /* @__PURE__ */ (0, import_jsx_runtime27.jsxs)("li", { className: "flex items-start gap-3", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("span", { className: "flex size-7 shrink-0 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-700 dark:bg-brand-900/30 dark:text-brand-400", children: step.step_number }),
-        /* @__PURE__ */ (0, import_jsx_runtime27.jsx)("span", { className: "text-base text-zinc-700 dark:text-zinc-300", children: step.step_description })
+  return /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("section", { className: "mx-auto max-w-3xl px-4 py-16 text-center", "aria-label": c.headline || "Confirmation", children: [
+    c.icon ? /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "mb-6", children: /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("img", { src: c.icon.url, alt: c.icon.alt_text || "", className: "mx-auto h-16 w-auto" }) }) : /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("div", { className: "mb-6 text-4xl", "aria-hidden": "true", children: "\u2713" }),
+    c.headline && /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("h2", { className: "mb-4 text-3xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
+    c.body_text && /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("p", { className: "mb-8 text-lg text-zinc-600 dark:text-zinc-400", children: c.body_text }),
+    steps.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "mx-auto max-w-md text-left", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("h3", { className: "mb-4 text-sm font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400", children: "What happens next" }),
+      /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("ol", { className: "space-y-4", children: steps.map((step) => /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("li", { className: "flex items-start gap-3", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "flex size-7 shrink-0 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-700 dark:bg-brand-900/30 dark:text-brand-400", children: step.step_number }),
+        /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("span", { className: "text-base text-zinc-700 dark:text-zinc-300", children: step.step_description })
       ] }, step.step_number)) })
     ] })
   ] });
 }
 
 // src/renderers/landing-diagnostic-framing.tsx
-var import_jsx_runtime28 = require("react/jsx-runtime");
+var import_jsx_runtime29 = require("react/jsx-runtime");
 function LandingDiagnosticFraming({ config }) {
   const c = config;
   if (!c.actionTaken && !c.whatItSays && !c.whatComesNext) return null;
-  return /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("section", { className: "mx-auto max-w-5xl px-4 py-16", "aria-label": c.headline || "Diagnostic", children: [
-    c.headline && /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("h2", { className: "mb-10 text-center text-3xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
-    /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("div", { className: "grid gap-6 md:grid-cols-3", children: [
-      c.actionTaken && /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("article", { className: "rounded-2xl border border-zinc-200 p-6 dark:border-surface-border dark:bg-surface-raised", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("p", { className: "mb-2 text-xs font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-400", children: "Action taken" }),
-        /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("p", { className: "text-base text-zinc-700 dark:text-zinc-300", children: c.actionTaken })
+  return /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("section", { className: "mx-auto max-w-5xl px-4 py-16", "aria-label": c.headline || "Diagnostic", children: [
+    c.headline && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("h2", { className: "mb-10 text-center text-3xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
+    /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "grid gap-6 md:grid-cols-3", children: [
+      c.actionTaken && /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("article", { className: "rounded-2xl border border-zinc-200 p-6 dark:border-surface-border dark:bg-surface-raised", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { className: "mb-2 text-xs font-semibold uppercase tracking-wider text-brand-600 dark:text-brand-400", children: "Action taken" }),
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { className: "text-base text-zinc-700 dark:text-zinc-300", children: c.actionTaken })
       ] }),
-      c.whatItSays && /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("article", { className: "rounded-2xl border border-zinc-200 p-6 dark:border-surface-border dark:bg-surface-raised", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("p", { className: "mb-2 text-xs font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400", children: "What it says" }),
-        /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("p", { className: "text-base text-zinc-700 dark:text-zinc-300", children: c.whatItSays })
+      c.whatItSays && /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("article", { className: "rounded-2xl border border-zinc-200 p-6 dark:border-surface-border dark:bg-surface-raised", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { className: "mb-2 text-xs font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400", children: "What it says" }),
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { className: "text-base text-zinc-700 dark:text-zinc-300", children: c.whatItSays })
       ] }),
-      c.whatComesNext && /* @__PURE__ */ (0, import_jsx_runtime28.jsxs)("article", { className: "rounded-2xl border border-zinc-200 p-6 dark:border-surface-border dark:bg-surface-raised", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("p", { className: "mb-2 text-xs font-semibold uppercase tracking-wider text-green-600 dark:text-green-400", children: "What comes next" }),
-        /* @__PURE__ */ (0, import_jsx_runtime28.jsx)("p", { className: "text-base text-zinc-700 dark:text-zinc-300", children: c.whatComesNext })
+      c.whatComesNext && /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("article", { className: "rounded-2xl border border-zinc-200 p-6 dark:border-surface-border dark:bg-surface-raised", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { className: "mb-2 text-xs font-semibold uppercase tracking-wider text-green-600 dark:text-green-400", children: "What comes next" }),
+        /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { className: "text-base text-zinc-700 dark:text-zinc-300", children: c.whatComesNext })
       ] })
     ] })
   ] });
 }
 
 // src/renderers/landing-quick-win.tsx
-var import_jsx_runtime29 = require("react/jsx-runtime");
+var import_jsx_runtime30 = require("react/jsx-runtime");
 var TYPE_ICONS = {
   pdf: "\u{1F4C4}",
   video: "\u{1F3AC}",
@@ -1470,27 +1503,27 @@ var TYPE_ICONS = {
 };
 function LandingQuickWin({ config }) {
   const c = config;
-  return /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("section", { className: "mx-auto max-w-3xl px-4 py-16", "aria-label": c.headline || "Quick win", children: [
-    c.headline && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("h2", { className: "mb-4 text-3xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
-    c.body_text && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { className: "mb-8 text-base leading-relaxed text-zinc-600 dark:text-zinc-400", children: c.body_text }),
-    c.resource && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("section", { className: "mx-auto max-w-3xl px-4 py-16", "aria-label": c.headline || "Quick win", children: [
+    c.headline && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("h2", { className: "mb-4 text-3xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
+    c.body_text && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("p", { className: "mb-8 text-base leading-relaxed text-zinc-600 dark:text-zinc-400", children: c.body_text }),
+    c.resource && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(
       "a",
       {
         href: c.resource.resource_url,
         className: "mb-8 block rounded-2xl border border-zinc-200 p-6 transition-colors hover:border-brand-300 hover:bg-zinc-50 dark:border-surface-border dark:hover:border-brand-600/30 dark:hover:bg-surface-hover",
         target: "_blank",
         rel: "noopener noreferrer",
-        children: /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { className: "flex items-start gap-4", children: [
-          /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("span", { className: "text-2xl", "aria-hidden": "true", children: TYPE_ICONS[c.resource.resource_type || "article"] || "\u{1F4DD}" }),
-          /* @__PURE__ */ (0, import_jsx_runtime29.jsxs)("div", { children: [
-            /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("h3", { className: "font-semibold text-zinc-900 dark:text-white", children: c.resource.resource_title }),
-            c.resource.resource_description && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("p", { className: "mt-1 text-sm text-zinc-600 dark:text-zinc-400", children: c.resource.resource_description }),
-            c.resource.resource_type && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)("span", { className: "mt-2 inline-block rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-500 dark:bg-surface-hover dark:text-zinc-400", children: c.resource.resource_type.toUpperCase() })
+        children: /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { className: "flex items-start gap-4", children: [
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("span", { className: "text-2xl", "aria-hidden": "true", children: TYPE_ICONS[c.resource.resource_type || "article"] || "\u{1F4DD}" }),
+          /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("div", { children: [
+            /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("h3", { className: "font-semibold text-zinc-900 dark:text-white", children: c.resource.resource_title }),
+            c.resource.resource_description && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("p", { className: "mt-1 text-sm text-zinc-600 dark:text-zinc-400", children: c.resource.resource_description }),
+            c.resource.resource_type && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("span", { className: "mt-2 inline-block rounded-full bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-500 dark:bg-surface-hover dark:text-zinc-400", children: c.resource.resource_type.toUpperCase() })
           ] })
         ] })
       }
     ),
-    c.cta_button && /* @__PURE__ */ (0, import_jsx_runtime29.jsx)(
+    c.cta_button && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(
       "a",
       {
         href: c.cta_button.url,
@@ -1503,8 +1536,8 @@ function LandingQuickWin({ config }) {
 }
 
 // src/renderers/landing-social-share.tsx
-var import_react8 = require("react");
-var import_jsx_runtime30 = require("react/jsx-runtime");
+var import_react9 = require("react");
+var import_jsx_runtime31 = require("react/jsx-runtime");
 var PLATFORM_LABELS = {
   twitter: "Twitter / X",
   linkedin: "LinkedIn",
@@ -1530,7 +1563,7 @@ function LandingSocialShare({ config }) {
   const platforms = c.platforms ?? ["twitter", "linkedin", "copy-link"];
   const shareUrl = c.share_url || (typeof window !== "undefined" ? window.location.href : "");
   const shareText = c.share_text || "";
-  const [copied, setCopied] = (0, import_react8.useState)(false);
+  const [copied, setCopied] = (0, import_react9.useState)(false);
   function handleCopyLink() {
     navigator.clipboard.writeText(shareUrl).then(() => {
       setCopied(true);
@@ -1538,11 +1571,11 @@ function LandingSocialShare({ config }) {
     }).catch(() => {
     });
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime30.jsxs)("section", { className: "mx-auto max-w-3xl px-4 py-12 text-center", "aria-label": c.headline || "Share", children: [
-    c.headline && /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("h2", { className: "mb-6 text-2xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
-    /* @__PURE__ */ (0, import_jsx_runtime30.jsx)("div", { className: "flex flex-wrap items-center justify-center gap-3", children: platforms.map((platform) => {
+  return /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("section", { className: "mx-auto max-w-3xl px-4 py-12 text-center", "aria-label": c.headline || "Share", children: [
+    c.headline && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("h2", { className: "mb-6 text-2xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
+    /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("div", { className: "flex flex-wrap items-center justify-center gap-3", children: platforms.map((platform) => {
       if (platform === "copy-link") {
-        return /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(
+        return /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(
           "button",
           {
             onClick: handleCopyLink,
@@ -1554,7 +1587,7 @@ function LandingSocialShare({ config }) {
       }
       const href = getShareHref(platform, shareUrl, shareText);
       if (!href) return null;
-      return /* @__PURE__ */ (0, import_jsx_runtime30.jsx)(
+      return /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(
         "a",
         {
           href,
@@ -1570,24 +1603,24 @@ function LandingSocialShare({ config }) {
 }
 
 // src/renderers/landing-post-purchase-welcome.tsx
-var import_jsx_runtime31 = require("react/jsx-runtime");
+var import_jsx_runtime32 = require("react/jsx-runtime");
 function LandingPostPurchaseWelcome({ config }) {
   const c = config;
   const steps = c.next_steps ?? [];
-  return /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("section", { className: "mx-auto max-w-3xl px-4 py-16", "aria-label": c.headline || "Welcome", children: [
-    c.headline && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("h2", { className: "mb-4 text-3xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
-    c.welcome_text && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("p", { className: "mb-8 text-lg leading-relaxed text-zinc-600 dark:text-zinc-400", children: c.welcome_text }),
-    steps.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { className: "mb-8 rounded-2xl border border-zinc-200 p-6 dark:border-surface-border dark:bg-surface-raised", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("h3", { className: "mb-4 text-lg font-semibold text-zinc-900 dark:text-white", children: "Your next steps" }),
-      /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("ol", { className: "space-y-4", children: steps.map((step) => /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("li", { className: "flex items-start gap-3", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("span", { className: "flex size-7 shrink-0 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-700 dark:bg-brand-900/30 dark:text-brand-400", children: step.step_number }),
-        /* @__PURE__ */ (0, import_jsx_runtime31.jsxs)("div", { children: [
-          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("p", { className: "font-medium text-zinc-900 dark:text-white", children: step.step_title }),
-          /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("p", { className: "text-base text-zinc-700 dark:text-zinc-300", children: step.step_description })
+  return /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("section", { className: "mx-auto max-w-3xl px-4 py-16", "aria-label": c.headline || "Welcome", children: [
+    c.headline && /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("h2", { className: "mb-4 text-3xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
+    c.welcome_text && /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("p", { className: "mb-8 text-lg leading-relaxed text-zinc-600 dark:text-zinc-400", children: c.welcome_text }),
+    steps.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("div", { className: "mb-8 rounded-2xl border border-zinc-200 p-6 dark:border-surface-border dark:bg-surface-raised", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("h3", { className: "mb-4 text-lg font-semibold text-zinc-900 dark:text-white", children: "Your next steps" }),
+      /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("ol", { className: "space-y-4", children: steps.map((step) => /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("li", { className: "flex items-start gap-3", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("span", { className: "flex size-7 shrink-0 items-center justify-center rounded-full bg-brand-100 text-sm font-bold text-brand-700 dark:bg-brand-900/30 dark:text-brand-400", children: step.step_number }),
+        /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("div", { children: [
+          /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("p", { className: "font-medium text-zinc-900 dark:text-white", children: step.step_title }),
+          /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("p", { className: "text-base text-zinc-700 dark:text-zinc-300", children: step.step_description })
         ] })
       ] }, step.step_number)) })
     ] }),
-    c.community_link && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(
+    c.community_link && /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(
       "a",
       {
         href: c.community_link,
@@ -1595,8 +1628,8 @@ function LandingPostPurchaseWelcome({ config }) {
         children: "Join the Community"
       }
     ),
-    c.personal_note && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("blockquote", { className: "mb-8 border-l-4 border-brand-500 pl-4 text-base italic text-zinc-600 dark:text-zinc-400", children: c.personal_note }),
-    c.cta_button && /* @__PURE__ */ (0, import_jsx_runtime31.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime31.jsx)(
+    c.personal_note && /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("blockquote", { className: "mb-8 border-l-4 border-brand-500 pl-4 text-base italic text-zinc-600 dark:text-zinc-400", children: c.personal_note }),
+    c.cta_button && /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(
       "a",
       {
         href: c.cta_button.url,
@@ -1609,7 +1642,7 @@ function LandingPostPurchaseWelcome({ config }) {
 }
 
 // src/renderers/landing-rich-text.tsx
-var import_jsx_runtime32 = require("react/jsx-runtime");
+var import_jsx_runtime33 = require("react/jsx-runtime");
 function renderMarkdown(text) {
   return text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>").replace(/\*(.*?)\*/g, "<em>$1</em>").replace(
     /\[(.*?)\]\((.*?)\)/g,
@@ -1637,9 +1670,9 @@ function LandingRichText({ config }) {
   const isDark = c.background_style === "dark";
   const maxW = c.max_width === "narrow" ? "max-w-2xl" : c.max_width === "full" ? "max-w-5xl" : "max-w-3xl";
   const align = c.text_alignment === "centered" ? "text-center" : "text-left";
-  return /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("section", { className: `px-4 py-16 ${bgClasses(c.background_style)}`, "aria-label": "Content", children: [
-    c.section_label && /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("p", { className: `mx-auto mb-4 ${maxW} text-sm font-semibold uppercase tracking-wider ${isDark ? "text-zinc-400" : "text-brand-600 dark:text-brand-400"}`, children: c.section_label }),
-    /* @__PURE__ */ (0, import_jsx_runtime32.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("section", { className: `px-4 py-16 ${bgClasses(c.background_style)}`, "aria-label": "Content", children: [
+    c.section_label && /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("p", { className: `mx-auto mb-4 ${maxW} text-sm font-semibold uppercase tracking-wider ${isDark ? "text-zinc-400" : "text-brand-600 dark:text-brand-400"}`, children: c.section_label }),
+    /* @__PURE__ */ (0, import_jsx_runtime33.jsx)(
       "div",
       {
         className: `prose mx-auto ${maxW} ${align} ${isDark ? "prose-invert text-zinc-300" : "text-zinc-700 dark:text-zinc-300"}`,
@@ -1650,45 +1683,45 @@ function LandingRichText({ config }) {
 }
 
 // src/renderers/landing-pullquote.tsx
-var import_jsx_runtime33 = require("react/jsx-runtime");
+var import_jsx_runtime34 = require("react/jsx-runtime");
 function LandingPullquote({ config }) {
   const c = config;
   const text = c.quote_text;
   if (!text) return null;
   const style = c.style || "large-text";
   if (style === "dark-card") {
-    return /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("section", { className: "px-4 py-16", "aria-label": "Quote", children: /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("figure", { className: "mx-auto max-w-4xl rounded-2xl bg-zinc-900 p-8 dark:bg-surface-raised", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("blockquote", { className: "text-xl font-medium leading-relaxed text-white sm:text-2xl", children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("section", { className: "px-4 py-16", "aria-label": "Quote", children: /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("figure", { className: "mx-auto max-w-4xl rounded-2xl bg-zinc-900 p-8 dark:bg-surface-raised", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("blockquote", { className: "text-xl font-medium leading-relaxed text-white sm:text-2xl", children: [
         "\u201C",
         text,
         "\u201D"
       ] }),
-      c.attribution && /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("figcaption", { className: "mt-4 text-sm text-zinc-400", children: [
+      c.attribution && /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("figcaption", { className: "mt-4 text-sm text-zinc-400", children: [
         "\u2014 ",
         c.attribution
       ] })
     ] }) });
   }
   if (style === "bordered-left") {
-    return /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("section", { className: "px-4 py-16", "aria-label": "Quote", children: /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("figure", { className: "mx-auto max-w-4xl border-l-4 border-brand-500 pl-6", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("blockquote", { className: "text-xl font-medium text-zinc-900 dark:text-white", children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("section", { className: "px-4 py-16", "aria-label": "Quote", children: /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("figure", { className: "mx-auto max-w-4xl border-l-4 border-brand-500 pl-6", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("blockquote", { className: "text-xl font-medium text-zinc-900 dark:text-white", children: [
         "\u201C",
         text,
         "\u201D"
       ] }),
-      c.attribution && /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("figcaption", { className: "mt-4 text-sm text-zinc-500 dark:text-zinc-400", children: [
+      c.attribution && /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("figcaption", { className: "mt-4 text-sm text-zinc-500 dark:text-zinc-400", children: [
         "\u2014 ",
         c.attribution
       ] })
     ] }) });
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("section", { className: "px-4 py-16", "aria-label": "Quote", children: /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("figure", { className: "mx-auto max-w-4xl text-center", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("blockquote", { className: "text-2xl font-medium leading-relaxed text-zinc-900 sm:text-3xl dark:text-white", children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("section", { className: "px-4 py-16", "aria-label": "Quote", children: /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("figure", { className: "mx-auto max-w-4xl text-center", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("blockquote", { className: "text-2xl font-medium leading-relaxed text-zinc-900 sm:text-3xl dark:text-white", children: [
       "\u201C",
       text,
       "\u201D"
     ] }),
-    c.attribution && /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("figcaption", { className: "mt-6 text-sm text-zinc-500 dark:text-zinc-400", children: [
+    c.attribution && /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("figcaption", { className: "mt-6 text-sm text-zinc-500 dark:text-zinc-400", children: [
       "\u2014 ",
       c.attribution
     ] })
@@ -1696,41 +1729,41 @@ function LandingPullquote({ config }) {
 }
 
 // src/renderers/landing-data-statistic.tsx
-var import_jsx_runtime34 = require("react/jsx-runtime");
+var import_jsx_runtime35 = require("react/jsx-runtime");
 function LandingDataStatistic({ config }) {
   const c = config;
   if (!c.metric) return null;
   const style = c.style || "large";
   if (style === "dark-card") {
-    return /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("section", { className: "px-4 py-16", "aria-label": "Statistic", children: /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("div", { className: "mx-auto max-w-2xl rounded-2xl bg-zinc-900 p-10 text-center dark:bg-surface-raised", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("p", { className: "text-5xl font-bold text-white", children: c.metric }),
-      c.metric_label && /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("p", { className: "mt-3 text-lg leading-relaxed text-zinc-300", children: c.metric_label }),
-      c.context_text && /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("p", { className: "mt-4 text-base text-zinc-400 italic", children: c.context_text }),
-      c.source && /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("p", { className: "mt-3 text-xs text-zinc-500", children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("section", { className: "px-4 py-16", "aria-label": "Statistic", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("div", { className: "mx-auto max-w-2xl rounded-2xl bg-zinc-900 p-10 text-center dark:bg-surface-raised", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("p", { className: "text-5xl font-bold text-white", children: c.metric }),
+      c.metric_label && /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("p", { className: "mt-3 text-lg leading-relaxed text-zinc-300", children: c.metric_label }),
+      c.context_text && /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("p", { className: "mt-4 text-base text-zinc-400 italic", children: c.context_text }),
+      c.source && /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("p", { className: "mt-3 text-xs text-zinc-500", children: [
         "Source: ",
         c.source
       ] })
     ] }) });
   }
   if (style === "inline") {
-    return /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("section", { className: "mx-auto max-w-4xl px-4 py-10", "aria-label": "Statistic", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("div", { className: "flex flex-wrap items-baseline gap-3", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { className: "text-3xl font-bold text-brand-600 dark:text-brand-400", children: c.metric }),
-        c.metric_label && /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("span", { className: "text-base text-zinc-600 dark:text-zinc-400", children: c.metric_label }),
-        c.source && /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("span", { className: "text-xs text-zinc-400", children: [
+    return /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("section", { className: "mx-auto max-w-4xl px-4 py-10", "aria-label": "Statistic", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("div", { className: "flex flex-wrap items-baseline gap-3", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { className: "text-3xl font-bold text-brand-600 dark:text-brand-400", children: c.metric }),
+        c.metric_label && /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("span", { className: "text-base text-zinc-600 dark:text-zinc-400", children: c.metric_label }),
+        c.source && /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("span", { className: "text-xs text-zinc-400", children: [
           "(",
           c.source,
           ")"
         ] })
       ] }),
-      c.context_text && /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("p", { className: "mt-2 text-sm text-zinc-500 dark:text-zinc-400", children: c.context_text })
+      c.context_text && /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("p", { className: "mt-2 text-sm text-zinc-500 dark:text-zinc-400", children: c.context_text })
     ] });
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("section", { className: "px-4 py-16 text-center", "aria-label": "Statistic", children: /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("div", { className: "mx-auto max-w-4xl", children: [
-    /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("p", { className: "text-5xl font-bold text-brand-600 sm:text-6xl dark:text-brand-400", children: c.metric }),
-    c.metric_label && /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("p", { className: "mt-3 text-xl text-zinc-700 dark:text-zinc-300", children: c.metric_label }),
-    c.context_text && /* @__PURE__ */ (0, import_jsx_runtime34.jsx)("p", { className: "mt-3 text-base text-zinc-500 dark:text-zinc-400", children: c.context_text }),
-    c.source && /* @__PURE__ */ (0, import_jsx_runtime34.jsxs)("p", { className: "mt-2 text-xs text-zinc-400", children: [
+  return /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("section", { className: "px-4 py-16 text-center", "aria-label": "Statistic", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("div", { className: "mx-auto max-w-4xl", children: [
+    /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("p", { className: "text-5xl font-bold text-brand-600 sm:text-6xl dark:text-brand-400", children: c.metric }),
+    c.metric_label && /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("p", { className: "mt-3 text-xl text-zinc-700 dark:text-zinc-300", children: c.metric_label }),
+    c.context_text && /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("p", { className: "mt-3 text-base text-zinc-500 dark:text-zinc-400", children: c.context_text }),
+    c.source && /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("p", { className: "mt-2 text-xs text-zinc-400", children: [
       "Source: ",
       c.source
     ] })
@@ -1738,14 +1771,14 @@ function LandingDataStatistic({ config }) {
 }
 
 // src/renderers/landing-image-block.tsx
-var import_jsx_runtime35 = require("react/jsx-runtime");
+var import_jsx_runtime36 = require("react/jsx-runtime");
 function LandingImageBlock({ config }) {
   const c = config;
   if (!c.imageUrl) return null;
   const layout = c.layout || "contained";
   const containerClass = layout === "full-width" ? "px-0" : layout === "small-centered" ? "mx-auto max-w-xl px-4" : "mx-auto max-w-5xl px-4";
-  return /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("section", { className: `py-12 ${containerClass}`, "aria-label": c.alt || "Image", children: /* @__PURE__ */ (0, import_jsx_runtime35.jsxs)("figure", { children: [
-    /* @__PURE__ */ (0, import_jsx_runtime35.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("section", { className: `py-12 ${containerClass}`, "aria-label": c.alt || "Image", children: /* @__PURE__ */ (0, import_jsx_runtime36.jsxs)("figure", { children: [
+    /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(
       "img",
       {
         src: c.imageUrl,
@@ -1753,12 +1786,12 @@ function LandingImageBlock({ config }) {
         className: `w-full object-cover ${layout === "full-width" ? "max-h-[60vh]" : "rounded-2xl shadow-md"}`
       }
     ),
-    c.caption && /* @__PURE__ */ (0, import_jsx_runtime35.jsx)("figcaption", { className: "mx-auto mt-3 max-w-3xl px-4 text-center text-sm text-zinc-500 dark:text-zinc-400", children: c.caption })
+    c.caption && /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("figcaption", { className: "mx-auto mt-3 max-w-3xl px-4 text-center text-sm text-zinc-500 dark:text-zinc-400", children: c.caption })
   ] }) });
 }
 
 // src/renderers/landing-video-block.tsx
-var import_jsx_runtime36 = require("react/jsx-runtime");
+var import_jsx_runtime37 = require("react/jsx-runtime");
 function getEmbedUrl2(url) {
   const ytMatch = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]+)/);
   if (ytMatch) return `https://www.youtube.com/embed/${ytMatch[1]}`;
@@ -1771,12 +1804,12 @@ function LandingVideoBlock({ config }) {
   if (!c.videoUrl) return null;
   const embedUrl = getEmbedUrl2(c.videoUrl);
   const layout = c.layout || "contained";
-  return /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(
     "section",
     {
       className: `py-12 ${layout === "full-width" ? "px-0" : "mx-auto max-w-5xl px-4"}`,
       "aria-label": c.title || "Video",
-      children: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)("div", { className: `relative aspect-video overflow-hidden ${layout === "full-width" ? "" : "rounded-2xl shadow-md"}`, children: /* @__PURE__ */ (0, import_jsx_runtime36.jsx)(
+      children: /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("div", { className: `relative aspect-video overflow-hidden ${layout === "full-width" ? "" : "rounded-2xl shadow-md"}`, children: /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(
         "iframe",
         {
           src: embedUrl || void 0,
@@ -1791,18 +1824,18 @@ function LandingVideoBlock({ config }) {
 }
 
 // src/renderers/landing-comparison-table.tsx
-var import_jsx_runtime37 = require("react/jsx-runtime");
+var import_jsx_runtime38 = require("react/jsx-runtime");
 function LandingComparisonTable({ config }) {
   const c = config;
   const columns = c.columns ?? [];
   const rows = c.rows ?? [];
   if (columns.length === 0 || rows.length === 0) return null;
-  return /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("section", { className: "mx-auto max-w-5xl px-4 py-16", "aria-label": c.headline || "Comparison", children: [
-    c.headline && /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("h2", { className: "mb-10 text-center text-3xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
-    /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("div", { className: "overflow-x-auto", children: /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("table", { className: "w-full border-collapse text-left", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("tr", { children: [
-        /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("th", { className: "border-b border-zinc-200 pb-3 pr-4 text-sm font-semibold text-zinc-500 dark:border-surface-border dark:text-zinc-400", children: "\xA0" }),
-        columns.map((col, i) => /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime38.jsxs)("section", { className: "mx-auto max-w-5xl px-4 py-16", "aria-label": c.headline || "Comparison", children: [
+    c.headline && /* @__PURE__ */ (0, import_jsx_runtime38.jsx)("h2", { className: "mb-10 text-center text-3xl font-bold text-zinc-900 dark:text-white", children: c.headline }),
+    /* @__PURE__ */ (0, import_jsx_runtime38.jsx)("div", { className: "overflow-x-auto", children: /* @__PURE__ */ (0, import_jsx_runtime38.jsxs)("table", { className: "w-full border-collapse text-left", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime38.jsx)("thead", { children: /* @__PURE__ */ (0, import_jsx_runtime38.jsxs)("tr", { children: [
+        /* @__PURE__ */ (0, import_jsx_runtime38.jsx)("th", { className: "border-b border-zinc-200 pb-3 pr-4 text-sm font-semibold text-zinc-500 dark:border-surface-border dark:text-zinc-400", children: "\xA0" }),
+        columns.map((col, i) => /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(
           "th",
           {
             className: `border-b border-zinc-200 pb-3 px-4 text-sm font-semibold dark:border-surface-border ${c.highlightColumn === i ? "text-brand-600 dark:text-brand-400" : "text-zinc-700 dark:text-zinc-300"}`,
@@ -1811,9 +1844,9 @@ function LandingComparisonTable({ config }) {
           i
         ))
       ] }) }),
-      /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("tbody", { children: rows.map((row, ri) => /* @__PURE__ */ (0, import_jsx_runtime37.jsxs)("tr", { className: "border-b border-zinc-100 dark:border-surface-border", children: [
-        /* @__PURE__ */ (0, import_jsx_runtime37.jsx)("td", { className: "py-3 pr-4 text-sm font-medium text-zinc-700 dark:text-zinc-300", children: row.label }),
-        row.values.map((val, vi) => /* @__PURE__ */ (0, import_jsx_runtime37.jsx)(
+      /* @__PURE__ */ (0, import_jsx_runtime38.jsx)("tbody", { children: rows.map((row, ri) => /* @__PURE__ */ (0, import_jsx_runtime38.jsxs)("tr", { className: "border-b border-zinc-100 dark:border-surface-border", children: [
+        /* @__PURE__ */ (0, import_jsx_runtime38.jsx)("td", { className: "py-3 pr-4 text-sm font-medium text-zinc-700 dark:text-zinc-300", children: row.label }),
+        row.values.map((val, vi) => /* @__PURE__ */ (0, import_jsx_runtime38.jsx)(
           "td",
           {
             className: `px-4 py-3 text-sm ${c.highlightColumn === vi ? "font-semibold text-brand-600 dark:text-brand-400" : "text-zinc-600 dark:text-zinc-400"}`,
@@ -1827,35 +1860,35 @@ function LandingComparisonTable({ config }) {
 }
 
 // src/renderers/landing-section-divider.tsx
-var import_jsx_runtime38 = require("react/jsx-runtime");
+var import_jsx_runtime39 = require("react/jsx-runtime");
 function LandingSectionDivider({ config }) {
   const c = config;
   const style = c.style || "line";
   const spacing = c.spacing || "medium";
   const paddingClass = spacing === "small" ? "py-4" : spacing === "large" ? "py-16" : "py-8";
   if (style === "space-only") {
-    return /* @__PURE__ */ (0, import_jsx_runtime38.jsx)("div", { className: paddingClass, role: "separator", "aria-hidden": "true" });
+    return /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("div", { className: paddingClass, role: "separator", "aria-hidden": "true" });
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime38.jsxs)("div", { className: `flex items-center justify-center ${paddingClass}`, role: "separator", "aria-hidden": "true", children: [
-    style === "line" && /* @__PURE__ */ (0, import_jsx_runtime38.jsx)("div", { className: "mx-auto h-px w-full max-w-5xl bg-zinc-200 dark:bg-surface-border" }),
-    style === "dots" && /* @__PURE__ */ (0, import_jsx_runtime38.jsxs)("div", { className: "flex gap-2", children: [
-      /* @__PURE__ */ (0, import_jsx_runtime38.jsx)("span", { className: "size-1.5 rounded-full bg-zinc-300 dark:bg-zinc-600" }),
-      /* @__PURE__ */ (0, import_jsx_runtime38.jsx)("span", { className: "size-1.5 rounded-full bg-zinc-300 dark:bg-zinc-600" }),
-      /* @__PURE__ */ (0, import_jsx_runtime38.jsx)("span", { className: "size-1.5 rounded-full bg-zinc-300 dark:bg-zinc-600" })
+  return /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)("div", { className: `flex items-center justify-center ${paddingClass}`, role: "separator", "aria-hidden": "true", children: [
+    style === "line" && /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("div", { className: "mx-auto h-px w-full max-w-5xl bg-zinc-200 dark:bg-surface-border" }),
+    style === "dots" && /* @__PURE__ */ (0, import_jsx_runtime39.jsxs)("div", { className: "flex gap-2", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("span", { className: "size-1.5 rounded-full bg-zinc-300 dark:bg-zinc-600" }),
+      /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("span", { className: "size-1.5 rounded-full bg-zinc-300 dark:bg-zinc-600" }),
+      /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("span", { className: "size-1.5 rounded-full bg-zinc-300 dark:bg-zinc-600" })
     ] }),
-    style === "bird-icon" && /* @__PURE__ */ (0, import_jsx_runtime38.jsx)("span", { className: "text-2xl text-zinc-300 dark:text-zinc-600", children: "\u{1F426}" })
+    style === "bird-icon" && /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("span", { className: "text-2xl text-zinc-300 dark:text-zinc-600", children: "\u{1F426}" })
   ] });
 }
 
 // src/renderers/landing-anchor-navigation.tsx
-var import_react9 = require("react");
-var import_jsx_runtime39 = require("react/jsx-runtime");
+var import_react10 = require("react");
+var import_jsx_runtime40 = require("react/jsx-runtime");
 function LandingAnchorNavigation({ config }) {
   const c = config;
   const links = c.links ?? [];
   const style = c.style || "sticky-top";
-  const [activeId, setActiveId] = (0, import_react9.useState)("");
-  (0, import_react9.useEffect)(() => {
+  const [activeId, setActiveId] = (0, import_react10.useState)("");
+  (0, import_react10.useEffect)(() => {
     if (links.length === 0) return;
     const observer = new IntersectionObserver(
       (entries) => {
@@ -1875,7 +1908,7 @@ function LandingAnchorNavigation({ config }) {
   }, [links]);
   if (links.length === 0) return null;
   if (style === "sidebar") {
-    return /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("nav", { className: "hidden lg:fixed lg:left-4 lg:top-1/2 lg:block lg:-translate-y-1/2", "aria-label": "Page navigation", children: /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("ul", { className: "space-y-2", children: links.map((link) => /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("nav", { className: "hidden lg:fixed lg:left-4 lg:top-1/2 lg:block lg:-translate-y-1/2", "aria-label": "Page navigation", children: /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("ul", { className: "space-y-2", children: links.map((link) => /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(
       "a",
       {
         href: `#${link.sectionId}`,
@@ -1885,7 +1918,7 @@ function LandingAnchorNavigation({ config }) {
     ) }, link.sectionId)) }) });
   }
   if (style === "inline") {
-    return /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("nav", { className: "mx-auto max-w-5xl px-4 py-6", "aria-label": "Page navigation", children: /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("ul", { className: "flex flex-wrap gap-3", children: links.map((link) => /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(
+    return /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("nav", { className: "mx-auto max-w-5xl px-4 py-6", "aria-label": "Page navigation", children: /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("ul", { className: "flex flex-wrap gap-3", children: links.map((link) => /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("li", { children: /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(
       "a",
       {
         href: `#${link.sectionId}`,
@@ -1894,12 +1927,12 @@ function LandingAnchorNavigation({ config }) {
       }
     ) }, link.sectionId)) }) });
   }
-  return /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(
     "nav",
     {
       className: "sticky top-0 z-40 border-b border-zinc-200 bg-white/90 backdrop-blur-sm dark:border-surface-border dark:bg-surface-base/90",
       "aria-label": "Page navigation",
-      children: /* @__PURE__ */ (0, import_jsx_runtime39.jsx)("div", { className: "mx-auto flex max-w-5xl gap-1 overflow-x-auto px-4 py-2", children: links.map((link) => /* @__PURE__ */ (0, import_jsx_runtime39.jsx)(
+      children: /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("div", { className: "mx-auto flex max-w-5xl gap-1 overflow-x-auto px-4 py-2", children: links.map((link) => /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(
         "a",
         {
           href: `#${link.sectionId}`,
@@ -1913,29 +1946,29 @@ function LandingAnchorNavigation({ config }) {
 }
 
 // src/renderers/landing-page-header.tsx
-var import_jsx_runtime40 = require("react/jsx-runtime");
+var import_jsx_runtime41 = require("react/jsx-runtime");
 function LandingPageHeader({ config }) {
   const c = config;
   const breadcrumbs = c.breadcrumbs ?? [];
   if (!c.title && breadcrumbs.length === 0) return null;
-  return /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("header", { className: "border-b border-zinc-200 bg-zinc-50 px-4 py-6 dark:border-surface-border dark:bg-surface-raised/50", children: /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("div", { className: "mx-auto max-w-5xl", children: [
-    breadcrumbs.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("nav", { "aria-label": "Breadcrumb", className: "mb-2", children: /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("ol", { className: "flex flex-wrap items-center gap-1 text-sm", children: breadcrumbs.map((crumb, i) => /* @__PURE__ */ (0, import_jsx_runtime40.jsxs)("li", { className: "flex items-center gap-1", children: [
-      i > 0 && /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("span", { className: "text-zinc-300 dark:text-zinc-600", "aria-hidden": "true", children: "/" }),
-      crumb.url ? /* @__PURE__ */ (0, import_jsx_runtime40.jsx)(
+  return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("header", { className: "border-b border-zinc-200 bg-zinc-50 px-4 py-6 dark:border-surface-border dark:bg-surface-raised/50", children: /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("div", { className: "mx-auto max-w-5xl", children: [
+    breadcrumbs.length > 0 && /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("nav", { "aria-label": "Breadcrumb", className: "mb-2", children: /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("ol", { className: "flex flex-wrap items-center gap-1 text-sm", children: breadcrumbs.map((crumb, i) => /* @__PURE__ */ (0, import_jsx_runtime41.jsxs)("li", { className: "flex items-center gap-1", children: [
+      i > 0 && /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { className: "text-zinc-300 dark:text-zinc-600", "aria-hidden": "true", children: "/" }),
+      crumb.url ? /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(
         "a",
         {
           href: crumb.url,
           className: "text-zinc-500 transition-colors hover:text-zinc-700 dark:text-zinc-400 dark:hover:text-zinc-300",
           children: crumb.label
         }
-      ) : /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("span", { className: "text-zinc-700 dark:text-zinc-300", children: crumb.label })
+      ) : /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("span", { className: "text-zinc-700 dark:text-zinc-300", children: crumb.label })
     ] }, i)) }) }),
-    c.title && /* @__PURE__ */ (0, import_jsx_runtime40.jsx)("h1", { className: "text-2xl font-bold text-zinc-900 dark:text-white", children: c.title })
+    c.title && /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("h1", { className: "text-2xl font-bold text-zinc-900 dark:text-white", children: c.title })
   ] }) });
 }
 
 // src/renderers/landing-section-renderer.tsx
-var import_jsx_runtime41 = require("react/jsx-runtime");
+var import_jsx_runtime42 = require("react/jsx-runtime");
 function computeCtaUrl(ctaMode, defaultCtaUrl, networkId) {
   if (!ctaMode) return defaultCtaUrl;
   switch (ctaMode.mode) {
@@ -2008,7 +2041,7 @@ function LandingSectionRenderer({
   };
   const anchorId = sectionType.replace(/_/g, "-");
   const bg = resolvedConfig.background_style;
-  return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)("div", { id: anchorId, className: sectionBgClasses(bg), children: /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(SectionContent, { sectionType, config: resolvedConfig, formProps }) });
+  return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)("div", { id: anchorId, className: sectionBgClasses(bg), children: /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(SectionContent, { sectionType, config: resolvedConfig, formProps }) });
 }
 function SectionContent({
   sectionType,
@@ -2017,85 +2050,87 @@ function SectionContent({
 }) {
   switch (sectionType) {
     case "hero_statement":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingHeroStatement, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingHeroStatement, { config });
     case "hero_capture_form":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingHeroCaptureForm, { ...formProps });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingHeroCaptureForm, { ...formProps });
     case "hero_video":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingHeroVideo, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingHeroVideo, { config });
     case "pattern_recognition":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingPatternRecognition, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingPatternRecognition, { config });
     case "problem_statement":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingProblemStatement, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingProblemStatement, { config });
     case "sacred_cow_challenge":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingSacredCow, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingSacredCow, { config });
     case "rome_is_burning":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingRomeBurning, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingRomeBurning, { config });
     case "programme_overview":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingProgrammeOverview, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingProgrammeOverview, { config });
     case "programme_arc":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingProgrammeArc, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingProgrammeArc, { config });
     case "what_this_is_isnt":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingWhatThisIsIsnt, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingWhatThisIsIsnt, { config });
     case "what_youll_experience":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingWhatYoullExperience, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingWhatYoullExperience, { config });
     case "curriculum_breakdown":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingCurriculumBreakdown, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingCurriculumBreakdown, { config });
     case "features_grid":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingFeaturesGrid, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingFeaturesGrid, { config });
     case "testimonials":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingTestimonialsNew, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingTestimonialsNew, { config });
     case "case_study":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingCaseStudy, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingCaseStudy, { config });
     case "coach_bio":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingCoachBio, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingCoachBio, { config });
     case "social_proof_bar":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingSocialProofBar, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingSocialProofBar, { config });
+    case "huma_widget":
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingHumaWidget, { config });
     case "perfect_for_you":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingPerfectForYou, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingPerfectForYou, { config });
     case "faq":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingFaqNew, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingFaqNew, { config });
     case "objection_block":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingObjectionBlock, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingObjectionBlock, { config });
     case "investment_pricing":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingInvestmentPricing, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingInvestmentPricing, { config });
     case "guarantee":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingGuarantee, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingGuarantee, { config });
     case "urgency_closing":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingUrgencyClosing, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingUrgencyClosing, { config });
     case "capture_form":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingCaptureForm, { ...formProps });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingCaptureForm, { ...formProps });
     case "application_form":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingApplicationForm, { ...formProps });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingApplicationForm, { ...formProps });
     case "inline_cta":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingInlineCta, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingInlineCta, { config });
     case "confirmation_message":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingConfirmationMessage, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingConfirmationMessage, { config });
     case "diagnostic_framing":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingDiagnosticFraming, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingDiagnosticFraming, { config });
     case "quick_win":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingQuickWin, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingQuickWin, { config });
     case "social_share":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingSocialShare, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingSocialShare, { config });
     case "post_purchase_welcome":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingPostPurchaseWelcome, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingPostPurchaseWelcome, { config });
     case "rich_text":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingRichText, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingRichText, { config });
     case "pullquote":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingPullquote, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingPullquote, { config });
     case "data_statistic":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingDataStatistic, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingDataStatistic, { config });
     case "image_block":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingImageBlock, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingImageBlock, { config });
     case "video_block":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingVideoBlock, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingVideoBlock, { config });
     case "comparison_table":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingComparisonTable, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingComparisonTable, { config });
     case "section_divider":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingSectionDivider, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingSectionDivider, { config });
     case "anchor_navigation":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingAnchorNavigation, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingAnchorNavigation, { config });
     case "page_header_breadcrumb":
-      return /* @__PURE__ */ (0, import_jsx_runtime41.jsx)(LandingPageHeader, { config });
+      return /* @__PURE__ */ (0, import_jsx_runtime42.jsx)(LandingPageHeader, { config });
     default:
       return null;
   }
@@ -2118,6 +2153,7 @@ function SectionContent({
   LandingHeroCaptureForm,
   LandingHeroStatement,
   LandingHeroVideo,
+  LandingHumaWidget,
   LandingImageBlock,
   LandingInlineCta,
   LandingInvestmentPricing,

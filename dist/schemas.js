@@ -213,6 +213,11 @@ var socialProofBarConfigSchema = z.object({
   layout: z.enum(["bar", "inline"]).default("bar"),
   background_style: z.enum(["light", "dark", "transparent"]).default("dark")
 });
+var humaWidgetConfigSchema = z.object({
+  section_label: z.string().max(100).optional(),
+  headline: z.string().max(200).optional(),
+  widget_id: z.string().uuid()
+});
 var perfectForYouConfigSchema = z.object({
   section_label: z.string().max(100).optional(),
   headline: z.string().max(500),
@@ -452,6 +457,7 @@ var sectionConfigSchemas = {
   case_study: caseStudyConfigSchema,
   coach_bio: coachBioConfigSchema,
   social_proof_bar: socialProofBarConfigSchema,
+  huma_widget: humaWidgetConfigSchema,
   // Qualification & Objection
   perfect_for_you: perfectForYouConfigSchema,
   faq: faqConfigSchema,
@@ -530,6 +536,7 @@ export {
   heroCaptureFormConfigSchema,
   heroStatementConfigSchema,
   heroVideoConfigSchema,
+  humaWidgetConfigSchema,
   imageBlockConfigSchema,
   inlineCtaConfigSchema,
   investmentPricingConfigSchema,

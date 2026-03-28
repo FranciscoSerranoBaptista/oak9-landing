@@ -1057,6 +1057,20 @@ declare const socialProofBarConfigSchema: z.ZodObject<{
     }[] | undefined;
     proof_line?: string | undefined;
 }>;
+/** 4.5 Huma Testimonial Widget */
+declare const humaWidgetConfigSchema: z.ZodObject<{
+    section_label: z.ZodOptional<z.ZodString>;
+    headline: z.ZodOptional<z.ZodString>;
+    widget_id: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    widget_id: string;
+    headline?: string | undefined;
+    section_label?: string | undefined;
+}, {
+    widget_id: string;
+    headline?: string | undefined;
+    section_label?: string | undefined;
+}>;
 /** 5.1 Perfect For You If */
 declare const perfectForYouConfigSchema: z.ZodObject<{
     section_label: z.ZodOptional<z.ZodString>;
@@ -2213,4 +2227,4 @@ declare const pageSettingsSchema: z.ZodOptional<z.ZodObject<{
     default_audience_id?: string | undefined;
 }>>;
 
-export { anchorNavigationConfigSchema, applicationFormConfigSchema, captureFormConfigSchema, caseStudyConfigSchema, coachBioConfigSchema, comparisonTableConfigSchema, confirmationMessageConfigSchema, ctaButtonSchema, ctaModeSchema, curriculumBreakdownConfigSchema, dataStatisticConfigSchema, diagnosticFramingConfigSchema, faqConfigSchema, featuresGridConfigSchema, guaranteeConfigSchema, heroCaptureFormConfigSchema, heroStatementConfigSchema, heroVideoConfigSchema, imageBlockConfigSchema, inlineCtaConfigSchema, investmentPricingConfigSchema, mediaSchema, objectionBlockConfigSchema, pageHeaderBreadcrumbConfigSchema, pageSettingsSchema, patternRecognitionConfigSchema, perfectForYouConfigSchema, postPurchaseWelcomeConfigSchema, problemStatementConfigSchema, programmeArcConfigSchema, programmeOverviewConfigSchema, pullquoteConfigSchema, quickWinConfigSchema, richTextConfigSchema, romeIsBurningConfigSchema, sacredCowChallengeConfigSchema, safeUrlSchema, sectionConfigSchemas, sectionDividerConfigSchema, socialProofBarConfigSchema, socialShareConfigSchema, testimonialsConfigSchema, urgencyClosingConfigSchema, videoBlockConfigSchema, whatThisIsIsntConfigSchema, whatYoullExperienceConfigSchema };
+export { anchorNavigationConfigSchema, applicationFormConfigSchema, captureFormConfigSchema, caseStudyConfigSchema, coachBioConfigSchema, comparisonTableConfigSchema, confirmationMessageConfigSchema, ctaButtonSchema, ctaModeSchema, curriculumBreakdownConfigSchema, dataStatisticConfigSchema, diagnosticFramingConfigSchema, faqConfigSchema, featuresGridConfigSchema, guaranteeConfigSchema, heroCaptureFormConfigSchema, heroStatementConfigSchema, heroVideoConfigSchema, humaWidgetConfigSchema, imageBlockConfigSchema, inlineCtaConfigSchema, investmentPricingConfigSchema, mediaSchema, objectionBlockConfigSchema, pageHeaderBreadcrumbConfigSchema, pageSettingsSchema, patternRecognitionConfigSchema, perfectForYouConfigSchema, postPurchaseWelcomeConfigSchema, problemStatementConfigSchema, programmeArcConfigSchema, programmeOverviewConfigSchema, pullquoteConfigSchema, quickWinConfigSchema, richTextConfigSchema, romeIsBurningConfigSchema, sacredCowChallengeConfigSchema, safeUrlSchema, sectionConfigSchemas, sectionDividerConfigSchema, socialProofBarConfigSchema, socialShareConfigSchema, testimonialsConfigSchema, urgencyClosingConfigSchema, videoBlockConfigSchema, whatThisIsIsntConfigSchema, whatYoullExperienceConfigSchema };

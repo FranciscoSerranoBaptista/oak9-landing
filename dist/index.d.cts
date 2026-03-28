@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import * as react_jsx_runtime from 'react/jsx-runtime';
 
-type LandingSectionType = "hero_statement" | "hero_capture_form" | "hero_video" | "pattern_recognition" | "problem_statement" | "sacred_cow_challenge" | "rome_is_burning" | "programme_overview" | "programme_arc" | "what_this_is_isnt" | "what_youll_experience" | "curriculum_breakdown" | "features_grid" | "testimonials" | "case_study" | "coach_bio" | "social_proof_bar" | "perfect_for_you" | "faq" | "objection_block" | "investment_pricing" | "guarantee" | "urgency_closing" | "capture_form" | "application_form" | "inline_cta" | "confirmation_message" | "diagnostic_framing" | "quick_win" | "social_share" | "post_purchase_welcome" | "rich_text" | "pullquote" | "data_statistic" | "image_block" | "video_block" | "comparison_table" | "section_divider" | "anchor_navigation" | "page_header_breadcrumb";
+type LandingSectionType = "hero_statement" | "hero_capture_form" | "hero_video" | "pattern_recognition" | "problem_statement" | "sacred_cow_challenge" | "rome_is_burning" | "programme_overview" | "programme_arc" | "what_this_is_isnt" | "what_youll_experience" | "curriculum_breakdown" | "features_grid" | "testimonials" | "case_study" | "coach_bio" | "social_proof_bar" | "huma_widget" | "perfect_for_you" | "faq" | "objection_block" | "investment_pricing" | "guarantee" | "urgency_closing" | "capture_form" | "application_form" | "inline_cta" | "confirmation_message" | "diagnostic_framing" | "quick_win" | "social_share" | "post_purchase_welcome" | "rich_text" | "pullquote" | "data_statistic" | "image_block" | "video_block" | "comparison_table" | "section_divider" | "anchor_navigation" | "page_header_breadcrumb";
 /** All section type keys for runtime use */
 declare const LANDING_SECTION_TYPES: LandingSectionType[];
 /** Human-readable labels for section types, grouped by category */
@@ -1091,6 +1091,20 @@ declare const socialProofBarConfigSchema: z.ZodObject<{
         caption?: string | undefined;
     }[] | undefined;
     proof_line?: string | undefined;
+}>;
+/** 4.5 Huma Testimonial Widget */
+declare const humaWidgetConfigSchema: z.ZodObject<{
+    section_label: z.ZodOptional<z.ZodString>;
+    headline: z.ZodOptional<z.ZodString>;
+    widget_id: z.ZodString;
+}, "strip", z.ZodTypeAny, {
+    widget_id: string;
+    headline?: string | undefined;
+    section_label?: string | undefined;
+}, {
+    widget_id: string;
+    headline?: string | undefined;
+    section_label?: string | undefined;
 }>;
 /** 5.1 Perfect For You If */
 declare const perfectForYouConfigSchema: z.ZodObject<{
@@ -2308,6 +2322,8 @@ interface LandingPageEditorProps {
     isSavingPage?: boolean;
     saveSectionsSuccess?: boolean;
     savePageSuccess?: boolean;
+    /** Set to false to hide the built-in back arrow + page name header. Defaults to true. */
+    showHeader?: boolean;
 }
 declare function LandingPageEditor(props: LandingPageEditorProps): react_jsx_runtime.JSX.Element;
 
@@ -2388,4 +2404,4 @@ declare function ServerParagraphs({ text }: {
     text: string;
 }): react_jsx_runtime.JSX.Element;
 
-export { type CtaMode, LANDING_SECTION_TYPES, LandingPageEditor, type LandingPageEditorProps, type LandingPageSettings, LandingPagesList, type LandingPagesListProps, LandingPagesSection, LandingSectionRenderer, type LandingSectionRendererProps, type LandingSectionType, SECTION_TYPE_CATEGORIES, SECTION_TYPE_LABELS, SectionConfigEditor, type SectionData, ServerParagraphs, ServerSection, ServerSections, anchorNavigationConfigSchema, applicationFormConfigSchema, captureFormConfigSchema, caseStudyConfigSchema, coachBioConfigSchema, comparisonTableConfigSchema, confirmationMessageConfigSchema, ctaButtonSchema, ctaModeSchema, curriculumBreakdownConfigSchema, dataStatisticConfigSchema, diagnosticFramingConfigSchema, faqConfigSchema, featuresGridConfigSchema, guaranteeConfigSchema, heroCaptureFormConfigSchema, heroStatementConfigSchema, heroVideoConfigSchema, imageBlockConfigSchema, inlineCtaConfigSchema, investmentPricingConfigSchema, mediaSchema, objectionBlockConfigSchema, pageHeaderBreadcrumbConfigSchema, pageSettingsSchema, patternRecognitionConfigSchema, perfectForYouConfigSchema, postPurchaseWelcomeConfigSchema, problemStatementConfigSchema, programmeArcConfigSchema, programmeOverviewConfigSchema, pullquoteConfigSchema, quickWinConfigSchema, richTextConfigSchema, romeIsBurningConfigSchema, sacredCowChallengeConfigSchema, safeUrlSchema, sectionConfigSchemas, sectionDividerConfigSchema, socialProofBarConfigSchema, socialShareConfigSchema, testimonialsConfigSchema, urgencyClosingConfigSchema, videoBlockConfigSchema, whatThisIsIsntConfigSchema, whatYoullExperienceConfigSchema };
+export { type CtaMode, LANDING_SECTION_TYPES, LandingPageEditor, type LandingPageEditorProps, type LandingPageSettings, LandingPagesList, type LandingPagesListProps, LandingPagesSection, LandingSectionRenderer, type LandingSectionRendererProps, type LandingSectionType, SECTION_TYPE_CATEGORIES, SECTION_TYPE_LABELS, SectionConfigEditor, type SectionData, ServerParagraphs, ServerSection, ServerSections, anchorNavigationConfigSchema, applicationFormConfigSchema, captureFormConfigSchema, caseStudyConfigSchema, coachBioConfigSchema, comparisonTableConfigSchema, confirmationMessageConfigSchema, ctaButtonSchema, ctaModeSchema, curriculumBreakdownConfigSchema, dataStatisticConfigSchema, diagnosticFramingConfigSchema, faqConfigSchema, featuresGridConfigSchema, guaranteeConfigSchema, heroCaptureFormConfigSchema, heroStatementConfigSchema, heroVideoConfigSchema, humaWidgetConfigSchema, imageBlockConfigSchema, inlineCtaConfigSchema, investmentPricingConfigSchema, mediaSchema, objectionBlockConfigSchema, pageHeaderBreadcrumbConfigSchema, pageSettingsSchema, patternRecognitionConfigSchema, perfectForYouConfigSchema, postPurchaseWelcomeConfigSchema, problemStatementConfigSchema, programmeArcConfigSchema, programmeOverviewConfigSchema, pullquoteConfigSchema, quickWinConfigSchema, richTextConfigSchema, romeIsBurningConfigSchema, sacredCowChallengeConfigSchema, safeUrlSchema, sectionConfigSchemas, sectionDividerConfigSchema, socialProofBarConfigSchema, socialShareConfigSchema, testimonialsConfigSchema, urgencyClosingConfigSchema, videoBlockConfigSchema, whatThisIsIsntConfigSchema, whatYoullExperienceConfigSchema };

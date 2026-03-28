@@ -1,5 +1,5 @@
 import * as react_jsx_runtime from 'react/jsx-runtime';
-import { L as LandingSectionType, C as CtaMode } from './landing-pages-Deeg6ZyQ.js';
+import { L as LandingSectionType, C as CtaMode } from './landing-pages-C2rQvBu8.js';
 
 interface LandingSectionRendererProps {
     sectionType: LandingSectionType;
@@ -93,6 +93,10 @@ declare function LandingCoachBio({ config }: {
 declare function LandingSocialProofBar({ config }: {
     config: Record<string, unknown>;
 }): react_jsx_runtime.JSX.Element | null;
+
+declare function LandingHumaWidget({ config }: {
+    config: Record<string, unknown>;
+}): react_jsx_runtime.JSX.Element;
 
 declare function LandingPerfectForYou({ config }: {
     config: Record<string, unknown>;
@@ -200,4 +204,4 @@ declare function LandingPageHeader({ config }: {
     config: Record<string, unknown>;
 }): react_jsx_runtime.JSX.Element | null;
 
-export { LandingAnchorNavigation, LandingApplicationForm, LandingCaptureForm, LandingCaseStudy, LandingCoachBio, LandingComparisonTable, LandingConfirmationMessage, LandingCurriculumBreakdown, LandingDataStatistic, LandingDiagnosticFraming, LandingFaqNew, LandingFeaturesGrid, LandingGuarantee, LandingHeroCaptureForm, LandingHeroStatement, LandingHeroVideo, LandingImageBlock, LandingInlineCta, LandingInvestmentPricing, LandingObjectionBlock, LandingPageHeader, LandingPatternRecognition, LandingPerfectForYou, LandingPostPurchaseWelcome, LandingProblemStatement, LandingProgrammeArc, LandingProgrammeOverview, LandingPullquote, LandingQuickWin, LandingRichText, LandingRomeBurning, LandingSacredCow, LandingSectionDivider, LandingSectionRenderer, type LandingSectionRendererProps, LandingSocialProofBar, LandingSocialShare, LandingTestimonialsNew, LandingUrgencyClosing, LandingVideoBlock, LandingWhatThisIsIsnt, LandingWhatYoullExperience };
+export { LandingAnchorNavigation, LandingApplicationForm, LandingCaptureForm, LandingCaseStudy, LandingCoachBio, LandingComparisonTable, LandingConfirmationMessage, LandingCurriculumBreakdown, LandingDataStatistic, LandingDiagnosticFraming, LandingFaqNew, LandingFeaturesGrid, LandingGuarantee, LandingHeroCaptureForm, LandingHeroStatement, LandingHeroVideo, LandingHumaWidget, LandingImageBlock, LandingInlineCta, LandingInvestmentPricing, LandingObjectionBlock, LandingPageHeader, LandingPatternRecognition, LandingPerfectForYou, LandingPostPurchaseWelcome, LandingProblemStatement, LandingProgrammeArc, LandingProgrammeOverview, LandingPullquote, LandingQuickWin, LandingRichText, LandingRomeBurning, LandingSacredCow, LandingSectionDivider, LandingSectionRenderer, type LandingSectionRendererProps, LandingSocialProofBar, LandingSocialShare, LandingTestimonialsNew, LandingUrgencyClosing, LandingVideoBlock, LandingWhatThisIsIsnt, LandingWhatYoullExperience };
