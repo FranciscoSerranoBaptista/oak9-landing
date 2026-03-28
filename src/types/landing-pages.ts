@@ -24,6 +24,7 @@ export type LandingSectionType =
   | "case_study"
   | "coach_bio"
   | "social_proof_bar"
+  | "huma_widget"
   // Cat 5 — Qualification & Objection
   | "perfect_for_you"
   | "faq"
@@ -73,6 +74,7 @@ export const LANDING_SECTION_TYPES: LandingSectionType[] = [
   "case_study",
   "coach_bio",
   "social_proof_bar",
+  "huma_widget",
   "perfect_for_you",
   "faq",
   "objection_block",
@@ -117,6 +119,7 @@ export const SECTION_TYPE_LABELS: Record<LandingSectionType, string> = {
   case_study: "Case Study",
   coach_bio: "Coach / Facilitator Bio",
   social_proof_bar: "Social Proof Bar",
+  huma_widget: "Huma Testimonial Widget",
   perfect_for_you: "Perfect For You If",
   faq: "FAQ",
   objection_block: "Objection Block",
@@ -147,7 +150,7 @@ export const SECTION_TYPE_CATEGORIES: { label: string; types: LandingSectionType
   { label: "Hero", types: ["hero_statement", "hero_capture_form", "hero_video"] },
   { label: "Problem & Recognition", types: ["pattern_recognition", "problem_statement", "sacred_cow_challenge", "rome_is_burning"] },
   { label: "Solution & Programme", types: ["programme_overview", "programme_arc", "what_this_is_isnt", "what_youll_experience", "curriculum_breakdown", "features_grid"] },
-  { label: "Trust & Proof", types: ["testimonials", "case_study", "coach_bio", "social_proof_bar"] },
+  { label: "Trust & Proof", types: ["testimonials", "case_study", "coach_bio", "social_proof_bar", "huma_widget"] },
   { label: "Qualification & Objection", types: ["perfect_for_you", "faq", "objection_block"] },
   { label: "Pricing & Commitment", types: ["investment_pricing", "guarantee", "urgency_closing"] },
   { label: "Forms & Capture", types: ["capture_form", "application_form", "inline_cta"] },
