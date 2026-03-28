@@ -20,6 +20,7 @@ import { LandingTestimonialsNew } from "./landing-testimonials-new";
 import { LandingCaseStudy } from "./landing-case-study";
 import { LandingCoachBio } from "./landing-coach-bio";
 import { LandingSocialProofBar } from "./landing-social-proof-bar";
+import { LandingHumaWidget } from "./landing-huma-widget";
 import { LandingPerfectForYou } from "./landing-perfect-for-you";
 import { LandingFaqNew } from "./landing-faq-new";
 import { LandingObjectionBlock } from "./landing-objection-block";
@@ -198,6 +199,8 @@ function SectionContent({
       return <LandingCoachBio config={config} />;
     case "social_proof_bar":
       return <LandingSocialProofBar config={config} />;
+    case "huma_widget":
+      return <LandingHumaWidget config={config} />;
     case "perfect_for_you":
       return <LandingPerfectForYou config={config} />;
     case "faq":

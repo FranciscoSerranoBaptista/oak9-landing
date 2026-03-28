@@ -17,6 +17,7 @@ export { LandingTestimonialsNew } from "./landing-testimonials-new";
 export { LandingCaseStudy } from "./landing-case-study";
 export { LandingCoachBio } from "./landing-coach-bio";
 export { LandingSocialProofBar } from "./landing-social-proof-bar";
+export { LandingHumaWidget } from "./landing-huma-widget";
 export { LandingPerfectForYou } from "./landing-perfect-for-you";
 export { LandingFaqNew } from "./landing-faq-new";
 export { LandingObjectionBlock } from "./landing-objection-block";
