@@ -888,16 +888,20 @@ function LandingSocialProofBar({ config }) {
 var import_react4 = require("react");
 var import_jsx_runtime18 = require("react/jsx-runtime");
 var EMBED_SCRIPT_URL = "https://www.humaproof.app/static/embed.js";
+var mountedWidgetCount = 0;
 function LandingHumaWidget({ config }) {
   const c = config;
+  const scriptRef = (0, import_react4.useRef)(null);
   (0, import_react4.useEffect)(() => {
     if (!c.widget_id) return;
+    mountedWidgetCount++;
     const existing = document.querySelector(`script[src="${EMBED_SCRIPT_URL}"]`);
     if (!existing) {
       const script = document.createElement("script");
       script.src = EMBED_SCRIPT_URL;
       script.async = true;
       document.body.appendChild(script);
+      scriptRef.current = script;
     } else {
       const win = window;
       const embed = win.HumaEmbed;
@@ -905,6 +909,13 @@ function LandingHumaWidget({ config }) {
         embed.refresh();
       }
     }
+    return () => {
+      mountedWidgetCount--;
+      if (mountedWidgetCount === 0 && scriptRef.current) {
+        scriptRef.current.remove();
+        scriptRef.current = null;
+      }
+    };
   }, [c.widget_id]);
   if (!c.widget_id) {
     return /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("section", { className: "mx-auto max-w-5xl px-6 py-12 text-center", children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { className: "text-sm text-zinc-400", children: "Huma widget \u2014 no widget ID configured" }) });

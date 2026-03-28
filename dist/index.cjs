@@ -1523,16 +1523,20 @@ function LandingSocialProofBar({ config }) {
 var import_react4 = require("react");
 var import_jsx_runtime18 = require("react/jsx-runtime");
 var EMBED_SCRIPT_URL = "https://www.humaproof.app/static/embed.js";
+var mountedWidgetCount = 0;
 function LandingHumaWidget({ config }) {
   const c = config;
+  const scriptRef = (0, import_react4.useRef)(null);
   (0, import_react4.useEffect)(() => {
     if (!c.widget_id) return;
+    mountedWidgetCount++;
     const existing = document.querySelector(`script[src="${EMBED_SCRIPT_URL}"]`);
     if (!existing) {
       const script = document.createElement("script");
       script.src = EMBED_SCRIPT_URL;
       script.async = true;
       document.body.appendChild(script);
+      scriptRef.current = script;
     } else {
       const win = window;
       const embed = win.HumaEmbed;
@@ -1540,6 +1544,13 @@ function LandingHumaWidget({ config }) {
         embed.refresh();
       }
     }
+    return () => {
+      mountedWidgetCount--;
+      if (mountedWidgetCount === 0 && scriptRef.current) {
+        scriptRef.current.remove();
+        scriptRef.current = null;
+      }
+    };
   }, [c.widget_id]);
   if (!c.widget_id) {
     return /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("section", { className: "mx-auto max-w-5xl px-6 py-12 text-center", children: /* @__PURE__ */ (0, import_jsx_runtime18.jsx)("p", { className: "text-sm text-zinc-400", children: "Huma widget \u2014 no widget ID configured" }) });
@@ -4155,11 +4166,14 @@ function SocialProofBarEditor({
 
 // src/editors/config-editors/huma-widget-editor.tsx
 var import_jsx_runtime68 = require("react/jsx-runtime");
+var UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 function HumaWidgetEditor({
   config,
   onChange
 }) {
   const c = config;
+  const widgetId = c.widget_id ?? "";
+  const isValidUuid = widgetId === "" || UUID_RE.test(widgetId);
   return /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)("div", { className: "space-y-3", children: [
     /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)("div", { children: [
       /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: [
@@ -4170,13 +4184,13 @@ function HumaWidgetEditor({
         "input",
         {
           type: "text",
-          value: c.widget_id ?? "",
+          value: widgetId,
           onChange: (e) => onChange({ ...config, widget_id: e.target.value }),
           placeholder: "e.g. e40542b8-d50c-46f3-a03f-bd7f7f382b21",
-          className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 font-mono text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white"
+          className: `w-full rounded-md border bg-white px-3 py-2 font-mono text-sm dark:bg-surface-base dark:text-white ${isValidUuid ? "border-zinc-300 dark:border-zinc-600" : "border-red-400 dark:border-red-500"}`
         }
       ),
-      /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("p", { className: "mt-1 text-xs text-zinc-400", children: "Paste the widget UUID from your Huma dashboard" })
+      !isValidUuid ? /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("p", { className: "mt-1 text-xs text-red-500", children: "Must be a valid UUID" }) : /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("p", { className: "mt-1 text-xs text-zinc-400", children: "Paste the widget UUID from your Huma dashboard" })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime68.jsxs)("div", { children: [
       /* @__PURE__ */ (0, import_jsx_runtime68.jsx)("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Headline" }),
