@@ -31,6 +31,7 @@ export { FeaturesGridEditor } from "./features-grid-editor";
 export { CaseStudyEditor } from "./case-study-editor";
 export { CoachBioEditor } from "./coach-bio-editor";
 export { SocialProofBarEditor } from "./social-proof-bar-editor";
+export { HumaWidgetEditor } from "./huma-widget-editor";
 
 // Cat 5 — Qualification & Objection
 export { PerfectForYouEditor } from "./perfect-for-you-editor";

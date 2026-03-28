@@ -21,6 +21,7 @@ import {
   CaseStudyEditor,
   CoachBioEditor,
   SocialProofBarEditor,
+  HumaWidgetEditor,
   PerfectForYouEditor,
   FaqEditor,
   ObjectionBlockEditor,
@@ -94,6 +95,8 @@ export function SectionConfigEditor({ type, config, onChange }: SectionConfigEdi
       return <CoachBioEditor {...props} />;
     case "social_proof_bar":
       return <SocialProofBarEditor {...props} />;
+    case "huma_widget":
+      return <HumaWidgetEditor {...props} />;
     // Qualification & Objection
     case "perfect_for_you":
       return <PerfectForYouEditor {...props} />;
