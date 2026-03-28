@@ -25,10 +25,11 @@ export function LandingHumaWidget({ config }: { config: Record<string, unknown> 
       document.body.appendChild(script);
     } else {
       // Script already loaded — tell it to pick up new containers
-      (window as Record<string, unknown>).HumaEmbed &&
-        typeof (window as Record<string, unknown>).HumaEmbed === "object" &&
-        typeof ((window as Record<string, unknown>).HumaEmbed as Record<string, unknown>).refresh === "function" &&
-        ((window as Record<string, unknown>).HumaEmbed as { refresh: () => void }).refresh();
+      const win = window as unknown as Record<string, unknown>;
+      const embed = win.HumaEmbed;
+      if (embed && typeof embed === "object" && typeof (embed as Record<string, unknown>).refresh === "function") {
+        (embed as { refresh: () => void }).refresh();
+      }
     }
   }, [c.widget_id]);
 
