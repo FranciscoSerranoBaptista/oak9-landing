@@ -19,7 +19,8 @@ interface ApplicationFormConfig {
   pricing_display?: string;
   submit_button_label?: string;
   post_submit_message?: string;
-  audience_id?: string;
+  opt_in_key?: string;
+  opt_in_tags?: string[];
 }
 
 export function ApplicationFormEditor({
@@ -93,8 +94,14 @@ export function ApplicationFormEditor({
         <textarea value={c.post_submit_message ?? ""} onChange={(e) => onChange({ ...config, post_submit_message: e.target.value })} rows={2} className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" />
       </div>
       <div>
-        <label className="mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400">Audience ID</label>
-        <input value={c.audience_id ?? ""} onChange={(e) => onChange({ ...config, audience_id: e.target.value })} className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" />
+        <label className="mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400">Opt-in key</label>
+        <input value={c.opt_in_key ?? ""} onChange={(e) => onChange({ ...config, opt_in_key: e.target.value })} className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" placeholder="control-trap-waitlist" />
+        <p className="mt-1 text-xs text-zinc-400">Lowercase letters, digits, hyphens, underscores. Identifies this opt-in to Bulbul.</p>
+      </div>
+      <div>
+        <label className="mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400">Tags to apply on confirmation (optional)</label>
+        <input value={(c.opt_in_tags ?? []).join(", ")} onChange={(e) => onChange({ ...config, opt_in_tags: e.target.value.split(",").map((s) => s.trim()).filter(Boolean) })} className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" placeholder="interest:control-trap, vip" />
+        <p className="mt-1 text-xs text-zinc-400">Comma-separated. Bulbul applies these tags after the subscriber confirms.</p>
       </div>
     </div>
   );

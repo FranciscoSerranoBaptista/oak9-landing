@@ -145,7 +145,8 @@ var heroCaptureFormConfigSchema = z.object({
   social_proof_line: z.string().max(300).optional(),
   background_image: mediaSchema.optional(),
   layout: z.enum(["centered", "split"]).default("centered"),
-  audience_id: z.string().max(100).optional(),
+  opt_in_key: z.string().min(1).max(100).regex(/^[a-z0-9_-]+$/).optional(),
+  opt_in_tags: z.array(z.string().min(1).max(100)).max(10).optional(),
   privacy_text: z.string().max(1e3).optional()
 });
 var heroVideoConfigSchema = z.object({
@@ -400,7 +401,8 @@ var captureFormConfigSchema = z.object({
     help_text: z.string().max(300).optional()
   })),
   submit_button_label: z.string().max(100).default("Join the waiting list"),
-  audience_id: z.string().max(100).optional(),
+  opt_in_key: z.string().min(1).max(100).regex(/^[a-z0-9_-]+$/).optional(),
+  opt_in_tags: z.array(z.string().min(1).max(100)).max(10).optional(),
   privacy_text: z.string().max(1e3).optional(),
   layout: z.enum(["centered", "card", "minimal"]).default("centered")
 });
@@ -421,7 +423,8 @@ var applicationFormConfigSchema = z.object({
   pricing_display: z.string().max(1e3).optional(),
   submit_button_label: z.string().max(100).default("Apply for the next cohort"),
   post_submit_message: z.string().max(2e3).optional(),
-  audience_id: z.string().max(100).optional(),
+  opt_in_key: z.string().min(1).max(100).regex(/^[a-z0-9_-]+$/).optional(),
+  opt_in_tags: z.array(z.string().min(1).max(100)).max(10).optional(),
   layout: z.enum(["centered", "card", "split"]).default("centered")
 });
 var inlineCtaConfigSchema = z.object({
@@ -614,8 +617,7 @@ var pageSettingsSchema = z2.object({
   default_cta_url: z2.string().max(1e3).optional(),
   // legacy backwards compat
   waitlist_headline: z2.string().max(255).optional(),
-  waitlist_description: z2.string().max(1e3).optional(),
-  default_audience_id: z2.string().max(100).optional()
+  waitlist_description: z2.string().max(1e3).optional()
 }).optional();
 
 // src/renderers/landing-hero-statement.tsx
@@ -3278,8 +3280,14 @@ function HeroCaptureFormEditor({
       ] })
     ] }),
     /* @__PURE__ */ jsxs50("div", { children: [
-      /* @__PURE__ */ jsx53("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Audience ID" }),
-      /* @__PURE__ */ jsx53("input", { value: c.audience_id ?? "", onChange: (e) => onChange({ ...config, audience_id: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+      /* @__PURE__ */ jsx53("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Opt-in key" }),
+      /* @__PURE__ */ jsx53("input", { value: c.opt_in_key ?? "", onChange: (e) => onChange({ ...config, opt_in_key: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "control-trap-waitlist" }),
+      /* @__PURE__ */ jsx53("p", { className: "mt-1 text-xs text-zinc-400", children: "Lowercase letters, digits, hyphens, underscores. Identifies this opt-in to Bulbul." })
+    ] }),
+    /* @__PURE__ */ jsxs50("div", { children: [
+      /* @__PURE__ */ jsx53("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Tags to apply on confirmation (optional)" }),
+      /* @__PURE__ */ jsx53("input", { value: (c.opt_in_tags ?? []).join(", "), onChange: (e) => onChange({ ...config, opt_in_tags: e.target.value.split(",").map((s) => s.trim()).filter(Boolean) }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "interest:control-trap, vip" }),
+      /* @__PURE__ */ jsx53("p", { className: "mt-1 text-xs text-zinc-400", children: "Comma-separated. Bulbul applies these tags after the subscriber confirms." })
     ] }),
     /* @__PURE__ */ jsxs50("div", { children: [
       /* @__PURE__ */ jsx53("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Privacy Text" }),
@@ -4544,8 +4552,14 @@ function CaptureFormEditor({
       /* @__PURE__ */ jsx74("input", { value: c.submit_button_label ?? "", onChange: (e) => onChange({ ...config, submit_button_label: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "Submit" })
     ] }),
     /* @__PURE__ */ jsxs71("div", { children: [
-      /* @__PURE__ */ jsx74("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Audience ID" }),
-      /* @__PURE__ */ jsx74("input", { value: c.audience_id ?? "", onChange: (e) => onChange({ ...config, audience_id: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+      /* @__PURE__ */ jsx74("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Opt-in key" }),
+      /* @__PURE__ */ jsx74("input", { value: c.opt_in_key ?? "", onChange: (e) => onChange({ ...config, opt_in_key: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "control-trap-waitlist" }),
+      /* @__PURE__ */ jsx74("p", { className: "mt-1 text-xs text-zinc-400", children: "Lowercase letters, digits, hyphens, underscores. Identifies this opt-in to Bulbul." })
+    ] }),
+    /* @__PURE__ */ jsxs71("div", { children: [
+      /* @__PURE__ */ jsx74("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Tags to apply on confirmation (optional)" }),
+      /* @__PURE__ */ jsx74("input", { value: (c.opt_in_tags ?? []).join(", "), onChange: (e) => onChange({ ...config, opt_in_tags: e.target.value.split(",").map((s) => s.trim()).filter(Boolean) }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "interest:control-trap, vip" }),
+      /* @__PURE__ */ jsx74("p", { className: "mt-1 text-xs text-zinc-400", children: "Comma-separated. Bulbul applies these tags after the subscriber confirms." })
     ] }),
     /* @__PURE__ */ jsxs71("div", { children: [
       /* @__PURE__ */ jsx74("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Privacy Text" }),
@@ -4653,8 +4667,14 @@ function ApplicationFormEditor({
       /* @__PURE__ */ jsx75("textarea", { value: c.post_submit_message ?? "", onChange: (e) => onChange({ ...config, post_submit_message: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
     /* @__PURE__ */ jsxs72("div", { children: [
-      /* @__PURE__ */ jsx75("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Audience ID" }),
-      /* @__PURE__ */ jsx75("input", { value: c.audience_id ?? "", onChange: (e) => onChange({ ...config, audience_id: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+      /* @__PURE__ */ jsx75("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Opt-in key" }),
+      /* @__PURE__ */ jsx75("input", { value: c.opt_in_key ?? "", onChange: (e) => onChange({ ...config, opt_in_key: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "control-trap-waitlist" }),
+      /* @__PURE__ */ jsx75("p", { className: "mt-1 text-xs text-zinc-400", children: "Lowercase letters, digits, hyphens, underscores. Identifies this opt-in to Bulbul." })
+    ] }),
+    /* @__PURE__ */ jsxs72("div", { children: [
+      /* @__PURE__ */ jsx75("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Tags to apply on confirmation (optional)" }),
+      /* @__PURE__ */ jsx75("input", { value: (c.opt_in_tags ?? []).join(", "), onChange: (e) => onChange({ ...config, opt_in_tags: e.target.value.split(",").map((s) => s.trim()).filter(Boolean) }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "interest:control-trap, vip" }),
+      /* @__PURE__ */ jsx75("p", { className: "mt-1 text-xs text-zinc-400", children: "Comma-separated. Bulbul applies these tags after the subscriber confirms." })
     ] })
   ] });
 }

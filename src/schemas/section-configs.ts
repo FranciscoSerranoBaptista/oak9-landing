@@ -60,7 +60,8 @@ export const heroCaptureFormConfigSchema = z.object({
   social_proof_line: z.string().max(300).optional(),
   background_image: mediaSchema.optional(),
   layout: z.enum(["centered", "split"]).default("centered"),
-  audience_id: z.string().max(100).optional(),
+  opt_in_key: z.string().min(1).max(100).regex(/^[a-z0-9_-]+$/).optional(),
+  opt_in_tags: z.array(z.string().min(1).max(100)).max(10).optional(),
   privacy_text: z.string().max(1000).optional(),
 });
 
@@ -384,7 +385,8 @@ export const captureFormConfigSchema = z.object({
     help_text: z.string().max(300).optional(),
   })),
   submit_button_label: z.string().max(100).default("Join the waiting list"),
-  audience_id: z.string().max(100).optional(),
+  opt_in_key: z.string().min(1).max(100).regex(/^[a-z0-9_-]+$/).optional(),
+  opt_in_tags: z.array(z.string().min(1).max(100)).max(10).optional(),
   privacy_text: z.string().max(1000).optional(),
   layout: z.enum(["centered", "card", "minimal"]).default("centered"),
 });
@@ -407,7 +409,8 @@ export const applicationFormConfigSchema = z.object({
   pricing_display: z.string().max(1000).optional(),
   submit_button_label: z.string().max(100).default("Apply for the next cohort"),
   post_submit_message: z.string().max(2000).optional(),
-  audience_id: z.string().max(100).optional(),
+  opt_in_key: z.string().min(1).max(100).regex(/^[a-z0-9_-]+$/).optional(),
+  opt_in_tags: z.array(z.string().min(1).max(100)).max(10).optional(),
   layout: z.enum(["centered", "card", "split"]).default("centered"),
 });
 

@@ -184,6 +184,4 @@ export interface LandingPageSettings {
   // Waitlist (for waiting_list page type)
   waitlist_headline?: string;
   waitlist_description?: string;
-  // Form capture defaults
-  default_audience_id?: string; // Resend audience ID for forms on this page
 }

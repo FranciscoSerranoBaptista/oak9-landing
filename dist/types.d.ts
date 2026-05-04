@@ -30,7 +30,6 @@ interface LandingPageSettings {
     default_cta_url?: string;
     waitlist_headline?: string;
     waitlist_description?: string;
-    default_audience_id?: string;
 }
 
 export { type CtaMode, LANDING_SECTION_TYPES, type LandingPageSettings, type LandingSectionType, SECTION_TYPE_CATEGORIES, SECTION_TYPE_LABELS };
