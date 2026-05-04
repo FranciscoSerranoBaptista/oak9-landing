@@ -212,6 +212,7 @@ declare const heroCaptureFormConfigSchema: z.ZodObject<{
     layout: z.ZodDefault<z.ZodEnum<["centered", "split"]>>;
     opt_in_key: z.ZodOptional<z.ZodString>;
     opt_in_tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    success_message: z.ZodOptional<z.ZodString>;
     privacy_text: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     headline: string;
@@ -237,6 +238,7 @@ declare const heroCaptureFormConfigSchema: z.ZodObject<{
     social_proof_line?: string | undefined;
     opt_in_key?: string | undefined;
     opt_in_tags?: string[] | undefined;
+    success_message?: string | undefined;
     privacy_text?: string | undefined;
 }, {
     headline: string;
@@ -262,6 +264,7 @@ declare const heroCaptureFormConfigSchema: z.ZodObject<{
     social_proof_line?: string | undefined;
     opt_in_key?: string | undefined;
     opt_in_tags?: string[] | undefined;
+    success_message?: string | undefined;
     privacy_text?: string | undefined;
 }>;
 /** 1.3 Hero — With Video */
@@ -1494,6 +1497,7 @@ declare const captureFormConfigSchema: z.ZodObject<{
     submit_button_label: z.ZodDefault<z.ZodString>;
     opt_in_key: z.ZodOptional<z.ZodString>;
     opt_in_tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    success_message: z.ZodOptional<z.ZodString>;
     privacy_text: z.ZodOptional<z.ZodString>;
     layout: z.ZodDefault<z.ZodEnum<["centered", "card", "minimal"]>>;
 }, "strip", z.ZodTypeAny, {
@@ -1512,6 +1516,7 @@ declare const captureFormConfigSchema: z.ZodObject<{
     body_text?: string | undefined;
     opt_in_key?: string | undefined;
     opt_in_tags?: string[] | undefined;
+    success_message?: string | undefined;
     privacy_text?: string | undefined;
     section_label?: string | undefined;
 }, {
@@ -1530,6 +1535,7 @@ declare const captureFormConfigSchema: z.ZodObject<{
     submit_button_label?: string | undefined;
     opt_in_key?: string | undefined;
     opt_in_tags?: string[] | undefined;
+    success_message?: string | undefined;
     privacy_text?: string | undefined;
     section_label?: string | undefined;
 }>;
@@ -1569,6 +1575,7 @@ declare const applicationFormConfigSchema: z.ZodObject<{
     post_submit_message: z.ZodOptional<z.ZodString>;
     opt_in_key: z.ZodOptional<z.ZodString>;
     opt_in_tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    success_message: z.ZodOptional<z.ZodString>;
     layout: z.ZodDefault<z.ZodEnum<["centered", "card", "split"]>>;
 }, "strip", z.ZodTypeAny, {
     layout: "centered" | "split" | "card";
@@ -1585,6 +1592,7 @@ declare const applicationFormConfigSchema: z.ZodObject<{
     headline?: string | undefined;
     opt_in_key?: string | undefined;
     opt_in_tags?: string[] | undefined;
+    success_message?: string | undefined;
     section_label?: string | undefined;
     introduction?: string | undefined;
     programme_summary?: string | undefined;
@@ -1605,6 +1613,7 @@ declare const applicationFormConfigSchema: z.ZodObject<{
     submit_button_label?: string | undefined;
     opt_in_key?: string | undefined;
     opt_in_tags?: string[] | undefined;
+    success_message?: string | undefined;
     section_label?: string | undefined;
     introduction?: string | undefined;
     programme_summary?: string | undefined;

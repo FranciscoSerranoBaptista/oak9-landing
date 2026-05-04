@@ -230,6 +230,7 @@ var heroCaptureFormConfigSchema = import_zod.z.object({
   layout: import_zod.z.enum(["centered", "split"]).default("centered"),
   opt_in_key: import_zod.z.string().min(1).max(100).regex(/^[a-z0-9_-]+$/).optional(),
   opt_in_tags: import_zod.z.array(import_zod.z.string().min(1).max(100)).max(10).optional(),
+  success_message: import_zod.z.string().max(500).optional(),
   privacy_text: import_zod.z.string().max(1e3).optional()
 });
 var heroVideoConfigSchema = import_zod.z.object({
@@ -486,6 +487,7 @@ var captureFormConfigSchema = import_zod.z.object({
   submit_button_label: import_zod.z.string().max(100).default("Join the waiting list"),
   opt_in_key: import_zod.z.string().min(1).max(100).regex(/^[a-z0-9_-]+$/).optional(),
   opt_in_tags: import_zod.z.array(import_zod.z.string().min(1).max(100)).max(10).optional(),
+  success_message: import_zod.z.string().max(500).optional(),
   privacy_text: import_zod.z.string().max(1e3).optional(),
   layout: import_zod.z.enum(["centered", "card", "minimal"]).default("centered")
 });
@@ -508,6 +510,7 @@ var applicationFormConfigSchema = import_zod.z.object({
   post_submit_message: import_zod.z.string().max(2e3).optional(),
   opt_in_key: import_zod.z.string().min(1).max(100).regex(/^[a-z0-9_-]+$/).optional(),
   opt_in_tags: import_zod.z.array(import_zod.z.string().min(1).max(100)).max(10).optional(),
+  success_message: import_zod.z.string().max(500).optional(),
   layout: import_zod.z.enum(["centered", "card", "split"]).default("centered")
 });
 var inlineCtaConfigSchema = import_zod.z.object({
