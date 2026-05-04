@@ -25,6 +25,7 @@ const minimalConfigs: Record<LandingSectionType, Record<string, unknown>> = {
   case_study: { headline: "Case Study", before_state: "Before", turning_point: "Turning point", after_state: "After" },
   coach_bio: { bio_text: "A bio about the coach." },
   social_proof_bar: {},
+  huma_widget: { widget_id: "550e8400-e29b-41d4-a716-446655440000" },
   perfect_for_you: { headline: "Perfect for you", for_items: [{ statement: "You want growth" }] },
   faq: { faq_items: [{ question: "Why?", answer: "Because." }] },
   objection_block: { objection: "Too expensive", response: "Consider the value." },

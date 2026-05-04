@@ -132,7 +132,8 @@ export function LandingSectionRenderer({
   onSubmitForm,
 }: LandingSectionRendererProps) {
   const ctaUrl = computeCtaUrl(ctaMode, defaultCtaUrl, networkId);
-  const resolvedConfig = resolveCtaUrls(config, ctaUrl);
+  const safeConfig = (config ?? {}) as Record<string, unknown>;
+  const resolvedConfig = resolveCtaUrls(safeConfig, ctaUrl);
   const formProps = {
     config: resolvedConfig,
     networkId: networkId ?? "",

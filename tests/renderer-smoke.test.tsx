@@ -28,6 +28,7 @@ const renderConfigs: Record<LandingSectionType, Record<string, unknown>> = {
   case_study: { headline: "Case", before_state: "Before", turning_point: "Change", after_state: "After" },
   coach_bio: { bio_text: "Coach bio." },
   social_proof_bar: { proof_items: [{ metric: "100+", label: "Users" }] },
+  huma_widget: { widget_id: "550e8400-e29b-41d4-a716-446655440000", headline: "What clients say" },
   perfect_for_you: { headline: "For you", for_items: [{ statement: "You want growth" }] },
   faq: { faq_items: [{ question: "Why?", answer: "Because." }] },
   objection_block: { objection: "Too much", response: "Worth it." },
