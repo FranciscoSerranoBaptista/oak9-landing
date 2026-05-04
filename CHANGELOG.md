@@ -4,6 +4,18 @@ All notable changes to `@oak9/landing` will be documented in this file.
 
 This project follows [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Fixed
+
+- **`LandingSectionRenderer`** — guards against an undefined `config` prop by
+  defaulting it to `{}` before reading `background_style`. A misconfigured
+  section now renders blank instead of crashing the page with a `TypeError`.
+  Closes #2.
+- **Schema-validation & renderer-smoke tests** — added the missing
+  `huma_widget` entry to both fixtures so the test suite covers the section
+  type registered in the type system. Closes #1.
+
 ## [0.1.2] — 2026-03-20
 
 ### Fixed
