@@ -176,7 +176,9 @@ declare const heroCaptureFormConfigSchema: z.ZodObject<{
         caption?: string | undefined;
     }>>;
     layout: z.ZodDefault<z.ZodEnum<["centered", "split"]>>;
-    audience_id: z.ZodOptional<z.ZodString>;
+    opt_in_key: z.ZodOptional<z.ZodString>;
+    opt_in_tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    success_message: z.ZodOptional<z.ZodString>;
     privacy_text: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     headline: string;
@@ -200,7 +202,9 @@ declare const heroCaptureFormConfigSchema: z.ZodObject<{
         caption?: string | undefined;
     } | undefined;
     social_proof_line?: string | undefined;
-    audience_id?: string | undefined;
+    opt_in_key?: string | undefined;
+    opt_in_tags?: string[] | undefined;
+    success_message?: string | undefined;
     privacy_text?: string | undefined;
 }, {
     headline: string;
@@ -224,7 +228,9 @@ declare const heroCaptureFormConfigSchema: z.ZodObject<{
     submit_button_label?: string | undefined;
     form_position?: "inline" | "sidebar" | "overlay" | undefined;
     social_proof_line?: string | undefined;
-    audience_id?: string | undefined;
+    opt_in_key?: string | undefined;
+    opt_in_tags?: string[] | undefined;
+    success_message?: string | undefined;
     privacy_text?: string | undefined;
 }>;
 /** 1.3 Hero — With Video */
@@ -1455,7 +1461,9 @@ declare const captureFormConfigSchema: z.ZodObject<{
         help_text?: string | undefined;
     }>, "many">;
     submit_button_label: z.ZodDefault<z.ZodString>;
-    audience_id: z.ZodOptional<z.ZodString>;
+    opt_in_key: z.ZodOptional<z.ZodString>;
+    opt_in_tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    success_message: z.ZodOptional<z.ZodString>;
     privacy_text: z.ZodOptional<z.ZodString>;
     layout: z.ZodDefault<z.ZodEnum<["centered", "card", "minimal"]>>;
 }, "strip", z.ZodTypeAny, {
@@ -1472,7 +1480,9 @@ declare const captureFormConfigSchema: z.ZodObject<{
     submit_button_label: string;
     headline?: string | undefined;
     body_text?: string | undefined;
-    audience_id?: string | undefined;
+    opt_in_key?: string | undefined;
+    opt_in_tags?: string[] | undefined;
+    success_message?: string | undefined;
     privacy_text?: string | undefined;
     section_label?: string | undefined;
 }, {
@@ -1489,7 +1499,9 @@ declare const captureFormConfigSchema: z.ZodObject<{
     body_text?: string | undefined;
     layout?: "centered" | "card" | "minimal" | undefined;
     submit_button_label?: string | undefined;
-    audience_id?: string | undefined;
+    opt_in_key?: string | undefined;
+    opt_in_tags?: string[] | undefined;
+    success_message?: string | undefined;
     privacy_text?: string | undefined;
     section_label?: string | undefined;
 }>;
@@ -1527,7 +1539,9 @@ declare const applicationFormConfigSchema: z.ZodObject<{
     pricing_display: z.ZodOptional<z.ZodString>;
     submit_button_label: z.ZodDefault<z.ZodString>;
     post_submit_message: z.ZodOptional<z.ZodString>;
-    audience_id: z.ZodOptional<z.ZodString>;
+    opt_in_key: z.ZodOptional<z.ZodString>;
+    opt_in_tags: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    success_message: z.ZodOptional<z.ZodString>;
     layout: z.ZodDefault<z.ZodEnum<["centered", "card", "split"]>>;
 }, "strip", z.ZodTypeAny, {
     layout: "centered" | "split" | "card";
@@ -1542,7 +1556,9 @@ declare const applicationFormConfigSchema: z.ZodObject<{
     }[];
     submit_button_label: string;
     headline?: string | undefined;
-    audience_id?: string | undefined;
+    opt_in_key?: string | undefined;
+    opt_in_tags?: string[] | undefined;
+    success_message?: string | undefined;
     section_label?: string | undefined;
     introduction?: string | undefined;
     programme_summary?: string | undefined;
@@ -1561,7 +1577,9 @@ declare const applicationFormConfigSchema: z.ZodObject<{
     headline?: string | undefined;
     layout?: "centered" | "split" | "card" | undefined;
     submit_button_label?: string | undefined;
-    audience_id?: string | undefined;
+    opt_in_key?: string | undefined;
+    opt_in_tags?: string[] | undefined;
+    success_message?: string | undefined;
     section_label?: string | undefined;
     introduction?: string | undefined;
     programme_summary?: string | undefined;
@@ -2182,7 +2200,6 @@ declare const pageSettingsSchema: z.ZodOptional<z.ZodObject<{
     default_cta_url: z.ZodOptional<z.ZodString>;
     waitlist_headline: z.ZodOptional<z.ZodString>;
     waitlist_description: z.ZodOptional<z.ZodString>;
-    default_audience_id: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     meta_title?: string | undefined;
     meta_description?: string | undefined;
@@ -2203,7 +2220,6 @@ declare const pageSettingsSchema: z.ZodOptional<z.ZodObject<{
     default_cta_url?: string | undefined;
     waitlist_headline?: string | undefined;
     waitlist_description?: string | undefined;
-    default_audience_id?: string | undefined;
 }, {
     meta_title?: string | undefined;
     meta_description?: string | undefined;
@@ -2224,7 +2240,6 @@ declare const pageSettingsSchema: z.ZodOptional<z.ZodObject<{
     default_cta_url?: string | undefined;
     waitlist_headline?: string | undefined;
     waitlist_description?: string | undefined;
-    default_audience_id?: string | undefined;
 }>>;
 
 export { anchorNavigationConfigSchema, applicationFormConfigSchema, captureFormConfigSchema, caseStudyConfigSchema, coachBioConfigSchema, comparisonTableConfigSchema, confirmationMessageConfigSchema, ctaButtonSchema, ctaModeSchema, curriculumBreakdownConfigSchema, dataStatisticConfigSchema, diagnosticFramingConfigSchema, faqConfigSchema, featuresGridConfigSchema, guaranteeConfigSchema, heroCaptureFormConfigSchema, heroStatementConfigSchema, heroVideoConfigSchema, humaWidgetConfigSchema, imageBlockConfigSchema, inlineCtaConfigSchema, investmentPricingConfigSchema, mediaSchema, objectionBlockConfigSchema, pageHeaderBreadcrumbConfigSchema, pageSettingsSchema, patternRecognitionConfigSchema, perfectForYouConfigSchema, postPurchaseWelcomeConfigSchema, problemStatementConfigSchema, programmeArcConfigSchema, programmeOverviewConfigSchema, pullquoteConfigSchema, quickWinConfigSchema, richTextConfigSchema, romeIsBurningConfigSchema, sacredCowChallengeConfigSchema, safeUrlSchema, sectionConfigSchemas, sectionDividerConfigSchema, socialProofBarConfigSchema, socialShareConfigSchema, testimonialsConfigSchema, urgencyClosingConfigSchema, videoBlockConfigSchema, whatThisIsIsntConfigSchema, whatYoullExperienceConfigSchema };

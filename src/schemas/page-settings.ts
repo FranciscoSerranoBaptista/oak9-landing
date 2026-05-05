@@ -25,5 +25,4 @@ export const pageSettingsSchema = z.object({
   default_cta_url: z.string().max(1000).optional(), // legacy backwards compat
   waitlist_headline: z.string().max(255).optional(),
   waitlist_description: z.string().max(1000).optional(),
-  default_audience_id: z.string().max(100).optional(),
 }).optional();

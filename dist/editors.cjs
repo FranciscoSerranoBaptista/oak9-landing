@@ -641,8 +641,14 @@ function HeroCaptureFormEditor({
       ] })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Audience ID" }),
-      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("input", { value: c.audience_id ?? "", onChange: (e) => onChange({ ...config, audience_id: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Opt-in key" }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("input", { value: c.opt_in_key ?? "", onChange: (e) => onChange({ ...config, opt_in_key: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "control-trap-waitlist" }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("p", { className: "mt-1 text-xs text-zinc-400", children: "Lowercase letters, digits, hyphens, underscores. Identifies this opt-in to Bulbul." })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Tags to apply on confirmation (optional)" }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("input", { value: (c.opt_in_tags ?? []).join(", "), onChange: (e) => onChange({ ...config, opt_in_tags: e.target.value.split(",").map((s) => s.trim()).filter(Boolean) }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "interest:control-trap, vip" }),
+      /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("p", { className: "mt-1 text-xs text-zinc-400", children: "Comma-separated. Bulbul applies these tags after the subscriber confirms." })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { children: [
       /* @__PURE__ */ (0, import_jsx_runtime11.jsx)("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Privacy Text" }),
@@ -1907,8 +1913,14 @@ function CaptureFormEditor({
       /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("input", { value: c.submit_button_label ?? "", onChange: (e) => onChange({ ...config, submit_button_label: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "Submit" })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Audience ID" }),
-      /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("input", { value: c.audience_id ?? "", onChange: (e) => onChange({ ...config, audience_id: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+      /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Opt-in key" }),
+      /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("input", { value: c.opt_in_key ?? "", onChange: (e) => onChange({ ...config, opt_in_key: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "control-trap-waitlist" }),
+      /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("p", { className: "mt-1 text-xs text-zinc-400", children: "Lowercase letters, digits, hyphens, underscores. Identifies this opt-in to Bulbul." })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Tags to apply on confirmation (optional)" }),
+      /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("input", { value: (c.opt_in_tags ?? []).join(", "), onChange: (e) => onChange({ ...config, opt_in_tags: e.target.value.split(",").map((s) => s.trim()).filter(Boolean) }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "interest:control-trap, vip" }),
+      /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("p", { className: "mt-1 text-xs text-zinc-400", children: "Comma-separated. Bulbul applies these tags after the subscriber confirms." })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime32.jsxs)("div", { children: [
       /* @__PURE__ */ (0, import_jsx_runtime32.jsx)("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Privacy Text" }),
@@ -2016,8 +2028,14 @@ function ApplicationFormEditor({
       /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("textarea", { value: c.post_submit_message ?? "", onChange: (e) => onChange({ ...config, post_submit_message: e.target.value }), rows: 2, className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
     ] }),
     /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { children: [
-      /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Audience ID" }),
-      /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("input", { value: c.audience_id ?? "", onChange: (e) => onChange({ ...config, audience_id: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white" })
+      /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Opt-in key" }),
+      /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("input", { value: c.opt_in_key ?? "", onChange: (e) => onChange({ ...config, opt_in_key: e.target.value }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "control-trap-waitlist" }),
+      /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("p", { className: "mt-1 text-xs text-zinc-400", children: "Lowercase letters, digits, hyphens, underscores. Identifies this opt-in to Bulbul." })
+    ] }),
+    /* @__PURE__ */ (0, import_jsx_runtime33.jsxs)("div", { children: [
+      /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("label", { className: "mb-1 block text-xs font-medium text-zinc-500 dark:text-zinc-400", children: "Tags to apply on confirmation (optional)" }),
+      /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("input", { value: (c.opt_in_tags ?? []).join(", "), onChange: (e) => onChange({ ...config, opt_in_tags: e.target.value.split(",").map((s) => s.trim()).filter(Boolean) }), className: "w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm dark:border-zinc-600 dark:bg-surface-base dark:text-white", placeholder: "interest:control-trap, vip" }),
+      /* @__PURE__ */ (0, import_jsx_runtime33.jsx)("p", { className: "mt-1 text-xs text-zinc-400", children: "Comma-separated. Bulbul applies these tags after the subscriber confirms." })
     ] })
   ] });
 }
